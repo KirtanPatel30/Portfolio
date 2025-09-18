@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kirtan Patel - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow sticky top-0">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">Kirtan Patel</h1>
+      <div class="space-x-6">
+        <a href="#about" class="hover:text-blue-600">About</a>
+        <a href="#projects" class="hover:text-blue-600">Projects</a>
+        <a href="#experience" class="hover:text-blue-600">Experience</a>
+        <a href="#achievements" class="hover:text-blue-600">Achievements</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-blue-600 text-white py-20" id="about">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-4xl font-bold mb-4">Hi, I’m Kirtan 👋</h2>
+      <p class="text-lg leading-relaxed">
+        Computer Science student at UIC, passionate about building scalable systems, cloud applications,
+        and exploring cybersecurity. Teaching Assistant for CS 107 (C) & CS 109 (MATLAB).  
+      </p>
+      <div class="mt-6 space-x-4">
+        <a href="mailto:kirtannpatel2003@gmail.com" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100">Email Me</a>
+        <a href="resume.pdf" target="_blank" class="bg-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-900">View Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="py-16" id="projects">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-8 text-center">Projects</h3>
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Project Card -->
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
+          <h4 class="text-xl font-semibold mb-2">Tiger Conservation Platform</h4>
+          <p class="text-gray-600 mb-4">Backend system with SQL schema & REST APIs to track habitats and sightings.</p>
+          <a href="https://github.com/your-repo" class="text-blue-600 font-medium hover:underline">GitHub →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
+          <h4 class="text-xl font-semibold mb-2">Connect-Four Multiplayer Game</h4>
+          <p class="text-gray-600 mb-4">JavaFX client + multi-threaded server with chat & authentication.</p>
+          <a href="https://github.com/your-repo" class="text-blue-600 font-medium hover:underline">GitHub →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
+          <h4 class="text-xl font-semibold mb-2">Smart Interactive Table</h4>
+          <p class="text-gray-600 mb-4">IoT project using 3 Arduinos with RFID, sensors, and LCD/LED integration.</p>
+          <a href="https://github.com/your-repo" class="text-blue-600 font-medium hover:underline">GitHub →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
+          <h4 class="text-xl font-semibold mb-2">Weather Application</h4>
+          <p class="text-gray-600 mb-4">JavaFX app with API integration, city-specific backgrounds, and tourist info.</p>
+          <a href="https://github.com/your-repo" class="text-blue-600 font-medium hover:underline">GitHub →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="bg-gray-100 py-16" id="experience">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-8 text-center">Experience</h3>
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-xl font-semibold">Teaching Assistant – CS 107 (C) & CS 109 (MATLAB)</h4>
+          <p class="text-gray-600">University of Illinois at Chicago | Aug 2024 – Present</p>
+          <ul class="list-disc list-inside text-gray-700 mt-2">
+            <li>Led labs & office hours for 250+ students.</li>
+            <li>Helped debug C/C++ & MATLAB programs, focusing on pointers, memory, and algorithms.</li>
+            <li>Provided constructive feedback to improve code efficiency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="py-16" id="achievements">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-8 text-center">Achievements</h3>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Cybersecurity Club – CTF Competitor (Reverse Engineering & Cryptography)</li>
+        <li>SparkHacks Hackathon 2025 – Developed innovative software project</li>
+        <li>AWS Certified Cloud Practitioner (2024)</li>
+        <li>Google IT Automation with Python – Coursera (2024)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="bg-blue-600 text-white py-16" id="contact">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6">Get in Touch</h3>
+      <p class="mb-6">Let’s connect! I’m always open to discussing opportunities, projects, and collaborations.</p>
+      <div class="space-x-6">
+        <a href="mailto:kirtannpatel2003@gmail.com" class="hover:underline">Email</a>
+        <a href="https://linkedin.com/in/kirtan-patel" class="hover:underline">LinkedIn</a>
+        <a href="https://github.com/KirtanPatel30" class="hover:underline">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
