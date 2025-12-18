@@ -1,180 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kirtan Patel - Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kirtan Patel | Portfolio</title>
+  <meta name="description" content="Kirtan Patel — Software Engineer (Backend/Systems). Projects, experience, skills, and contact." />
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#12141c; --muted:#a7adbb; --text:#f4f6fb;
+      --border:rgba(255,255,255,.10); --accent:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg); color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{text-decoration:underline; text-underline-offset:4px}
+    .container{max-width:980px; margin:0 auto; padding:28px 16px 56px}
+    .nav{position:sticky; top:0; background:#0b0c10ee; border-bottom:1px solid var(--border)}
+    .nav-inner{max-width:980px; margin:auto; padding:12px 16px; display:flex; justify-content:space-between}
+    .btn{padding:8px 12px; border-radius:12px; border:1px solid var(--border); font-size:12px}
+    .btn.primary{background:#fff; color:#000; border:none}
+    .card{border:1px solid var(--border); border-radius:18px; padding:16px; background:#12141c}
+    h1{font-size:40px; margin:0}
+    h2{font-size:22px}
+    ul{padding-left:18px}
+    li{margin:6px 0}
+    .tags{display:flex; flex-wrap:wrap; gap:8px}
+    .tag{font-size:12px; border:1px solid var(--border); padding:5px 9px; border-radius:999px}
+    footer{text-align:center; color:#aaa; font-size:12px; margin-top:30px}
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-blue-600">Kirtan Patel</h1>
-      <div class="space-x-6">
-        <a href="#about" class="hover:text-blue-600">About</a>
-        <a href="#projects" class="hover:text-blue-600">Projects</a>
-        <a href="#experience" class="hover:text-blue-600">Experience</a>
-        <a href="#achievements" class="hover:text-blue-600">Achievements</a>
-        <a href="#contact" class="hover:text-blue-600">Contact</a>
-        <!-- Navbar Resume Link -->
-        <a href="Kirtan_Resume.pdf" target="_blank" class="hover:text-blue-600 font-semibold">Resume</a>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <b>Kirtan Patel</b>
+      <div>
+        <a class="btn" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
+        <a class="btn primary" href="Kirtan_resumeS.pdf" target="_blank">Resume</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="bg-blue-600 text-white py-20" id="about">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-4xl font-bold mb-4">Hi, I’m Kirtan Patel </h2>
-      <p class="text-lg leading-relaxed">
-        Computer Science student at UIC, Passionate, innovative Software Engineer-in-training, 
-        thriving at the intersection of system programming, cloud computing, and cybersecurity. Teaching Assistant at UIC  for C/C++  & MATLAB.  
-      </p>
-      <div class="mt-6 space-x-4">
-        <!-- Email -->
-        <a href="mailto:kirtannpatel2003@gmail.com" 
-           class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100">
-           Email Me
-        </a>
-
-        <!-- Resume -->
-        <a href="Kirtan_resumeS.pdf" target="_blank" 
-           class="bg-blue-800 px-4 py-2 rounded-lg font-medium hover:bg-blue-900">
-           View Resume
-        </a>
-
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" 
-           class="bg-blue-500 px-4 py-2 rounded-lg font-medium hover:bg-blue-600">
-           LinkedIn
-        </a>
-      </div>
-    </div>
-  </section>
-
- <!-- Projects -->
-<section class="py-16" id="projects">
-  <div class="max-w-6xl mx-auto px-6">
-    <h3 class="text-3xl font-bold mb-8 text-center">Projects</h3>
-    <div class="grid md:grid-cols-2 gap-8">
-
-      <!-- Tiger Conservation Platform -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Biotrack - A full stack web Application</h4>
-        <p class="text-gray-600 mb-4">
-          Backend system with SQL schema & REST APIs to track habitats and sightings.
-        </p>
-        <a href="https://github.com/KirtanPatel30?tab=repositories" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Connect-Four Multiplayer Game -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Connect-Four Multiplayer Game</h4>
-        <p class="text-gray-600 mb-4">JavaFX client + multi-threaded server with chat & authentication.</p>
-        <a href="https://github.com/KirtanPatel30?tab=repositories" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Smart Interactive Table -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Smart Interactive Table</h4>
-        <p class="text-gray-600 mb-4">IoT project using 3 Arduinos with RFID, sensors, and LCD/LED integration.</p>
-        <a href="https://github.com/KirtanPatel30?tab=repositories" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Mini Search Engine -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Mini Search Engine (C)</h4>
-        <p class="text-gray-600 mb-4">
-          Search engine built in C that indexes text files using a hash table inverted index and retrieves results ranked by frequency, inspired by Google Search.
-        </p>
-        <a href="https://github.com/KirtanPatel30/mini-search-engine" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Resume Analyzer -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Resume Analyzer (Python)</h4>
-        <p class="text-gray-600 mb-4">
-          Python tool that analyzes resumes against job descriptions, highlights matched/missing skills,
-          and calculates a match score to help tailor applications.
-        </p>
-        <a href="https://github.com/KirtanPatel30/Resume_Analyzer" 
-           target="_blank" class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Weather Application -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Weather Application</h4>
-        <p class="text-gray-600 mb-4">JavaFX app with API integration, city-specific backgrounds, and tourist info.</p>
-        <a href="https://github.com/KirtanPatel30?tab=repositories" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
-      <!-- Multithreaded Web Server (C) -->
-      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg">
-        <h4 class="text-xl font-semibold mb-2">Multithreaded Web Server (C)</h4>
-        <p class="text-gray-600 mb-4">
-          A lightweight HTTP/1.1 web server built from scratch in C featuring socket programming, 
-          multithreading with a worker pool, static file serving, routing, and basic rate limiting — 
-          showcasing real backend system design concepts.
-        </p>
-        <a href="https://github.com/KirtanPatel30/multithread-web-server" 
-           class="text-blue-600 font-medium hover:underline">GitHub →</a>
-      </div>
-
     </div>
   </div>
-</section>
 
+  <main class="container">
+    <h1>Software Engineer</h1>
+    <p>Backend / Systems • Chicago, IL</p>
 
-  <!-- Experience -->
-  <section class="bg-gray-100 py-16" id="experience">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8 text-center">Experience</h3>
-      <div class="space-y-6">
-        <div>
-          <h4 class="text-xl font-semibold">Teaching Assistant – CS 107 (C) & CS 109 (MATLAB)</h4>
-          <p class="text-gray-600">University of Illinois at Chicago | Aug 2024 – Present</p>
-          <ul class="list-disc list-inside text-gray-700 mt-2">
-            <li>Led labs & office hours for 250+ students.</li>
-            <li>Helped debug C/C++ & MATLAB programs, focusing on pointers, memory, and algorithms.</li>
-            <li>Provided constructive feedback to improve code efficiency.</li>
-          </ul>
-        </div>
-      </div>
+    <p>
+      Software Engineer with strong systems and backend focus, experienced in multithreading,
+      distributed systems, and scalable APIs. Skilled in debugging low-level issues and optimizing performance.
+    </p>
+
+    <div class="tags">
+      <span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span>
+      <span class="tag">Distributed Systems</span><span class="tag">Concurrency</span>
+      <span class="tag">REST APIs</span><span class="tag">Docker</span>
     </div>
-  </section>
 
-  <!-- Achievements -->
-  <section class="py-16" id="achievements">
-    <div class="max-w-6xl mx-auto px-6">
-      <h3 class="text-3xl font-bold mb-8 text-center">Achievements</h3>
-      <ul class="list-disc list-inside text-gray-700 space-y-2">
-        <li>Cybersecurity Club – CTF Competitor (Reverse Engineering & Cryptography)</li>
-        <li>SparkHacks Hackathon 2025 – Developed innovative software project</li>
-        <li>AWS Certified Cloud Practitioner (2024)</li>
-        <li>Google IT Automation with Python – Coursera (2024)</li>
+    <hr />
+
+    <h2>Projects</h2>
+
+    <div class="card">
+      <b>Multithreaded Web Server (C)</b>
+      <p>HTTP/1.1 server using thread pool and bounded queue.</p>
+      <ul>
+        <li>5× throughput under concurrent load</li>
+        <li>Rate limiting, routing, dynamic worker scaling</li>
       </ul>
+      <a class="btn" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank">Repo</a>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section class="bg-blue-600 text-white py-16" id="contact">
-    <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-bold mb-6">Get in Touch</h3>
-      <p class="mb-6">Let’s connect! I’m always open to discussing opportunities, projects, and collaborations.</p>
-      <div class="space-x-6">
-        <a href="mailto:kirtannpatel2003@gmail.com" class="hover:underline">Email</a>
-        <a href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" class="hover:underline">LinkedIn</a>
-        <a href="https://github.com/KirtanPatel30" target="_blank" class="hover:underline">GitHub</a>
-      </div>
+    <br/>
+
+    <div class="card">
+      <b>ClusterStore — Distributed KV Store</b>
+      <p>Hash-partitioned distributed key-value store.</p>
+      <ul>
+        <li>35% lower inter-node messaging overhead</li>
+        <li>Python load testing with thousands of req/sec</li>
+      </ul>
+      <a class="btn" href="https://github.com/KirtanPatel30/ClusterStore" target="_blank">Repo</a>
     </div>
-  </section>
 
+    <br/>
+
+    <div class="card">
+      <b>BioTrack — Full Stack Platform</b>
+      <p>FastAPI + React + PostgreSQL conservation platform.</p>
+      <ul>
+        <li>40% API response time improvement</li>
+        <li>Schema for 10k+ records</li>
+      </ul>
+      <a class="btn" href="https://github.com/KirtanPatel30/BioTrack" target="_blank">Repo</a>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <b>MindPilot — AI Productivity Assistant</b>
+      <ul>
+        <li>70% improvement in task planning efficiency</li>
+        <li>Offline-first with SQLite</li>
+      </ul>
+      <a class="btn" href="https://github.com/KirtanPatel30/MindPilot" target="_blank">Repo</a>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <b>Mini Search Engine</b>
+      <a class="btn" href="https://github.com/KirtanPatel30/mini-search-engine" target="_blank">Repo</a>
+    </div>
+
+    <br/>
+
+    <div class="card">
+      <b>Resume Analyzer (Python)</b>
+      <a class="btn" href="https://github.com/KirtanPatel30/Resume_Analyzer" target="_blank">Repo</a>
+    </div>
+
+    <hr />
+
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com</a></p>
+    <p>GitHub: <a href="https://github.com/KirtanPatel30">github.com/KirtanPatel30</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/kirtan-patel-24227a248/">linkedin.com/in/kirtan-patel</a></p>
+
+    <footer>
+      © <span id="y"></span> Kirtan Patel • Hosted on GitHub Pages
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
