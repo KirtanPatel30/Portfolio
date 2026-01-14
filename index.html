@@ -16,9 +16,9 @@
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.68);
       --muted2: rgba(255,255,255,.52);
-      --accent: #8BE9FD;      /* cyan-ish */
-      --accent2:#A78BFA;      /* violet */
-      --good:#34D399;         /* green */
+      --accent: #8BE9FD;
+      --accent2:#A78BFA;
+      --good:#34D399;
       --shadow: 0 20px 70px rgba(0,0,0,.45);
       --radius: 18px;
     }
@@ -262,7 +262,6 @@
       text-align:center;
     }
 
-    /* tiny icon style */
     .ico{
       width:16px; height:16px; display:inline-block;
       vertical-align:-3px;
@@ -315,7 +314,7 @@
         <div class="pillrow">
           <span class="pill"><span class="spark"></span><b>C/C++</b> Systems</span>
           <span class="pill"><span class="spark"></span><b>Distributed</b> KV store</span>
-          <span class="pill"><span class="spark"></span><b>Fast APIs</b> (FastAPI/Node)</span>
+          <span class="pill"><span class="spark"></span><b>Flash-sale</b> inventory</span>
           <span class="pill"><span class="spark"></span><b>Debugging</b> (Linux/GDB)</span>
           <span class="pill"><span class="spark"></span><b>Docker</b> Deployments</span>
         </div>
@@ -360,8 +359,8 @@
         <div class="metrics" style="margin-top:10px">
           <span class="mchip cool">5× throughput (C web server)</span>
           <span class="mchip cool">35% less overhead (ClusterStore)</span>
-          <span class="mchip good">40% faster APIs (BioTrack)</span>
-          <span class="mchip good">30% fewer calls (MindPilot)</span>
+          <span class="mchip good">0 oversell (FlashSaleGuard)</span>
+          <span class="mchip good">Idempotent confirm</span>
         </div>
       </div>
     </div>
@@ -375,6 +374,32 @@
       </div>
 
       <div class="grid2">
+
+        <!-- FlashSaleGuard (NEW - FIRST) -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">FlashSaleGuard — High-Concurrency Inventory Reservations</p>
+              <p class="pdesc">Prime-Day style reserve-then-confirm checkout flow using Redis atomic operations + PostgreSQL as source of truth.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Prevented overselling using <b>Redis atomic counters + TTL-based reservations</b> (abandoned checkouts auto-release stock).</li>
+            <li>Implemented <b>idempotent order confirmation</b> using idempotency keys to guarantee exactly-once order creation under retries.</li>
+            <li>Dockerized infra with <b>Postgres + Redis</b>; validated end-to-end flow and correctness under concurrent requests.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">Java</span>
+            <span class="mchip cool">Spring Boot</span>
+            <span class="mchip cool">Redis</span>
+            <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Concurrency</span>
+            <span class="mchip">Docker</span>
+            <span class="mchip good">0 oversell</span>
+          </div>
+        </div>
+
         <!-- Multithreaded Web Server -->
         <div class="proj">
           <div class="ptop">
@@ -420,30 +445,7 @@
           </div>
         </div>
 
-        <!-- BioTrack -->
-        <div class="proj">
-          <div class="ptop">
-            <div>
-              <p class="ptitle">BioTrack — Full-Stack Platform</p>
-              <p class="pdesc">FastAPI + React + PostgreSQL platform focused on clean APIs, caching, and DB performance.</p>
-            </div>
-            <a class="btn" href="https://github.com/KirtanPatel30/BioTrack" target="_blank" rel="noreferrer">Repo</a>
-          </div>
-          <ul>
-            <li>Built <b>20+ REST endpoints</b>; reduced response time <b>220ms to 130ms</b> (40%).</li>
-            <li>Designed schema for <b>10k+ records</b> with indexed queries improving lookup by <b>45%</b>.</li>
-            <li>Implemented caching + pagination; reduced redundant DB queries by <b>40%</b>.</li>
-          </ul>
-          <div class="metrics">
-            <span class="mchip cool">FastAPI</span>
-            <span class="mchip">REST APIs</span>
-            <span class="mchip">PostgreSQL</span>
-            <span class="mchip">Caching</span>
-            <span class="mchip">React</span>
-          </div>
-        </div>
-
-        <!-- LogForge / LogForage (NEW FEATURED PROJECT) -->
+        <!-- LogForge / LogForage -->
         <div class="proj">
           <div class="ptop">
             <div>
@@ -476,6 +478,30 @@
       </div>
 
       <div class="grid2">
+
+        <!-- BioTrack (MOVED HERE) -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">BioTrack — FastAPI Service + PostgreSQL</p>
+              <p class="pdesc">Backend-focused platform emphasizing clean APIs, caching, and query performance.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/BioTrack" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Built <b>20+ REST endpoints</b>; reduced response time <b>220ms → 130ms</b> (40%).</li>
+            <li>Designed schema for <b>10k+ records</b> with indexed queries improving lookup by <b>45%</b>.</li>
+            <li>Implemented caching + pagination; reduced redundant DB queries by <b>40%</b>.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">FastAPI</span>
+            <span class="mchip">REST APIs</span>
+            <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Caching</span>
+            <span class="mchip">React</span>
+          </div>
+        </div>
+
         <!-- MindPilot -->
         <div class="proj">
           <div class="ptop">
@@ -628,13 +654,13 @@
             <span class="mchip">SQL</span>
           </div>
           <div class="divider" style="margin:12px 0"></div>
-          <p class="ptitle">Backend / Systems</p>
+         
           <div class="metrics" style="margin-top:10px">
             <span class="mchip cool">Distributed Systems</span>
             <span class="mchip cool">Concurrency</span>
-            <span class="mchip">Sockets</span>
             <span class="mchip">REST APIs</span>
-            <span class="mchip">Memory Management</span>
+            <span class="mchip">Caching</span>
+            <span class="mchip">Idempotency</span>
             <span class="mchip">Linux</span>
           </div>
         </div>
@@ -642,11 +668,13 @@
         <div class="proj">
           <p class="ptitle">Frameworks / Tools</p>
           <div class="metrics" style="margin-top:10px">
+            <span class="mchip cool">Spring Boot</span>
             <span class="mchip cool">FastAPI</span>
-            <span class="mchip cool">Node.js</span>
+            <span class="mchip">Node.js</span>
             <span class="mchip">React</span>
             <span class="mchip">React Native</span>
             <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Redis</span>
             <span class="mchip">Docker</span>
             <span class="mchip">Git</span>
             <span class="mchip">GDB</span>
@@ -710,7 +738,7 @@
     </section>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    
   </script>
 </body>
 </html>
