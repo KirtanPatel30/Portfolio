@@ -290,7 +290,7 @@
       <div class="actions">
         <a class="btn" href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn solid" href="Kirtan_resumeS.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn solid" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
       </div>
     </div>
   </div>
@@ -360,7 +360,7 @@
           <span class="mchip cool">5× throughput (C web server)</span>
           <span class="mchip cool">35% less overhead (ClusterStore)</span>
           <span class="mchip good">0 oversell (FlashSaleGuard)</span>
-          <span class="mchip good">Idempotent confirm</span>
+          <span class="mchip good">Graceful degradation</span>
         </div>
       </div>
     </div>
@@ -375,7 +375,7 @@
 
       <div class="grid2">
 
-        <!-- FlashSaleGuard (NEW - FIRST) -->
+        <!-- FlashSaleGuard (FIRST) -->
         <div class="proj">
           <div class="ptop">
             <div>
@@ -397,6 +397,30 @@
             <span class="mchip">Concurrency</span>
             <span class="mchip">Docker</span>
             <span class="mchip good">0 oversell</span>
+          </div>
+        </div>
+
+        <!-- Adaptive Gateway (FEATURED) -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Adaptive Load-Shedding API Gateway (C++)</p>
+              <p class="pdesc">Reverse proxy that detects backend overload and sheds low-priority traffic to prevent cascading failures.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/Adaptive-Gateway" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Detected overload using <b>EWMA latency + error-rate metrics</b> and shed low-priority requests to keep the system stable.</li>
+            <li>Implemented a <b>thread pool</b> with <b>bounded priority queues</b> to enforce backpressure and prioritize critical endpoints.</li>
+            <li>Load-tested under burst traffic and tracked <b>p95 latency</b> to validate <b>graceful degradation</b> during backend slowdowns.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">C++</span>
+            <span class="mchip cool">Linux</span>
+            <span class="mchip">Sockets</span>
+            <span class="mchip">HTTP</span>
+            <span class="mchip">Concurrency</span>
+            <span class="mchip good">Load shedding</span>
           </div>
         </div>
 
@@ -445,28 +469,6 @@
           </div>
         </div>
 
-        <!-- LogForge / LogForage -->
-        <div class="proj">
-          <div class="ptop">
-            <div>
-              <p class="ptitle">LogForge — Kafka-Style Distributed Log Service (Java)</p>
-              <p class="pdesc">Distributed, partitioned append-only log with offset-based replay and disk-backed persistence.</p>
-            </div>
-            <a class="btn" href="https://github.com/KirtanPatel30/LogForage" target="_blank" rel="noreferrer">Repo</a>
-          </div>
-          <ul>
-            <li>Built a distributed log service in <b>Java</b> with <b>partitioned, append-only logs</b> and <b>offset-based message replay</b>.</li>
-            <li>Designed a custom <b>TCP protocol</b> supporting concurrent producers/consumers with <b>disk-backed persistence</b>.</li>
-            <li>Implemented <b>crash recovery</b> via log replay and validated performance under load using controlled benchmarks.</li>
-          </ul>
-          <div class="metrics">
-            <span class="mchip cool">Java</span>
-            <span class="mchip cool">Distributed Systems</span>
-            <span class="mchip">Append-only Log</span>
-            <span class="mchip">TCP</span>
-            <span class="mchip">Persistence</span>
-          </div>
-        </div>
       </div>
 
       <div class="divider"></div>
@@ -479,7 +481,30 @@
 
       <div class="grid2">
 
-        <!-- BioTrack (MOVED HERE) -->
+        <!-- LogForge moved here -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">LogForge — Kafka-Style Distributed Log Service (Java)</p>
+              <p class="pdesc">Distributed, partitioned append-only log with offset-based replay and disk-backed persistence.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/LogForage" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Built a distributed log service in <b>Java</b> with <b>partitioned, append-only logs</b> and <b>offset-based replay</b>.</li>
+            <li>Designed a custom <b>TCP protocol</b> supporting concurrent producers/consumers with <b>disk-backed persistence</b>.</li>
+            <li>Implemented <b>crash recovery</b> via log replay and validated performance under load using controlled benchmarks.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">Java</span>
+            <span class="mchip cool">Distributed Systems</span>
+            <span class="mchip">Append-only Log</span>
+            <span class="mchip">TCP</span>
+            <span class="mchip">Persistence</span>
+          </div>
+        </div>
+
+        <!-- BioTrack -->
         <div class="proj">
           <div class="ptop">
             <div>
@@ -654,7 +679,7 @@
             <span class="mchip">SQL</span>
           </div>
           <div class="divider" style="margin:12px 0"></div>
-         
+
           <div class="metrics" style="margin-top:10px">
             <span class="mchip cool">Distributed Systems</span>
             <span class="mchip cool">Concurrency</span>
@@ -706,7 +731,7 @@
           <div>
             <div class="mini"><b>Resume</b></div>
             <div class="mini" style="margin-top:6px">
-              <a href="Kirtan_resumeS.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+              <a href="KResume.pdf" target="_blank" rel="noreferrer">Open PDF</a>
             </div>
           </div>
           <div>
@@ -731,14 +756,13 @@
 
         <div class="pillrow">
           <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Email Me</a>
-          <a class="btn" href="Kirtan_resumeS.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+          <a class="btn" href="KResume.pdf" target="_blank" rel="noreferrer">Download Resume</a>
           <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">Message on LinkedIn</a>
         </div>
       </div>
     </section>
 
   <script>
-    
   </script>
 </body>
 </html>
