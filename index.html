@@ -3,383 +3,429 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kirtan Patel — Software Engineer</title>
-  <meta name="description" content="Kirtan Patel — Backend/Systems engineer. Distributed systems, concurrency, APIs, performance." />
+  <title>Kirtan Patel — Backend / Systems Engineer</title>
+  <meta name="description" content="Kirtan Patel — Backend/Systems engineer. Distributed systems, concurrency, scalable APIs, performance." />
 
   <style>
     :root{
-      /* ✅ Readable recruiter-friendly palette */
-      --bg0:#0B1020;
-      --bg1:#0A122B;
-      --bg2:#07101F;
+      --bg: #0f1113;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
 
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
 
-      --text: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.74);
-      --muted2: rgba(255,255,255,.60);
+      --accent: #00F5C6; /* teal like reference */
+      --accent2:#00D7FF;
 
-      --accent:#59D7FF;     /* calm cyan */
-      --accent2:#9B8CFF;    /* soft violet */
-      --good:#38D8A6;
-
-      --shadow: 0 18px 55px rgba(0,0,0,.40);
-      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --r: 18px;
+      --max: 1120px;
     }
 
     *{ box-sizing:border-box }
-    html{ scroll-behavior:smooth }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color: var(--text);
-
-      /* ✅ Simple, clean background (easy to read) */
-      background:
-        radial-gradient(900px 520px at 15% 0%, rgba(89,215,255,.12), transparent 60%),
-        radial-gradient(800px 520px at 95% 15%, rgba(155,140,255,.10), transparent 62%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
+      background: var(--bg);
     }
 
     a{ color:inherit; text-decoration:none }
-    a:hover{ text-decoration:underline; text-underline-offset:4px; text-decoration-color: rgba(255,255,255,.35) }
+    a:hover{ opacity:.92 }
 
-    .wrap{ max-width: 1120px; margin:0 auto; padding: 0 18px; }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
     /* NAV */
     .nav{
-      position: sticky; top:0; z-index:50;
-      background: rgba(11,16,32,.78);
+      position: sticky;
+      top:0;
+      z-index:50;
+      background: rgba(15,17,19,.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .navin{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 14px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 16px 0;
       gap: 14px;
     }
+
     .brand{
-      display:flex; align-items:center; gap:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
       font-weight: 800;
-      letter-spacing:-.25px;
+      letter-spacing: -.2px;
     }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 4px rgba(89,215,255,.12);
+    .logoBox{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background: rgba(0,245,198,.12);
+      border: 1px solid rgba(0,245,198,.20);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
+    .logoMark{
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
     .navlinks{
       display:none;
-      gap:18px;
-      color: var(--muted);
+      align-items:center;
+      gap: 26px;
+      color: rgba(255,255,255,.78);
       font-size: 13px;
     }
-    .navlinks a:hover{ color: var(--text); text-decoration:none }
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end }
+    .navlinks a{
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+    .navlinks a:hover{
+      border-bottom-color: rgba(0,245,198,.55);
+    }
+
+    .cta{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
 
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius: 14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      font-size: 12px;
-      line-height: 1;
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
     }
     .btn:hover{
-      background: rgba(255,255,255,.08);
       transform: translateY(-1px);
-      text-decoration:none;
-      border-color: rgba(89,215,255,.28);
-    }
-    .btn.primary{
-      border-color: rgba(89,215,255,.30);
-      background: linear-gradient(180deg, rgba(89,215,255,.18), rgba(255,255,255,.05));
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
     }
     .btn.solid{
-      border-color: transparent;
-      background: linear-gradient(90deg, rgba(89,215,255,.95), rgba(155,140,255,.95));
-      color:#0b0c10;
+      border: none;
+      color: #061012;
       font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 38px rgba(0,245,198,.14);
     }
     .btn.solid:hover{ filter: brightness(.98) }
 
-    @media (min-width: 900px){
-      .navlinks{ display:flex }
+    @media (min-width: 920px){
+      .navlinks{ display:flex; }
     }
 
     /* HERO */
     .hero{
-      padding: 36px 0 18px;
+      padding: 56px 0 36px;
       display:grid;
-      gap: 18px;
+      gap: 26px;
       grid-template-columns: 1fr;
+      align-items:center;
     }
-    @media (min-width: 900px){
-      .hero{ grid-template-columns: 1.25fr .75fr; gap: 22px; padding-top: 48px; }
+    @media (min-width: 980px){
+      .hero{ grid-template-columns: 1.05fr .95fr; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+    }
+    .kickerDot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(0,245,198,.10);
     }
 
     h1{
-      margin:0;
-      font-size: clamp(38px, 4.4vw, 54px);
-      line-height: 1.04;
+      margin: 14px 0 0;
+      font-size: clamp(44px, 4.6vw, 64px);
+      line-height: 1.02;
       letter-spacing: -1px;
     }
-    .headlineGlow{
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
+
+    .role{
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: var(--accent);
     }
 
-    .subtitle{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .lead{
-      margin-top: 14px;
-      color: rgba(255,255,255,.88); /* ✅ higher readability */
-      line-height: 1.65;
-      max-width: 64ch;
+    .summary{
+      margin-top: 12px;
+      max-width: 60ch;
+      color: rgba(255,255,255,.80);
+      line-height: 1.7;
       font-size: 15px;
     }
 
-    .pillrow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 16px }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
+    .heroActions{
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .metaRow{
+      margin-top: 16px;
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .metaPill{
       padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      font-size: 12px;
-      color: rgba(255,255,255,.90);
+      background: rgba(255,255,255,.03);
     }
-    .spark{
-      width:8px; height:8px; border-radius:50%;
-      background: rgba(89,215,255,.95);
-      box-shadow: 0 0 0 4px rgba(89,215,255,.12);
+    .metaPill b{ color: rgba(255,255,255,.88) }
+
+    /* Right illustration card */
+    .illusCard{
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 360px;
+      display:grid;
+      place-items:center;
+    }
+    .illusCard::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(520px 280px at 70% 30%, rgba(0,245,198,.12), transparent 60%),
+        radial-gradient(520px 280px at 20% 90%, rgba(0,215,255,.09), transparent 62%);
+      pointer-events:none;
+    }
+    .illusInner{
+      position:relative;
+      z-index:1;
+      width: 100%;
+      height: 100%;
+      display:grid;
+      place-items:center;
+      padding: 26px;
     }
 
-    .card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    /* If you add an image: */
+    .avatar{
+      width: min(420px, 92%);
+      aspect-ratio: 1 / 1;
+      border-radius: 28px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 18px 50px rgba(0,0,0,.40);
     }
-    .card.pad{ padding: 16px }
-    .mini{
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
+
+    /* Placeholder if no image */
+    .placeholder{
+      width: min(420px, 92%);
+      aspect-ratio: 1 / 1;
+      border-radius: 28px;
+      border: 1px dashed rgba(255,255,255,.16);
+      background: rgba(0,0,0,.22);
+      display:grid;
+      place-items:center;
+      padding: 22px;
+      text-align:center;
+      color: rgba(255,255,255,.70);
     }
-    .quickgrid{
-      display:grid; gap: 12px;
+    .placeholder b{ color: rgba(255,255,255,.88) }
+    .placeholder .hint{ margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.58); line-height:1.5 }
+
+    /* Sections below hero (optional) */
+    .section{
+      padding: 22px 0 36px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 20px;
+      letter-spacing: -.2px;
+    }
+    .grid{
+      display:grid;
+      gap: 14px;
       grid-template-columns: 1fr;
     }
-    @media (min-width: 900px){
-      .quickgrid{ grid-template-columns: 1fr 1fr; }
+    @media (min-width: 980px){
+      .grid{ grid-template-columns: 1fr 1fr; }
     }
-
-    .section{
-      padding: 22px 0;
-      scroll-margin-top: 90px;
-    }
-    .sectionhead{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap: 14px;
-      margin: 12px 0 14px;
-    }
-    .sectionhead h2{
-      margin:0;
-      font-size: 22px;
-      letter-spacing: -.3px;
-    }
-    .sectionhead p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .divider{
-      height:1px;
-      background: rgba(255,255,255,.12);
-      margin: 18px 0 6px;
-    }
-
-    .grid2{ display:grid; gap: 14px; grid-template-columns: 1fr }
-    @media (min-width: 900px){ .grid2{ grid-template-columns: 1fr 1fr } }
-
-    .proj{
+    .card{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
       padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      position: relative;
-      overflow: hidden;
     }
-    .proj:hover{
-      transform: translateY(-2px);
-      border-color: rgba(89,215,255,.30);
-      background: rgba(255,255,255,.07);
-    }
-
-    .ptop{
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
-    }
-    .ptitle{
+    .cardTitle{
       font-weight: 850;
-      letter-spacing: -.2px;
-      font-size: 16px;
       margin:0;
+      font-size: 15px;
     }
-    .pdesc{
+    .cardDesc{
       margin: 8px 0 0;
-      color: var(--muted);
+      color: rgba(255,255,255,.72);
       font-size: 13px;
       line-height: 1.55;
     }
-
-    ul{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: rgba(255,255,255,.90); /* ✅ clearer lists */
-      line-height: 1.55;
-      font-size: 13px;
-    }
-    li{ margin: 6px 0 }
-
-    .metrics{
-      display:flex; flex-wrap:wrap; gap:8px;
+    .tags{
       margin-top: 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
     }
-    .mchip{
+    .tag{
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.90);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.75);
     }
-    .mchip.good{ border-color: rgba(56,216,166,.26); background: rgba(56,216,166,.10) }
-    .mchip.cool{ border-color: rgba(89,215,255,.26); background: rgba(89,215,255,.10) }
-
-    .footer{
-      padding: 22px 0 40px;
-      color: rgba(255,255,255,.60);
-      font-size: 12px;
-      text-align:center;
-    }
-    .muted{ color: var(--muted) }
-    .muted2{ color: var(--muted2) }
   </style>
 </head>
 
 <body>
   <!-- NAV -->
-  <div class="nav">
+  <header class="nav">
     <div class="wrap navin">
       <a class="brand" href="#top" aria-label="Home">
-        <span class="dot"></span>
-        <span>Kirtan Patel</span>
+        <span class="logoBox"><span class="logoMark"></span></span>
+        <span>Kirtan</span>
       </a>
 
-      <div class="navlinks">
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-      </div>
+      </nav>
 
-      <div class="actions">
+      <div class="cta">
         <a class="btn" href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn solid" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn solid" href="#projects">Case Studies</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="wrap" id="top">
-    <!-- HERO -->
-    <div class="hero">
+  <!-- HERO -->
+  <main class="wrap" id="top">
+    <section class="hero">
       <div>
-        <h1>
-          Backend / Systems<br/>
-          <span class="headlineGlow">Software Engineer</span>
-        </h1>
+        <div class="kicker"><span class="kickerDot"></span> HI THERE 👋 I'M</div>
 
-        <div class="subtitle">Chicago, IL • UIC CS (Expected May 2026)</div>
+        <h1>Kirtan<br/>Patel</h1>
 
-        <p class="lead">
-          I build performance-focused backend and systems projects: <b>concurrency</b>, <b>distributed systems</b>,
-          and <b>scalable APIs</b>. I like debugging hard issues (memory leaks, race conditions) and making systems faster and more reliable.
+        <div class="role">BACKEND / SYSTEMS ENGINEER</div>
+
+        <p class="summary">
+          I build performance-focused backend and systems projects — concurrency, distributed systems, and scalable APIs.
+          I enjoy debugging hard issues (race conditions, memory leaks) and making systems faster and more reliable.
         </p>
 
-        <div class="pillrow">
-          <span class="pill"><span class="spark"></span><b>C/C++</b> Systems</span>
-          <span class="pill"><span class="spark"></span><b>Distributed</b> KV store</span>
-          <span class="pill"><span class="spark"></span><b>Flash-sale</b> inventory</span>
-          <span class="pill"><span class="spark"></span><b>Debugging</b> (Linux/GDB)</span>
-          <span class="pill"><span class="spark"></span><b>Docker</b> Deployments</span>
+        <div class="heroActions">
+          <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Hire Me</a>
+          <a class="btn" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
 
-        <div class="pillrow" style="margin-top:16px">
-          <a class="btn solid" href="#projects">View Featured Projects</a>
-          <a class="btn primary" href="mailto:kirtannpatel2003@gmail.com">Email</a>
-        </div>
-
-        <div class="subtitle" style="margin-top:12px">
-          <span class="muted">kirtannpatel2003@gmail.com</span>
-          <span class="muted"> • </span>
-          <span class="muted">+1 630-720-2202</span>
+        <div class="metaRow">
+          <span class="metaPill"><b>Chicago, IL</b></span>
+          <span class="metaPill">UIC CS — <b>May 2026</b></span>
+          <span class="metaPill">C/C++ • Java • Python • Linux</span>
         </div>
       </div>
 
-      <div class="card pad">
-        <div class="mini"><b>Quick Highlights</b></div>
-        <div class="divider"></div>
+      <!-- Right illustration -->
+      <div class="illusCard" aria-label="Profile Illustration">
+        <div class="illusInner">
 
-        <div class="quickgrid">
-          <div>
-            <div class="mini"><b class="muted">Current</b></div>
-            <div class="mini" style="margin-top:6px">
-              React Native Software Engineer Intern @ Resilience Inc
-              <span class="muted2">(performance + production fixes)</span>
+          <!-- OPTION A (recommended): add your own image like avatar.png in same folder -->
+          <!-- <img class="avatar" src="avatar.png" alt="Kirtan illustration" /> -->
+
+          <!-- OPTION B: placeholder (shows until you add image) -->
+          <div class="placeholder">
+            <div>
+              <b>Add a clean illustration here</b>
+              <div class="hint">
+                Put an image named <b>avatar.png</b> in this folder and uncomment the img tag.
+                A memoji-style or simple portrait works best.
+              </div>
             </div>
           </div>
 
-          <div>
-            <div class="mini"><b class="muted">Focus</b></div>
-            <div class="mini" style="margin-top:6px">
-              Backend, systems programming, concurrency, distributed systems.
-            </div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="mini"><b class="muted">Best proof</b></div>
-        <div class="metrics" style="margin-top:10px">
-          <span class="mchip cool">5× throughput (C web server)</span>
-          <span class="mchip cool">35% less overhead (ClusterStore)</span>
-          <span class="mchip good">0 oversell (FlashSaleGuard)</span>
-          <span class="mchip good">Graceful degradation</span>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ✅ Keep the rest of your sections exactly the same below -->
-    <!-- PROJECTS / EXPERIENCE / SKILLS / CONTACT -->
-    <!-- (Paste your existing content here after this point) -->
+    <!-- OPTIONAL: quick clean sections (keep minimal) -->
+    <section class="section" id="projects">
+      <h2>Featured Case Studies</h2>
+      <div class="grid">
+        <div class="card">
+          <p class="cardTitle">FlashSaleGuard — High-Concurrency Inventory Reservations</p>
+          <p class="cardDesc">Reserve-then-confirm checkout using Redis atomic ops + Postgres source of truth.</p>
+          <div class="tags">
+            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="card">
+          <p class="cardTitle">Adaptive Load-Shedding API Gateway (C++)</p>
+          <p class="cardDesc">Reverse proxy that sheds low-priority traffic during overload to prevent cascading failures.</p>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">Thread Pool</span><span class="tag">Sockets</span><span class="tag">p95 Latency</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="footer">
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card">
+          <p class="cardTitle">Email</p>
+          <p class="cardDesc"><a href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com</a></p>
+        </div>
+        <div class="card">
+          <p class="cardTitle">Resume</p>
+          <p class="cardDesc"><a href="KResume.pdf" target="_blank" rel="noreferrer">Open KResume.pdf</a></p>
+        </div>
+      </div>
+    </section>
+
+    <div style="padding: 28px 0 44px; color: rgba(255,255,255,.52); font-size: 12px; text-align:center;">
       © <span id="year"></span> Kirtan Patel
     </div>
-  </div>
+  </main>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
