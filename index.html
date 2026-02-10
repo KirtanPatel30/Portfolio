@@ -386,7 +386,7 @@
       <div class="actions">
         <a class="btn ghost" href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">GitHub</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn solid" href="#projects">Case Studies</a>
+        <a class="btn solid" href="#projects">Projects</a>
       </div>
     </div>
   </header>
@@ -407,7 +407,7 @@
         </p>
 
         <div class="heroActions">
-          <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Hire Me</a>
+          <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Email</a>
           <a class="btn" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
           <a class="btn" href="#contact">Contact</a>
         </div>
@@ -421,15 +421,19 @@
 
       <div class="illusCard" aria-label="Profile Illustration">
         <div class="illusInner">
-          <!-- OPTION A: add avatar.png and uncomment below -->
-          <!-- <img class="avatar" src="avatar.png" alt="Kirtan illustration" /> -->
+          <img
+            class="avatar"
+            src="avatar.jpeg"
+            alt="Kirtan Patel illustration"
+            loading="lazy"
+            onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='grid';"
+          />
 
-          <!-- OPTION B: placeholder -->
-          <div class="placeholder">
+          <div class="placeholder" id="avatarFallback" style="display:none;">
             <div>
-              <b>Add your illustration here</b>
+              <b>Couldn’t load avatar.jpeg</b>
               <div class="hint">
-                Put <b>avatar.png</b> in the same folder and uncomment the img tag.
+                Make sure the file name is exactly <b>avatar.jpeg</b> (case-sensitive) and in the same folder as <b>index.html</b>.
               </div>
             </div>
           </div>
