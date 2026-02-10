@@ -3,33 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kirtan Patel — Backend / Systems Engineer</title>
-  <meta name="description" content="Kirtan Patel — Backend/Systems engineer. Distributed systems, concurrency, scalable APIs, performance." />
+  <title>Kirtan Patel — Software Engineer</title>
+  <meta name="description" content="Kirtan Patel — Backend/Systems engineer. Distributed systems, concurrency, APIs, performance." />
 
   <style>
     :root{
-      --bg: #0f1113;
+      /* Clean, easy-to-read dark theme */
+      --bg:#0f1113;
+      --bg2:#0c0f12;
       --panel: rgba(255,255,255,.04);
       --panel2: rgba(255,255,255,.06);
       --border: rgba(255,255,255,.10);
 
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.56);
 
-      --accent: #00F5C6; /* teal like reference */
+      /* Accent like reference */
+      --accent: #00F5C6;
       --accent2:#00D7FF;
 
-      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
       --r: 18px;
       --max: 1120px;
     }
 
     *{ box-sizing:border-box }
+    html{ scroll-behavior:smooth }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color: var(--text);
-      background: var(--bg);
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(0,245,198,.10), transparent 60%),
+        radial-gradient(800px 520px at 95% 15%, rgba(0,215,255,.08), transparent 62%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none }
@@ -42,7 +51,7 @@
       position: sticky;
       top:0;
       z-index:50;
-      background: rgba(15,17,19,.88);
+      background: rgba(15,17,19,.86);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -53,26 +62,25 @@
       padding: 16px 0;
       gap: 14px;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: -.2px;
     }
     .logoBox{
       width: 38px; height: 38px;
       border-radius: 12px;
-      background: rgba(0,245,198,.12);
-      border: 1px solid rgba(0,245,198,.20);
+      background: rgba(0,245,198,.10);
+      border: 1px solid rgba(0,245,198,.18);
       display:grid;
       place-items:center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
     }
     .logoMark{
       width: 16px; height: 16px;
-      border-radius: 4px;
+      border-radius: 5px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
     }
 
@@ -91,10 +99,12 @@
       border-bottom-color: rgba(0,245,198,.55);
     }
 
-    .cta{
+    .actions{
       display:flex;
       gap: 10px;
       align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
     .btn{
@@ -107,22 +117,27 @@
       border: 1px solid var(--border);
       background: rgba(255,255,255,.04);
       font-size: 13px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
       white-space:nowrap;
     }
     .btn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.16);
+      box-shadow: 0 12px 35px rgba(0,0,0,.22);
+      text-decoration:none;
     }
     .btn.solid{
       border: none;
       color: #061012;
-      font-weight: 800;
+      font-weight: 900;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow: 0 14px 38px rgba(0,245,198,.14);
     }
     .btn.solid:hover{ filter: brightness(.98) }
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+    }
 
     @media (min-width: 920px){
       .navlinks{ display:flex; }
@@ -130,7 +145,7 @@
 
     /* HERO */
     .hero{
-      padding: 56px 0 36px;
+      padding: 56px 0 26px;
       display:grid;
       gap: 26px;
       grid-template-columns: 1fr;
@@ -147,7 +162,7 @@
       font-size: 12px;
       letter-spacing: .8px;
       text-transform: uppercase;
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.74);
     }
     .kickerDot{
       width: 10px; height: 10px;
@@ -162,23 +177,20 @@
       line-height: 1.02;
       letter-spacing: -1px;
     }
-
     .role{
       margin-top: 14px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: .2px;
       color: var(--accent);
     }
-
     .summary{
       margin-top: 12px;
-      max-width: 60ch;
+      max-width: 62ch;
       color: rgba(255,255,255,.80);
       line-height: 1.7;
       font-size: 15px;
     }
-
     .heroActions{
       margin-top: 18px;
       display:flex;
@@ -204,7 +216,7 @@
     }
     .metaPill b{ color: rgba(255,255,255,.88) }
 
-    /* Right illustration card */
+    /* Right illustration */
     .illusCard{
       border-radius: 26px;
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
@@ -221,8 +233,8 @@
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(520px 280px at 70% 30%, rgba(0,245,198,.12), transparent 60%),
-        radial-gradient(520px 280px at 20% 90%, rgba(0,215,255,.09), transparent 62%);
+        radial-gradient(520px 280px at 70% 30%, rgba(0,245,198,.10), transparent 60%),
+        radial-gradient(520px 280px at 20% 90%, rgba(0,215,255,.08), transparent 62%);
       pointer-events:none;
     }
     .illusInner{
@@ -234,10 +246,8 @@
       place-items:center;
       padding: 26px;
     }
-
-    /* If you add an image: */
     .avatar{
-      width: min(420px, 92%);
+      width: min(430px, 92%);
       aspect-ratio: 1 / 1;
       border-radius: 28px;
       object-fit: cover;
@@ -245,10 +255,8 @@
       background: rgba(255,255,255,.02);
       box-shadow: 0 18px 50px rgba(0,0,0,.40);
     }
-
-    /* Placeholder if no image */
     .placeholder{
-      width: min(420px, 92%);
+      width: min(430px, 92%);
       aspect-ratio: 1 / 1;
       border-radius: 28px;
       border: 1px dashed rgba(255,255,255,.16);
@@ -262,54 +270,99 @@
     .placeholder b{ color: rgba(255,255,255,.88) }
     .placeholder .hint{ margin-top: 10px; font-size: 13px; color: rgba(255,255,255,.58); line-height:1.5 }
 
-    /* Sections below hero (optional) */
+    /* SECTIONS */
     .section{
-      padding: 22px 0 36px;
-      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 22px 0 32px;
+      scroll-margin-top: 90px;
     }
-    .section h2{
-      margin:0 0 10px;
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      margin: 10px 0 14px;
+    }
+    .sectionHead h2{
+      margin:0;
       font-size: 20px;
       letter-spacing: -.2px;
     }
-    .grid{
-      display:grid;
-      gap: 14px;
-      grid-template-columns: 1fr;
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
     }
-    @media (min-width: 980px){
-      .grid{ grid-template-columns: 1fr 1fr; }
+    .divider{
+      height:1px;
+      background: rgba(255,255,255,.08);
+      margin: 18px 0 6px;
     }
-    .card{
+
+    /* Cards / grids like before */
+    .grid2{ display:grid; gap: 14px; grid-template-columns: 1fr }
+    @media (min-width: 980px){ .grid2{ grid-template-columns: 1fr 1fr } }
+
+    .proj{
+      padding: 16px;
       border-radius: var(--r);
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      padding: 16px;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .cardTitle{
-      font-weight: 850;
+    .proj:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,245,198,.26);
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 18px 55px rgba(0,0,0,.30);
+    }
+    .ptop{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
+    }
+    .ptitle{
+      font-weight: 900;
+      letter-spacing: -.2px;
+      font-size: 16px;
       margin:0;
-      font-size: 15px;
     }
-    .cardDesc{
+    .pdesc{
       margin: 8px 0 0;
-      color: rgba(255,255,255,.72);
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
     }
-    .tags{
-      margin-top: 12px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,.86);
+      line-height: 1.55;
+      font-size: 13px;
     }
-    .tag{
+    li{ margin: 6px 0 }
+
+    .metrics{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 12px;
+    }
+    .mchip{
       font-size: 12px;
       padding: 6px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.82);
+    }
+    .mchip.cool{ border-color: rgba(0,215,255,.22); background: rgba(0,215,255,.07) }
+    .mchip.good{ border-color: rgba(0,245,198,.22); background: rgba(0,245,198,.07) }
+
+    .footer{
+      padding: 26px 0 46px;
+      color: rgba(255,255,255,.52);
+      font-size: 12px;
+      text-align:center;
+      border-top: 1px solid rgba(255,255,255,.06);
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -320,25 +373,26 @@
     <div class="wrap navin">
       <a class="brand" href="#top" aria-label="Home">
         <span class="logoBox"><span class="logoMark"></span></span>
-        <span>Kirtan</span>
+        <span>Kirtan Patel</span>
       </a>
 
       <nav class="navlinks" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#projects">Portfolio</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
 
-      <div class="cta">
-        <a class="btn" href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">GitHub</a>
+      <div class="actions">
+        <a class="btn ghost" href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a class="btn solid" href="#projects">Case Studies</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
   <main class="wrap" id="top">
+    <!-- HERO -->
     <section class="hero">
       <div>
         <div class="kicker"><span class="kickerDot"></span> HI THERE 👋 I'M</div>
@@ -348,14 +402,14 @@
         <div class="role">BACKEND / SYSTEMS ENGINEER</div>
 
         <p class="summary">
-          I build performance-focused backend and systems projects — concurrency, distributed systems, and scalable APIs.
-          I enjoy debugging hard issues (race conditions, memory leaks) and making systems faster and more reliable.
+          I build performance-focused backend and systems projects — <b>concurrency</b>, <b>distributed systems</b>,
+          and <b>scalable APIs</b>. I like debugging hard issues (memory leaks, race conditions) and making systems faster and more reliable.
         </p>
 
         <div class="heroActions">
           <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Hire Me</a>
           <a class="btn" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
-          <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="#contact">Contact</a>
         </div>
 
         <div class="metaRow">
@@ -365,65 +419,416 @@
         </div>
       </div>
 
-      <!-- Right illustration -->
       <div class="illusCard" aria-label="Profile Illustration">
         <div class="illusInner">
-
-          <!-- OPTION A (recommended): add your own image like avatar.png in same folder -->
+          <!-- OPTION A: add avatar.png and uncomment below -->
           <!-- <img class="avatar" src="avatar.png" alt="Kirtan illustration" /> -->
 
-          <!-- OPTION B: placeholder (shows until you add image) -->
+          <!-- OPTION B: placeholder -->
           <div class="placeholder">
             <div>
-              <b>Add a clean illustration here</b>
+              <b>Add your illustration here</b>
               <div class="hint">
-                Put an image named <b>avatar.png</b> in this folder and uncomment the img tag.
-                A memoji-style or simple portrait works best.
+                Put <b>avatar.png</b> in the same folder and uncomment the img tag.
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- OPTIONAL: quick clean sections (keep minimal) -->
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
     <section class="section" id="projects">
-      <h2>Featured Case Studies</h2>
-      <div class="grid">
-        <div class="card">
-          <p class="cardTitle">FlashSaleGuard — High-Concurrency Inventory Reservations</p>
-          <p class="cardDesc">Reserve-then-confirm checkout using Redis atomic ops + Postgres source of truth.</p>
-          <div class="tags">
-            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span>
+      <div class="sectionHead">
+        <div>
+          <h2>Featured Projects</h2>
+          <p>High-signal backend + systems work</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <!-- FlashSaleGuard -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">FlashSaleGuard — High-Concurrency Inventory Reservations</p>
+              <p class="pdesc">Prime-Day style reserve-then-confirm checkout flow using Redis atomic operations + PostgreSQL as source of truth.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Prevented overselling using <b>Redis atomic counters + TTL-based reservations</b> (abandoned checkouts auto-release stock).</li>
+            <li>Implemented <b>idempotent order confirmation</b> using idempotency keys to guarantee exactly-once order creation under retries.</li>
+            <li>Dockerized infra with <b>Postgres + Redis</b>; validated end-to-end flow and correctness under concurrent requests.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">Java</span>
+            <span class="mchip cool">Spring Boot</span>
+            <span class="mchip cool">Redis</span>
+            <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Concurrency</span>
+            <span class="mchip">Docker</span>
+            <span class="mchip good">0 oversell</span>
           </div>
         </div>
-        <div class="card">
-          <p class="cardTitle">Adaptive Load-Shedding API Gateway (C++)</p>
-          <p class="cardDesc">Reverse proxy that sheds low-priority traffic during overload to prevent cascading failures.</p>
-          <div class="tags">
-            <span class="tag">C++</span><span class="tag">Thread Pool</span><span class="tag">Sockets</span><span class="tag">p95 Latency</span>
+
+        <!-- Adaptive Gateway -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Adaptive Load-Shedding API Gateway (C++)</p>
+              <p class="pdesc">Reverse proxy that detects backend overload and sheds low-priority traffic to prevent cascading failures.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/Adaptive-Gateway" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Detected overload using <b>EWMA latency + error-rate metrics</b> and shed low-priority requests to keep the system stable.</li>
+            <li>Implemented a <b>thread pool</b> with <b>bounded priority queues</b> to enforce backpressure and prioritize critical endpoints.</li>
+            <li>Load-tested under burst traffic and tracked <b>p95 latency</b> to validate <b>graceful degradation</b> during backend slowdowns.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">C++</span>
+            <span class="mchip cool">Linux</span>
+            <span class="mchip">Sockets</span>
+            <span class="mchip">HTTP</span>
+            <span class="mchip">Concurrency</span>
+            <span class="mchip good">Load shedding</span>
+          </div>
+        </div>
+
+        <!-- Multithreaded Web Server -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Multithreaded Web Server (C)</p>
+              <p class="pdesc">HTTP/1.1 server using a thread pool + bounded queue. Built for throughput and fairness under load.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li><b>5× throughput</b> under concurrent load while preventing thread starvation.</li>
+            <li>Added <b>per-IP rate limiting</b>, routing, and dynamic worker scaling to prevent overload.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">C</span>
+            <span class="mchip cool">Thread Pool</span>
+            <span class="mchip cool">Concurrency</span>
+            <span class="mchip">HTTP</span>
+            <span class="mchip">Sockets</span>
+          </div>
+        </div>
+
+        <!-- ClusterStore -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">ClusterStore — Distributed KV Store</p>
+              <p class="pdesc">Hash-partitioned distributed key-value store with concurrent reads/writes and fault handling.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/ClusterStore" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Efficient TCP messaging reduced inter-node overhead by <b>35%</b>.</li>
+            <li>Python load tester handled <b>thousands of requests/sec</b>; improved throughput by <b>25%</b>.</li>
+            <li>Timeouts + retries to maintain consistency during partial failures.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">C++</span>
+            <span class="mchip cool">Distributed Systems</span>
+            <span class="mchip">TCP</span>
+            <span class="mchip">Concurrency</span>
+            <span class="mchip">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="sectionHead" style="margin-top:10px">
+        <div>
+          <h2>More Projects</h2>
+          <p>Extra depth for strong interviews</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <!-- LogForge -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">LogForge — Kafka-Style Distributed Log Service (Java)</p>
+              <p class="pdesc">Distributed, partitioned append-only log with offset-based replay and disk-backed persistence.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/LogForage" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Built a distributed log service in <b>Java</b> with <b>partitioned, append-only logs</b> and <b>offset-based replay</b>.</li>
+            <li>Designed a custom <b>TCP protocol</b> supporting concurrent producers/consumers with <b>disk-backed persistence</b>.</li>
+            <li>Implemented <b>crash recovery</b> via log replay and validated performance under load using controlled benchmarks.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">Java</span>
+            <span class="mchip cool">Distributed Systems</span>
+            <span class="mchip">Append-only Log</span>
+            <span class="mchip">TCP</span>
+            <span class="mchip">Persistence</span>
+          </div>
+        </div>
+
+        <!-- BioTrack -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">BioTrack — FastAPI Service + PostgreSQL</p>
+              <p class="pdesc">Backend-focused platform emphasizing clean APIs, caching, and query performance.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/BioTrack" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Built <b>20+ REST endpoints</b>; reduced response time <b>220ms → 130ms</b> (40%).</li>
+            <li>Designed schema for <b>10k+ records</b> with indexed queries improving lookup by <b>45%</b>.</li>
+            <li>Implemented caching + pagination; reduced redundant DB queries by <b>40%</b>.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">FastAPI</span>
+            <span class="mchip">REST APIs</span>
+            <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Caching</span>
+            <span class="mchip">React</span>
+          </div>
+        </div>
+
+        <!-- MindPilot -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">MindPilot — AI Productivity Assistant</p>
+              <p class="pdesc">AI-driven planner with offline-first reliability using SQLite and optimized request batching.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/MindPilot" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Improved task clarity + planning efficiency by <b>70%</b>.</li>
+            <li>Offline fallback using local caching + <b>SQLite</b> for reliability.</li>
+            <li>Reduced redundant API calls by <b>30%</b> via batching and state management.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">React</span>
+            <span class="mchip">Node.js</span>
+            <span class="mchip">SQLite</span>
+            <span class="mchip">Offline-first</span>
+            <span class="mchip">Performance</span>
+          </div>
+        </div>
+
+        <!-- Distributed Cache Simulator -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Distributed Cache Simulator (Python)</p>
+              <p class="pdesc">Local simulator for a distributed in-memory cache system with sharding, replication, and eviction policies (LRU/LFU).</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/Distributed_Cache_Simulator" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <ul>
+            <li>Simulated <b>sharding + replication</b> across nodes using hash-based partitioning.</li>
+            <li>Implemented <b>LRU/LFU eviction</b> and workload testing (GET/SET mix) to measure hit rate.</li>
+            <li>Built with <b>Python stdlib only</b> to run instantly in VS Code (no dependencies).</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">Python</span>
+            <span class="mchip cool">Distributed Systems</span>
+            <span class="mchip">Caching</span>
+            <span class="mchip">Sharding</span>
+            <span class="mchip">Replication</span>
+          </div>
+        </div>
+
+        <!-- Mini Search Engine -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Mini Search Engine</p>
+              <p class="pdesc">Search engine project focused on core indexing/search concepts and implementation.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/mini-search-engine" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <div class="metrics">
+            <span class="mchip">C</span>
+            <span class="mchip">Data Structures</span>
+            <span class="mchip">Search</span>
+          </div>
+        </div>
+
+        <!-- Resume Analyzer -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Resume Analyzer</p>
+              <p class="pdesc">Python project to analyze resumes and extract useful signals for improvement.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/Resume_Analyzer" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+          <div class="metrics">
+            <span class="mchip">Python</span>
+            <span class="mchip">Parsing</span>
+            <span class="mchip">Automation</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="sectionHead">
+        <div>
+          <h2>Experience</h2>
+          <p>Impact and outcomes</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">React Native Software Engineer Intern — Resilience Inc</p>
+              <p class="pdesc">Nov 2025 – Present</p>
+            </div>
+          </div>
+          <ul>
+            <li>Improved lesson delivery speed by <b>30%</b> by redesigning API request flows and reducing peak latency.</li>
+            <li>Reduced UI render lag by <b>25%</b> using memoization, render batching, and optimized state logic.</li>
+            <li>Fixed production crashes by resolving memory leaks + async race conditions, reducing error reports <b>40%</b>.</li>
+            <li>Containerized backend services with <b>Docker</b> for consistent deployments.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">React Native</span>
+            <span class="mchip">Performance</span>
+            <span class="mchip">Debugging</span>
+            <span class="mchip">Docker</span>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Teaching Assistant (C/C++ & MATLAB) — UIC</p>
+              <p class="pdesc">Aug 2024 – Present</p>
+            </div>
+          </div>
+          <ul>
+            <li>Supported <b>250+ students</b>; improved assignment completion by <b>15%</b>.</li>
+            <li>Debugged <b>200+ programs</b>; reduced recurring issues (segfaults, leaks, race conditions) by <b>40%</b>.</li>
+            <li>Mentored students in algorithms, recursion, and debugging strategies.</li>
+          </ul>
+          <div class="metrics">
+            <span class="mchip cool">C/C++</span>
+            <span class="mchip">MATLAB</span>
+            <span class="mchip">GDB</span>
+            <span class="mchip">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="sectionHead">
+        <div>
+          <h2>Skills</h2>
+          <p>Keyword-friendly</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="proj">
+          <p class="ptitle">Core</p>
+          <div class="metrics" style="margin-top:10px">
+            <span class="mchip cool">C</span>
+            <span class="mchip cool">C++</span>
+            <span class="mchip cool">Python</span>
+            <span class="mchip">Java</span>
+            <span class="mchip">TypeScript</span>
+            <span class="mchip">SQL</span>
+          </div>
+          <div class="divider" style="margin:12px 0"></div>
+          <div class="metrics" style="margin-top:10px">
+            <span class="mchip cool">Distributed Systems</span>
+            <span class="mchip cool">Concurrency</span>
+            <span class="mchip">REST APIs</span>
+            <span class="mchip">Caching</span>
+            <span class="mchip">Idempotency</span>
+            <span class="mchip">Linux</span>
+          </div>
+        </div>
+
+        <div class="proj">
+          <p class="ptitle">Frameworks / Tools</p>
+          <div class="metrics" style="margin-top:10px">
+            <span class="mchip cool">Spring Boot</span>
+            <span class="mchip cool">FastAPI</span>
+            <span class="mchip">Node.js</span>
+            <span class="mchip">React</span>
+            <span class="mchip">React Native</span>
+            <span class="mchip">PostgreSQL</span>
+            <span class="mchip">Redis</span>
+            <span class="mchip">Docker</span>
+            <span class="mchip">Git</span>
+            <span class="mchip">GDB</span>
+            <span class="mchip">AWS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section class="section" id="contact">
-      <h2>Contact</h2>
-      <div class="grid">
-        <div class="card">
-          <p class="cardTitle">Email</p>
-          <p class="cardDesc"><a href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com</a></p>
+      <div class="sectionHead">
+        <div>
+          <h2>Contact</h2>
+          <p>Fast ways to reach me</p>
         </div>
-        <div class="card">
-          <p class="cardTitle">Resume</p>
-          <p class="cardDesc"><a href="KResume.pdf" target="_blank" rel="noreferrer">Open KResume.pdf</a></p>
+      </div>
+
+      <div class="grid2">
+        <div class="proj">
+          <p class="ptitle">Email</p>
+          <p class="pdesc" style="margin-top:8px">
+            <a href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com</a>
+          </p>
+        </div>
+
+        <div class="proj">
+          <p class="ptitle">Resume</p>
+          <p class="pdesc" style="margin-top:8px">
+            <a href="KResume.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+          </p>
+        </div>
+
+        <div class="proj">
+          <p class="ptitle">LinkedIn</p>
+          <p class="pdesc" style="margin-top:8px">
+            <a href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noreferrer">
+              linkedin.com/in/kirtan-patel-24227a248
+            </a>
+          </p>
+        </div>
+
+        <div class="proj">
+          <p class="ptitle">GitHub</p>
+          <p class="pdesc" style="margin-top:8px">
+            <a href="https://github.com/KirtanPatel30" target="_blank" rel="noreferrer">
+              github.com/KirtanPatel30
+            </a>
+          </p>
         </div>
       </div>
     </section>
 
-    <div style="padding: 28px 0 44px; color: rgba(255,255,255,.52); font-size: 12px; text-align:center;">
-      © <span id="year"></span> Kirtan Patel
+    <div class="footer">
+      © <span id="year"></span> Kirtan Patel • Built for backend + systems recruiting
     </div>
   </main>
 
