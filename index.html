@@ -221,7 +221,7 @@
       border-radius: 26px;
       background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
       border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
+      box-shadow: 0 18px 55px rgba(0,0,0,.55);
       overflow:hidden;
       position:relative;
       min-height: 360px;
@@ -289,7 +289,7 @@
     }
     .sectionHead p{
       margin:0;
-      color: var(--muted);
+      color: rgba(255,255,255,.68);
       font-size: 13px;
     }
     .divider{
@@ -304,7 +304,7 @@
 
     .proj{
       padding: 16px;
-      border-radius: var(--r);
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
@@ -328,7 +328,7 @@
     }
     .pdesc{
       margin: 8px 0 0;
-      color: var(--muted);
+      color: rgba(255,255,255,.68);
       font-size: 13px;
       line-height: 1.55;
     }
@@ -408,7 +408,7 @@
 
         <div class="heroActions">
           <a class="btn solid" href="mailto:kirtannpatel2003@gmail.com">Email</a>
-          <a class="btn" href="KResume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          <a class="btn" href="KIRTAN PATELR.docx" target="_blank" rel="noreferrer">Resume</a>
           <a class="btn" href="#contact">Contact</a>
         </div>
 
@@ -453,6 +453,33 @@
       </div>
 
       <div class="grid2">
+        <!-- Realtime AI Editor -->
+        <div class="proj">
+          <div class="ptop">
+            <div>
+              <p class="ptitle">Realtime AI Collaborative Editor</p>
+              <p class="pdesc">Google Docs–style collaborative editor with built-in local AI summarization and explanation.</p>
+            </div>
+            <a class="btn" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank" rel="noreferrer">Repo</a>
+          </div>
+
+          <ul>
+            <li>Built real-time multi-user editor using <b>CRDT (Yjs)</b> and <b>Supabase WebSockets</b> for concurrent editing and presence tracking.</li>
+            <li>Integrated <b>local LLM-powered summarization</b> and <b>text explanation</b> using <b>Ollama + Llama3</b> for offline AI productivity.</li>
+            <li>Designed <b>autosave, snapshot recovery</b>, and <b>incremental update sync</b> to ensure low-latency collaboration and reliable persistence.</li>
+          </ul>
+
+          <div class="metrics">
+            <span class="mchip cool">Next.js</span>
+            <span class="mchip cool">TypeScript</span>
+            <span class="mchip cool">Yjs CRDT</span>
+            <span class="mchip">Supabase</span>
+            <span class="mchip">Ollama</span>
+            <span class="mchip">Llama3</span>
+            <span class="mchip good">Realtime + AI</span>
+          </div>
+        </div>
+
         <!-- FlashSaleGuard -->
         <div class="proj">
           <div class="ptop">
@@ -523,8 +550,19 @@
             <span class="mchip">Sockets</span>
           </div>
         </div>
+      </div><!-- ✅ close Featured grid -->
 
-        <!-- ClusterStore -->
+      <div class="divider"></div>
+
+      <div class="sectionHead" style="margin-top:10px">
+        <div>
+          <h2>More Projects</h2>
+          <p>Extra depth for strong interviews</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <!-- ClusterStore (moved here) -->
         <div class="proj">
           <div class="ptop">
             <div>
@@ -546,18 +584,7 @@
             <span class="mchip">Python</span>
           </div>
         </div>
-      </div>
 
-      <div class="divider"></div>
-
-      <div class="sectionHead" style="margin-top:10px">
-        <div>
-          <h2>More Projects</h2>
-          <p>Extra depth for strong interviews</p>
-        </div>
-      </div>
-
-      <div class="grid2">
         <!-- LogForge -->
         <div class="proj">
           <div class="ptop">
@@ -807,7 +834,7 @@
         <div class="proj">
           <p class="ptitle">Resume</p>
           <p class="pdesc" style="margin-top:8px">
-            <a href="KResume.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+            <a href="KIRTAN PATELR.docx" target="_blank" rel="noreferrer">Open DOCX</a>
           </p>
         </div>
 
