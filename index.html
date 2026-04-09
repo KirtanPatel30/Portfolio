@@ -1,824 +1,606 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Kirtan Patel | Software Engineer & Data Scientist</title>
-  <meta name="description" content="Kirtan Patel — CS student at UIC building backend systems, AI-powered apps, and data science projects."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #060a10;
-      --bg2: #090e18;
-      --surface: rgba(255,255,255,.04);
-      --surface2: rgba(255,255,255,.07);
-      --border: rgba(255,255,255,.09);
-      --border2: rgba(255,255,255,.15);
-      --text: #eef2f8;
-      --muted: rgba(238,242,248,.62);
-      --muted2: rgba(238,242,248,.42);
-      --green: #1db954;
-      --teal: #00e5c8;
-      --blue: #4da6ff;
-      --purple: #a78bfa;
-      --orange: #fb923c;
-      --r: 20px;
-      --max: 1160px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; }
-    html { scroll-behavior: smooth; }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kirtan Patel — Engineer</title>
+<meta name="description" content="Kirtan Patel — CS student at UIC. Backend systems, AI apps, data science."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#04080f;
+  --ink2:#080e1c;
+  --paper:#f2efe8;
+  --paper2:#e8e4db;
+  --lime:#c8f135;
+  --lime2:#b5dc1e;
+  --rust:#e8401c;
+  --sky:#1a6fff;
+  --muted:#6b6860;
+  --muted2:#9a978f;
+  --border:rgba(4,8,15,.12);
+  --border2:rgba(4,8,15,.22);
+  --r:14px;
+  --max:1180px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Instrument Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  cursor:none;
+}
+a{color:inherit;text-decoration:none;}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--lime);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s,width .2s,height .2s;
+  mix-blend-mode:multiply;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1.5px solid var(--ink);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  opacity:.35;
+}
 
-    /* ── noise grain overlay ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: .5;
-    }
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:.55;
+}
 
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:2;}
 
-    /* ══════════════ NAV ══════════════ */
-    nav {
-      position: sticky; top: 0; z-index: 200;
-      backdrop-filter: blur(20px) saturate(1.4);
-      background: rgba(6,10,16,.86);
-      border-bottom: 1px solid var(--border);
-    }
-    .navin {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 16px;
-      padding: 15px 0;
-    }
-    .brand {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 17px;
-      display: flex; align-items: center; gap: 10px;
-      letter-spacing: -.02em;
-    }
-    .brand-mark {
-      width: 34px; height: 34px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--teal), var(--blue));
-      display: grid; place-items: center;
-      font-size: 14px; color: #060a10; font-weight: 900;
-    }
-    .navlinks {
-      display: none; gap: 28px;
-      font-size: 13px; font-weight: 500; color: var(--muted);
-    }
-    .navlinks a:hover { color: var(--text); }
-    @media(min-width:860px){ .navlinks { display: flex; } }
-    .nav-actions { display: flex; gap: 8px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 9px 16px; border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      font-size: 13px; font-weight: 600;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer; transition: all .18s;
-      white-space: nowrap; color: var(--text);
-    }
-    .btn:hover { background: var(--surface2); border-color: var(--border2); transform: translateY(-1px); }
-    .btn-solid {
-      background: var(--green); border-color: transparent;
-      color: #060a10; font-weight: 700;
-      box-shadow: 0 8px 24px rgba(29,185,84,.25);
-    }
-    .btn-solid:hover { opacity: .88; transform: translateY(-1px); box-shadow: 0 12px 32px rgba(29,185,84,.35); }
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:500;
+  background:rgba(242,239,232,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1.5px solid var(--border2);
+}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;}
+.brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;letter-spacing:.08em;
+  display:flex;align-items:center;gap:10px;
+}
+.brand-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--lime);
+  animation:blink 2s infinite;
+}
+@keyframes blink{
+  0%,100%{box-shadow:0 0 0 0 rgba(200,241,53,.5);}
+  50%{box-shadow:0 0 0 9px rgba(200,241,53,0);}
+}
+.navlinks{display:none;gap:24px;font-size:12px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+.navlinks a:hover{color:var(--ink);}
+@media(min-width:860px){.navlinks{display:flex;}}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 18px;border-radius:999px;
+  background:var(--ink);color:var(--paper);
+  font-size:13px;font-weight:700;
+  transition:background .15s,transform .15s;
+}
+.nav-cta:hover{background:var(--rust);transform:scale(1.03);}
 
-    /* ══════════════ HERO ══════════════ */
-    .hero {
-      padding: 90px 0 60px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    @media(min-width:1000px){
-      .hero { grid-template-columns: 1fr 420px; padding: 110px 0 70px; }
-    }
+/* HERO */
+.hero{padding:80px 0 56px;}
+.hero-band{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:14px;
+  padding-bottom:22px;
+  border-bottom:1.5px solid var(--border2);
+  margin-bottom:32px;
+}
+.hero-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-label::before{content:'◆';color:var(--lime);font-size:8px;}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{
+  padding:6px 13px;border-radius:999px;
+  border:1.5px solid var(--border2);
+  font-size:12px;font-weight:600;color:var(--muted);
+}
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(86px,15vw,190px);
+  line-height:.9;letter-spacing:.02em;
+  color:var(--ink);
+}
+.hero-name .k{color:var(--rust);}
+.hero-tagline{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(26px,4.5vw,56px);
+  letter-spacing:.08em;color:var(--muted);margin-top:6px;
+}
+.hero-tagline .hl{
+  color:var(--ink);background:var(--lime);
+  padding:0 7px;display:inline-block;transform:skewX(-3deg);
+}
+.hero-body{display:grid;grid-template-columns:1fr;gap:32px;margin-top:38px;}
+@media(min-width:900px){.hero-body{grid-template-columns:1fr 320px;}}
+.summary{font-size:17px;line-height:1.85;color:rgba(4,8,15,.78);max-width:56ch;}
+.summary b{color:var(--ink);font-weight:700;}
+.hero-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;}
 
-    /* animated gradient orbs */
-    .orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none; z-index: 0;
-    }
-    .orb1 { width: 500px; height: 500px; top: -100px; left: -100px; background: rgba(0,229,200,.08); animation: drift 12s ease-in-out infinite alternate; }
-    .orb2 { width: 400px; height: 400px; top: 0; right: -80px; background: rgba(77,166,255,.08); animation: drift 15s ease-in-out infinite alternate-reverse; }
-    .orb3 { width: 300px; height: 300px; bottom: -50px; left: 40%; background: rgba(29,185,84,.06); animation: drift 10s ease-in-out infinite alternate; }
-    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px, 20px) scale(1.08); } }
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 20px;border-radius:999px;
+  border:1.5px solid var(--border2);background:transparent;
+  font-size:13px;font-weight:700;font-family:'Instrument Sans',sans-serif;
+  cursor:none;color:var(--ink);transition:all .18s;
+}
+.btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.btn-fill{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.btn-fill:hover{background:var(--rust);border-color:var(--rust);}
+.btn-lime{background:var(--lime);color:var(--ink);border-color:var(--lime);box-shadow:0 6px 20px rgba(200,241,53,.4);}
+.btn-lime:hover{background:var(--lime2);border-color:var(--lime2);}
 
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--teal);
-      margin-bottom: 18px;
-    }
-    .pulse {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 0 0 rgba(0,229,200,.4);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(0,229,200,.4); }
-      50% { box-shadow: 0 0 0 8px rgba(0,229,200,0); }
-    }
+.stats{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;}
+.stat{padding:17px 20px;border-bottom:1.5px solid var(--border);}
+.stat:last-child{border-bottom:none;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;letter-spacing:.02em;}
+.stat-num.rust{color:var(--rust);}
+.stat-num.sky{color:var(--sky);}
+.stat-num.lime{color:var(--lime2);}
+.stat-label{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
 
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(44px, 6.5vw, 78px);
-      line-height: 1;
-      letter-spacing: -.05em;
-      font-weight: 800;
-    }
-    .grad-text {
-      background: linear-gradient(100deg, #ffffff 0%, #b8ffe8 45%, #a8d8ff 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .hero-sub {
-      margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 13px; border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      font-size: 12px; font-weight: 600; color: var(--muted);
-    }
-    .summary {
-      margin-top: 20px; font-size: 16px; line-height: 1.85;
-      color: rgba(238,242,248,.82); max-width: 58ch;
-    }
-    .summary b { color: #fff; }
-    .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+/* DIVIDER */
+.sec-div{display:flex;align-items:center;gap:16px;padding:52px 0 24px;}
+.sec-div .line{flex:1;height:1.5px;background:var(--border2);}
+.sec-tag{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.14em;color:var(--muted2);white-space:nowrap;}
 
-    /* ── stat strip ── */
-    .stats {
-      margin-top: 32px; display: flex; flex-wrap: wrap; gap: 0;
-      border: 1px solid var(--border); border-radius: 16px;
-      overflow: hidden; max-width: 620px;
-    }
-    .stat {
-      flex: 1; min-width: 120px; padding: 16px 20px;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 28px; font-weight: 800;
-      letter-spacing: -.04em; color: #fff;
-    }
-    .stat-label { font-size: 11px; color: var(--muted2); line-height: 1.45; margin-top: 3px; }
+/* SPOTLIGHT */
+.spotlight{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;margin-bottom:16px;background:var(--paper);}
+.spot-body{padding:28px;display:grid;gap:24px;grid-template-columns:1fr;}
+@media(min-width:960px){.spot-body{grid-template-columns:1.1fr .9fr;}}
+.kicker{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:10px;
+}
+.kd{width:6px;height:6px;border-radius:50%;}
+.spot-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(34px,4.5vw,54px);
+  letter-spacing:.04em;line-height:1;color:var(--ink);
+}
+.spot-desc{margin-top:12px;font-size:15px;line-height:1.82;color:rgba(4,8,15,.74);}
+.spot-desc b{color:var(--ink);}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.chip{
+  padding:5px 11px;border-radius:999px;border:1.5px solid var(--border2);
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
+}
+.spot-list{margin-top:16px;padding-left:18px;font-size:14px;line-height:1.78;color:rgba(4,8,15,.82);}
+.spot-list li{margin:8px 0;}
+.spot-acts{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
 
-    /* ── hero card ── */
-    .hero-card {
-      border-radius: 28px;
-      border: 1px solid var(--border2);
-      background: linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
-      padding: 20px;
-      display: grid; gap: 16px;
-      position: relative;
-    }
-    .hero-card::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(380px 260px at 75% 10%, rgba(0,229,200,.10), transparent 60%);
-    }
-    .avatar {
-      width: 100%; aspect-ratio: 1;
-      object-fit: cover; border-radius: 18px;
-      border: 1px solid var(--border2);
-    }
-    .stack-card {
-      padding: 16px; border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
-    }
-    .mini-label {
-      font-size: 10px; font-weight: 800; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted2); margin-bottom: 10px;
-    }
-    .tech-row { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tech {
-      padding: 5px 10px; border-radius: 999px;
-      background: rgba(255,255,255,.05); border: 1px solid var(--border);
-      font-size: 11px; font-weight: 600; color: rgba(255,255,255,.8);
-    }
-    .avail {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; border-radius: 999px;
-      background: rgba(29,185,84,.1); border: 1px solid rgba(29,185,84,.22);
-      color: var(--green); font-size: 11px; font-weight: 700;
-      margin-bottom: 10px;
-    }
+.imp{padding:20px;border-radius:14px;background:var(--paper2);border:1.5px solid var(--border);display:grid;gap:12px;align-content:start;}
+.imp-head{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;}
+.imp-sub{font-size:12px;color:var(--muted);line-height:1.6;}
+.imp-item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:10px;background:var(--paper);border:1.5px solid var(--border);}
+.ii-b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
+.b-rust{background:rgba(232,64,28,.1);color:var(--rust);}
+.b-sky{background:rgba(26,111,255,.1);color:var(--sky);}
+.b-lime{background:rgba(200,241,53,.3);color:#5a7500;}
+.b-ink{background:rgba(4,8,15,.07);color:var(--ink);}
+.ii-t b{display:block;font-size:12px;font-weight:700;}
+.ii-t span{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
 
-    /* ══════════════ SECTIONS ══════════════ */
-    section { padding: 40px 0 50px; scroll-margin-top: 80px; }
-    .divider { height: 1px; background: var(--border); margin: 8px 0; }
-    .sec-head { margin-bottom: 24px; }
-    .sec-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 30px; font-weight: 800;
-      letter-spacing: -.04em; color: #fff;
-    }
-    .sec-sub { font-size: 14px; color: var(--muted); margin-top: 4px; }
+.spot-foot{
+  padding:15px 28px;background:var(--paper2);
+  border-top:1.5px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:24px;align-items:center;
+}
+.sf-stat .n{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;}
+.sf-stat .l{font-size:11px;color:var(--muted);margin-top:1px;}
 
-    /* ══════════════ SPOTLIGHT ══════════════ */
-    .spotlight {
-      padding: 30px; border-radius: 28px;
-      background: linear-gradient(140deg, rgba(0,229,200,.07), rgba(77,166,255,.04), rgba(29,185,84,.04));
-      border: 1px solid rgba(255,255,255,.13);
-      box-shadow: 0 24px 60px rgba(0,0,0,.3);
-      margin-bottom: 20px; position: relative; overflow: hidden;
-    }
-    .spotlight::after {
-      content: ''; position: absolute;
-      top: -60px; right: -60px; width: 260px; height: 260px;
-      border-radius: 50%; pointer-events: none;
-      background: radial-gradient(circle, rgba(0,229,200,.12), transparent 70%);
-    }
-    .spot-grid {
-      display: grid; gap: 28px; grid-template-columns: 1fr;
-    }
-    @media(min-width:960px){ .spot-grid { grid-template-columns: 1.1fr .9fr; } }
-    .kicker {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 7px 13px; border-radius: 999px;
-      border: 1px solid rgba(0,229,200,.25);
-      background: rgba(0,229,200,.08);
-      font-size: 10px; font-weight: 800; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--teal);
-    }
-    .spot-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(26px, 4vw, 40px);
-      line-height: 1.05; letter-spacing: -.05em;
-      font-weight: 800; margin-top: 14px; color: #fff;
-    }
-    .spot-desc {
-      margin-top: 14px; font-size: 15px; line-height: 1.82;
-      color: rgba(238,242,248,.84); max-width: 58ch;
-    }
-    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-    .chip {
-      padding: 6px 11px; border-radius: 999px;
-      border: 1px solid var(--border2);
-      background: rgba(255,255,255,.05);
-      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.85);
-    }
-    .spot-bullets {
-      margin-top: 18px; padding-left: 18px;
-      font-size: 14px; line-height: 1.75; color: rgba(238,242,248,.88);
-    }
-    .spot-bullets li { margin: 9px 0; }
-    .spot-actions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+/* GRID PROJECTS */
+.grid2{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr;}}
+.proj{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--paper);transition:transform .2s,box-shadow .2s;}
+.proj:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(4,8,15,.11);}
+.proj-bar{height:4px;width:100%;}
+.proj-in{padding:20px;}
+.proj-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.proj-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;line-height:1.1;}
+.proj-desc{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.65;}
+.proj-list{margin-top:12px;padding-left:16px;font-size:13px;line-height:1.72;color:rgba(4,8,15,.82);}
+.proj-list li{margin:6px 0;}
+.proj-ft{margin-top:13px;padding-top:12px;border-top:1.5px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;}
+.tag{padding:4px 10px;border-radius:999px;border:1.5px solid var(--border2);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);}
+.sm-btn{font-size:12px;padding:8px 14px;}
 
-    .impact-panel {
-      padding: 20px; border-radius: 20px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
-      display: grid; gap: 14px; align-content: start;
-    }
-    .impact-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px; font-weight: 700; letter-spacing: -.03em;
-    }
-    .impact-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
-    .impact-list { display: grid; gap: 10px; }
-    .impact-item {
-      display: flex; gap: 10px; align-items: flex-start;
-      padding: 11px; border-radius: 14px;
-      background: rgba(255,255,255,.03); border: 1px solid var(--border);
-    }
-    .impact-icon {
-      width: 30px; height: 30px; border-radius: 10px;
-      display: grid; place-items: center; flex: 0 0 auto;
-      font-size: 11px; font-weight: 900;
-    }
-    .ic-teal { background: rgba(0,229,200,.1); border: 1px solid rgba(0,229,200,.2); color: var(--teal); }
-    .ic-blue { background: rgba(77,166,255,.1); border: 1px solid rgba(77,166,255,.2); color: var(--blue); }
-    .ic-green { background: rgba(29,185,84,.1); border: 1px solid rgba(29,185,84,.2); color: var(--green); }
-    .ic-purple { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.2); color: var(--purple); }
-    .ic-orange { background: rgba(251,146,60,.1); border: 1px solid rgba(251,146,60,.2); color: var(--orange); }
-    .impact-body b { display: block; font-size: 13px; font-weight: 700; }
-    .impact-body span { display: block; font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 2px; }
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:900px){.exp-grid{grid-template-columns:1fr 1fr;}}
+.exp-card{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--paper);transition:transform .2s,box-shadow .2s;}
+.exp-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(4,8,15,.1);}
+.exp-top{padding:20px 20px 15px;border-bottom:1.5px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.exp-title{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.04em;}
+.exp-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:3px;}
+.exp-badge{padding:5px 12px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap;flex:0 0 auto;}
+.b-present{background:rgba(200,241,53,.3);color:#5a7500;border:1.5px solid rgba(200,241,53,.6);}
+.b-focus{background:rgba(4,8,15,.06);color:var(--muted);border:1.5px solid var(--border2);}
+.exp-body{padding:15px 20px;}
+.exp-body ul{padding-left:16px;font-size:13px;line-height:1.72;color:rgba(4,8,15,.82);}
+.exp-body ul li{margin:7px 0;}
 
-    /* ══════════════ PROJECT GRID ══════════════ */
-    .grid2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media(min-width:900px){ .grid2 { grid-template-columns: 1fr 1fr; } }
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1100px){.skill-grid{grid-template-columns:repeat(4,1fr);}}
+.skill-card{border:1.5px solid var(--border2);border-radius:var(--r);padding:20px;background:var(--paper);}
+.skill-head{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.06em;padding-bottom:12px;border-bottom:1.5px solid var(--border);margin-bottom:13px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
 
-    .proj {
-      padding: 22px; border-radius: 22px;
-      background: var(--surface); border: 1px solid var(--border);
-      box-shadow: 0 12px 32px rgba(0,0,0,.2);
-      transition: all .2s; position: relative; overflow: hidden;
-    }
-    .proj::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0;
-      background: radial-gradient(300px 200px at 50% 0%, rgba(0,229,200,.06), transparent);
-      transition: opacity .3s;
-    }
-    .proj:hover { transform: translateY(-3px); border-color: var(--border2); background: var(--surface2); }
-    .proj:hover::before { opacity: 1; }
+/* CONTACT */
+.contact-wrap{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;}
+.contact-top{padding:44px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
+.contact-top::before{
+  content:'KIRTAN';position:absolute;right:-20px;bottom:-30px;
+  font-family:'Bebas Neue',sans-serif;font-size:180px;letter-spacing:.04em;
+  color:rgba(255,255,255,.04);pointer-events:none;line-height:1;
+}
+.c-sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,232,.5);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.c-sub::before{content:'◆';color:var(--lime);font-size:8px;}
+.c-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,90px);line-height:.93;letter-spacing:.02em;}
+.c-title .hi{color:var(--lime);}
+.c-desc{margin-top:16px;font-size:15px;line-height:1.8;color:rgba(242,239,232,.72);max-width:52ch;}
+.c-links{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;}
+.btn-dk{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:1.5px solid rgba(242,239,232,.22);background:rgba(242,239,232,.07);font-size:13px;font-weight:700;color:var(--paper);cursor:none;transition:all .18s;}
+.btn-dk:hover{background:rgba(242,239,232,.14);border-color:rgba(242,239,232,.38);}
+.btn-lk{background:var(--lime);color:var(--ink);border-color:var(--lime);}
+.btn-lk:hover{background:var(--lime2);border-color:var(--lime2);}
+.c-foot{padding:18px 44px;background:var(--paper2);border-top:1.5px solid var(--border2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.c-foot-t{font-size:13px;color:var(--muted);}
 
-    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-    .proj-icon {
-      width: 38px; height: 38px; border-radius: 11px;
-      display: grid; place-items: center;
-      font-size: 18px; flex: 0 0 auto;
-    }
-    .proj-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 17px; font-weight: 700; letter-spacing: -.03em;
-    }
-    .proj-desc { margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.65; }
-    .proj-bullets { margin-top: 12px; padding-left: 16px; font-size: 13px; line-height: 1.65; color: rgba(238,242,248,.88); }
-    .proj-bullets li { margin: 7px 0; }
-    .proj-footer { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      padding: 5px 10px; border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      font-size: 11px; font-weight: 600; color: var(--muted);
-    }
+footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);border-top:1.5px solid var(--border);margin-top:20px;letter-spacing:.06em;}
 
-    /* ── colored accent bar on proj ── */
-    .proj-bar {
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 3px; border-radius: 3px 0 0 3px;
-    }
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;} .d2{transition-delay:.16s;}
 
-    /* ══════════════ SPOTIFY SPOTLIGHT ══════════════ */
-    .spotify-spot {
-      background: linear-gradient(140deg, rgba(29,185,84,.09), rgba(0,229,200,.05), rgba(77,166,255,.04));
-      border-color: rgba(29,185,84,.2);
-    }
-    .spotify-spot::after {
-      background: radial-gradient(circle, rgba(29,185,84,.14), transparent 70%);
-    }
-
-    /* ══════════════ EXPERIENCE ══════════════ */
-    .expGrid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media(min-width:900px){ .expGrid { grid-template-columns: 1fr 1fr; } }
-    .card {
-      padding: 20px; border-radius: 20px;
-      background: var(--surface); border: 1px solid var(--border);
-      transition: all .2s;
-    }
-    .card:hover { background: var(--surface2); border-color: var(--border2); transform: translateY(-2px); }
-    .card-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; }
-    .card-sub { font-size: 13px; color: var(--muted); margin-top: 3px; }
-    .card ul { margin-top: 12px; padding-left: 16px; font-size: 13px; color: rgba(238,242,248,.85); line-height: 1.65; }
-    .card ul li { margin: 7px 0; }
-
-    /* ══════════════ SKILLS ══════════════ */
-    .skill-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media(min-width:900px){ .skill-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(min-width:1100px){ .skill-grid { grid-template-columns: repeat(4, 1fr); } }
-
-    /* ══════════════ CONTACT ══════════════ */
-    .contact-card {
-      padding: 36px; border-radius: 28px;
-      background: linear-gradient(140deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border: 1px solid var(--border2);
-      box-shadow: 0 24px 60px rgba(0,0,0,.3);
-      position: relative; overflow: hidden;
-    }
-    .contact-card::before {
-      content: ''; position: absolute; pointer-events: none;
-      width: 500px; height: 300px; top: -80px; right: -80px;
-      background: radial-gradient(circle, rgba(0,229,200,.08), transparent 65%);
-    }
-    .contact-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800; letter-spacing: -.05em; color: #fff;
-    }
-    .contact-text { font-size: 15px; color: var(--muted); margin-top: 10px; line-height: 1.75; max-width: 52ch; }
-    .contact-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; }
-
-    /* ══════════════ FOOTER ══════════════ */
-    footer {
-      padding: 28px 0 44px; text-align: center;
-      font-size: 12px; color: var(--muted2);
-      border-top: 1px solid var(--border); margin-top: 20px;
-    }
-
-    /* ══════════════ ANIMATIONS ══════════════ */
-    .fade-up {
-      opacity: 0; transform: translateY(24px);
-      animation: fadeUp .7s ease forwards;
-    }
-    .fade-up:nth-child(2) { animation-delay: .1s; }
-    .fade-up:nth-child(3) { animation-delay: .2s; }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width:640px){
-      .stats { border-radius: 14px; }
-      .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
-      .stat:nth-child(even) { border-right: none; }
-    }
-  </style>
+@media(max-width:640px){
+  .contact-top{padding:30px 22px;}
+  .c-foot{padding:15px 22px;}
+}
+</style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
 <nav>
   <div class="wrap navin">
-    <a class="brand" href="#top">
-      <div class="brand-mark">KP</div>
-      Kirtan Patel
-    </a>
+    <div class="brand"><div class="brand-dot"></div>KIRTAN PATEL</div>
     <div class="navlinks">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
     </div>
-    <div class="nav-actions">
-      <a class="btn" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
-      <a class="btn btn-solid" href="#contact">Hire Me</a>
-    </div>
+    <a class="nav-cta" href="mailto:kirtannpatel2003@gmail.com">hire me →</a>
   </div>
 </nav>
 
-<main class="wrap" id="top" style="position:relative;">
+<main class="wrap">
 
-  <!-- orbs -->
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-
-  <!-- ══ HERO ══ -->
-  <section class="hero">
-    <div class="fade-up">
-      <div class="eyebrow"><span class="pulse"></span> Open to internships & new grad roles</div>
-      <h1>
-        <span class="grad-text">Hi, I'm</span><br/>
-        <span class="grad-text">Kirtan Patel</span>
-      </h1>
-      <div class="hero-sub">
-        <span class="pill">🎓 UIC Computer Science</span>
-        <span class="pill">📅 Graduating May 2026</span>
-        <span class="pill">📍 Chicago, IL</span>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-band">
+    <div class="hero-label">CS Student at UIC · Chicago, IL · May 2026</div>
+    <div class="hero-pills">
+      <span class="pill">Backend</span>
+      <span class="pill">AI Apps</span>
+      <span class="pill">Data Science</span>
+      <span class="pill">Systems</span>
+    </div>
+  </div>
+  <h1 class="hero-name"><span class="k">K</span>IRTAN<br/>PATEL</h1>
+  <div class="hero-tagline">SOFTWARE <span class="hl">ENGINEER</span> & DATA BUILDER</div>
+  <div class="hero-body">
+    <div>
       <p class="summary">
-        I build <b>backend systems</b>, <b>AI-powered applications</b>, and <b>data science pipelines</b>.
-        My work spans distributed systems in C/C++, full-stack products with FastAPI & React,
-        and end-to-end data projects with Python, SQL, and machine learning.
+        I'm a <b>Computer Science student at UIC</b> who builds things that work —
+        <b>backend systems</b> in C/C++, <b>AI-powered full-stack apps</b> with FastAPI & React,
+        and <b>end-to-end data pipelines</b> covering engineering, analytics, and ML.
+        I care about clean architecture, real performance, and shipping products that matter.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-solid" href="#projects">View Projects</a>
-        <a class="btn" href="KIRTAN PATELR.docx" target="_blank">Open Resume</a>
-        <a class="btn" href="mailto:kirtannpatel2003@gmail.com">Email Me</a>
-      </div>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-num" style="color:var(--teal)">12+</div>
-          <div class="stat-label">Projects shipped</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" style="color:var(--blue)">5×</div>
-          <div class="stat-label">Throughput on multithreaded server</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" style="color:var(--green)">114k</div>
-          <div class="stat-label">Rows in Spotify data pipeline</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" style="color:var(--purple)">250+</div>
-          <div class="stat-label">Students supported as TA</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-card fade-up">
-      <img class="avatar" src="avatar.jpeg" alt="Kirtan Patel"
-           onerror="this.style.display='none'"/>
-      <div class="stack-card">
-        <div class="avail">● Open to opportunities</div>
-        <div class="mini-label">Tech stack</div>
-        <div class="tech-row">
-          <span class="tech">C / C++</span>
-          <span class="tech">Java</span>
-          <span class="tech">Python</span>
-          <span class="tech">FastAPI</span>
-          <span class="tech">Spring Boot</span>
-          <span class="tech">React</span>
-          <span class="tech">PostgreSQL</span>
-          <span class="tech">Redis</span>
-          <span class="tech">Docker</span>
-          <span class="tech">Pandas</span>
-          <span class="tech">sklearn</span>
-          <span class="tech">Plotly Dash</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ══ PROJECTS ══ -->
-  <section id="projects">
-    <div class="sec-head">
-      <div class="sec-title">Featured Projects</div>
-      <div class="sec-sub">What I've built — backend systems, AI apps, and data science</div>
-    </div>
-
-    <!-- Spotlight 1: AI Code Review -->
-    <article class="spotlight" style="margin-bottom:20px">
-      <div class="spot-grid">
-        <div>
-          <div class="kicker">⭐ Featured Project</div>
-          <h2 class="spot-title">AI Code Review Platform</h2>
-          <p class="spot-desc">
-            A <b>full-stack developer tool</b> that reviews code using <b>static analysis</b>
-            and a <b>local LLM</b>. Generates line-level feedback, quality scores, and review
-            history in a clean interface inspired by modern code review tools.
-          </p>
-          <div class="chips">
-            <span class="chip">React</span><span class="chip">FastAPI</span>
-            <span class="chip">Ollama</span><span class="chip">PostgreSQL</span>
-            <span class="chip">Docker</span><span class="chip">Static Analysis</span>
-          </div>
-          <ul class="spot-bullets">
-            <li>Built full-stack code review platform supporting <b>multi-file uploads</b> and <b>line-level comments</b>.</li>
-            <li>Hybrid pipeline combining <b>complexity/duplication metrics</b> with <b>LLM-based reasoning</b>.</li>
-            <li>Persistent review history with PostgreSQL and a <b>scoring system</b> for reusable workflows.</li>
-          </ul>
-          <div class="spot-actions">
-            <a class="btn btn-solid" href="https://github.com/KirtanPatel30/ai-code-review-platform" target="_blank">View Repo →</a>
-            <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=AI Code Review Platform">Ask Me About This</a>
-          </div>
-        </div>
-        <div class="impact-panel">
-          <div class="impact-title">Why it stands out</div>
-          <div class="impact-text">Combines UI, backend APIs, database design, and local AI in one cohesive system.</div>
-          <div class="impact-list">
-            <div class="impact-item">
-              <div class="impact-icon ic-teal">01</div>
-              <div class="impact-body"><b>Full-stack</b><span>End-to-end: React frontend, FastAPI backend, PostgreSQL, local LLM.</span></div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-icon ic-blue">02</div>
-              <div class="impact-body"><b>Real workflow</b><span>Review history, scoring, and inline feedback make it production-usable.</span></div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-icon ic-green">03</div>
-              <div class="impact-body"><b>AI integration</b><span>Local LLM with Ollama — no API keys, fully self-hosted.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Spotlight 2: Spotify Project ← NEW -->
-    <article class="spotlight spotify-spot" style="margin-bottom:20px">
-      <div class="spot-grid">
-        <div>
-          <div class="kicker" style="border-color:rgba(29,185,84,.3);background:rgba(29,185,84,.1);color:var(--green);">🎵 Data Science Project</div>
-          <h2 class="spot-title">Spotify Tracks Analytics</h2>
-          <p class="spot-desc">
-            An <b>end-to-end data project</b> spanning Data Engineering, Analytics, and Machine Learning
-            on 114,000 Spotify tracks across 113 genres. Built a complete pipeline from raw CSV to
-            an <b>interactive analytics dashboard</b> — with a unique angle on Indian vs global music.
-          </p>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">Pandas</span>
-            <span class="chip">SQLite</span><span class="chip">SQL</span>
-            <span class="chip">Scikit-learn</span><span class="chip">Plotly Dash</span>
-            <span class="chip">Matplotlib</span><span class="chip">Seaborn</span>
-          </div>
-          <ul class="spot-bullets">
-            <li><b>Data Engineering:</b> ETL pipeline cleaning 114k rows, removing duplicates/outliers, loading into SQLite with 3 normalized tables.</li>
-            <li><b>Data Analytics:</b> 6 SQL-driven business questions answered with seaborn/matplotlib charts — genre trends, explicit vs clean, hit patterns.</li>
-            <li><b>Data Science:</b> Random Forest model predicting song hits (popularity ≥ 70) with confusion matrix, ROC curve, and feature importance analysis.</li>
-            <li><b>Dashboard:</b> Interactive 5-tab Plotly Dash app with genre explorer, audio feature radar, top artists leaderboard, and Indian vs global comparison.</li>
-          </ul>
-          <div class="spot-actions">
-            <a class="btn btn-solid" style="background:var(--green);box-shadow:0 8px 24px rgba(29,185,84,.3)" href="https://github.com/KirtanPatel30/spotify-analytics-project" target="_blank">View Repo →</a>
-            <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=Spotify Analytics Project">Ask Me About This</a>
-          </div>
-        </div>
-        <div class="impact-panel">
-          <div class="impact-title">3 roles in 1 project</div>
-          <div class="impact-text">Intentionally built to demonstrate skills across all three data tracks.</div>
-          <div class="impact-list">
-            <div class="impact-item">
-              <div class="impact-icon ic-orange">DE</div>
-              <div class="impact-body"><b>Data Engineering</b><span>ETL pipeline, data validation, SQLite with 3 tables, quality report.</span></div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-icon ic-blue">DA</div>
-              <div class="impact-body"><b>Data Analytics</b><span>SQL queries, 6 business questions, matplotlib/seaborn visualizations.</span></div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-icon ic-green">DS</div>
-              <div class="impact-body"><b>Data Science</b><span>Random Forest + Logistic Regression, ROC curve, feature importance.</span></div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-icon ic-purple">📊</div>
-              <div class="impact-body"><b>Dashboard</b><span>5-tab interactive Plotly Dash app running in the browser.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Grid projects -->
-    <div class="grid2">
-
-      <div class="proj">
-        <div class="proj-bar" style="background:linear-gradient(180deg,var(--teal),var(--blue))"></div>
-        <div class="proj-top">
-          <div>
-            <div class="proj-icon" style="background:rgba(0,229,200,.1);font-size:18px;">⚡</div>
-            <p class="proj-title" style="margin-top:8px">Realtime AI Collaborative Editor</p>
-          </div>
-          <a class="btn" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank">Repo →</a>
-        </div>
-        <p class="proj-desc">Google Docs-inspired editor with real-time syncing, presence tracking, and local AI features.</p>
-        <ul class="proj-bullets">
-          <li>Real-time multi-user sync using <b>Yjs CRDT</b> and <b>Supabase WebSockets</b>.</li>
-          <li>Local LLM <b>summarization and explanation</b> via Ollama — no API costs.</li>
-          <li><b>Autosave, snapshot recovery</b>, and incremental sync for reliability.</li>
-        </ul>
-        <div class="proj-footer">
-          <span class="tag">Next.js</span><span class="tag">TypeScript</span>
-          <span class="tag">Yjs CRDT</span><span class="tag">Supabase</span><span class="tag">Ollama</span>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-bar" style="background:linear-gradient(180deg,var(--orange),var(--purple))"></div>
-        <div class="proj-top">
-          <div>
-            <div class="proj-icon" style="background:rgba(251,146,60,.1);font-size:18px;">🛡️</div>
-            <p class="proj-title" style="margin-top:8px">FlashSaleGuard</p>
-          </div>
-          <a class="btn" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank">Repo →</a>
-        </div>
-        <p class="proj-desc">High-concurrency inventory reservation system preventing overselling during flash-sale spikes.</p>
-        <ul class="proj-bullets">
-          <li><b>Redis atomic counters</b> and TTL-based reservations to prevent overselling.</li>
-          <li><b>Idempotent order confirmation</b> for safe retries during failures.</li>
-          <li>Containerized with Docker, tested under <b>concurrent load</b>.</li>
-        </ul>
-        <div class="proj-footer">
-          <span class="tag">Java</span><span class="tag">Spring Boot</span>
-          <span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Concurrency</span>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-bar" style="background:linear-gradient(180deg,var(--blue),var(--purple))"></div>
-        <div class="proj-top">
-          <div>
-            <div class="proj-icon" style="background:rgba(77,166,255,.1);font-size:18px;">🔀</div>
-            <p class="proj-title" style="margin-top:8px">Adaptive Load-Shedding API Gateway</p>
-          </div>
-          <a class="btn" href="https://github.com/KirtanPatel30/Adaptive-Gateway" target="_blank">Repo →</a>
-        </div>
-        <p class="proj-desc">C++ reverse proxy that drops lower-priority traffic during overload to protect backend services.</p>
-        <ul class="proj-bullets">
-          <li>Tracks <b>latency and error-rate</b> to detect overload and cut cascading failures.</li>
-          <li><b>Thread pool with bounded priority queues</b> to enforce backpressure.</li>
-          <li>Measured <b>p95 latency under burst load</b> for graceful degradation.</li>
-        </ul>
-        <div class="proj-footer">
-          <span class="tag">C++</span><span class="tag">Linux</span>
-          <span class="tag">Sockets</span><span class="tag">HTTP</span><span class="tag">Concurrency</span>
-        </div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-bar" style="background:linear-gradient(180deg,var(--purple),var(--teal))"></div>
-        <div class="proj-top">
-          <div>
-            <div class="proj-icon" style="background:rgba(167,139,250,.1);font-size:18px;">🌐</div>
-            <p class="proj-title" style="margin-top:8px">Multithreaded Web Server</p>
-          </div>
-          <a class="btn" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank">Repo →</a>
-        </div>
-        <p class="proj-desc">HTTP/1.1 web server in C focused on concurrency, fairness, and performance under load.</p>
-        <ul class="proj-bullets">
-          <li>Improved throughput <b>5× under concurrent load</b> while reducing starvation.</li>
-          <li><b>Per-IP rate limiting</b>, request routing, dynamic worker scaling.</li>
-          <li>Deep focus on <b>thread pools</b>, socket programming, and low-level HTTP.</li>
-        </ul>
-        <div class="proj-footer">
-          <span class="tag">C</span><span class="tag">Thread Pool</span>
-          <span class="tag">Concurrency</span><span class="tag">HTTP</span><span class="tag">Sockets</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ══ EXPERIENCE ══ -->
-  <section id="experience">
-    <div class="sec-head">
-      <div class="sec-title">Experience</div>
-      <div class="sec-sub">Academic and technical work that shaped my engineering</div>
-    </div>
-    <div class="expGrid">
-      <div class="card">
-        <div class="card-title">Teaching Assistant</div>
-        <div class="card-sub">University of Illinois Chicago</div>
-        <ul>
-          <li>Supported 250+ students in programming, debugging, and core CS concepts.</li>
-          <li>Explained technical material during labs, coursework, and project sessions.</li>
-          <li>Strengthened mentoring and communication skills across diverse student groups.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Engineering Interests</div>
-        <div class="card-sub">What I enjoy working on most</div>
-        <ul>
-          <li>Backend systems, APIs, concurrency, and performance-focused engineering.</li>
-          <li>Data pipelines, analytics, and ML projects that produce real insights.</li>
-          <li>AI-powered applications that solve practical developer workflow problems.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ══ SKILLS ══ -->
-  <section id="skills">
-    <div class="sec-head">
-      <div class="sec-title">Skills</div>
-      <div class="sec-sub">Languages, tools, and areas I work with most</div>
-    </div>
-    <div class="skill-grid">
-      <div class="card">
-        <div class="card-title">Languages</div>
-        <ul><li>C, C++, Java, Python, JavaScript, SQL, Bash, PowerShell</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Frameworks & Tools</div>
-        <ul><li>React, Next.js, FastAPI, Spring Boot, PostgreSQL, Redis, Docker, Git, Ollama, Plotly Dash</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Data & ML</div>
-        <ul><li>Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, SQLite, ETL pipelines, Random Forest, Logistic Regression</li></ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Coursework</div>
-        <ul><li>Data Structures & Algorithms, Operating Systems, Computer Architecture, SQL, Software Design, Programming Language Design</li></ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ══ CONTACT ══ -->
-  <section id="contact">
-    <div class="contact-card">
-      <div class="eyebrow" style="margin-bottom:14px"><span class="pulse"></span> Available for opportunities</div>
-      <div class="contact-title">Let's build<br/>something together</div>
-      <p class="contact-text">
-        I'm looking for <b>software engineering</b>, <b>backend</b>, <b>full-stack</b>, and <b>data</b> roles —
-        internships or new grad. Feel free to reach out via email, GitHub, or LinkedIn.
-      </p>
-      <div class="contact-links">
-        <a class="btn btn-solid" href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com</a>
+        <a class="btn btn-lime" href="#projects">View Projects →</a>
+        <a class="btn btn-fill" href="KIRTAN PATELR.docx" target="_blank">Resume</a>
         <a class="btn" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
-        <a class="btn" href="https://kirtanpatel30.github.io/Portfolio/" target="_blank">Live Portfolio</a>
       </div>
     </div>
-  </section>
+    <div class="stats">
+      <div class="stat"><div class="stat-num rust">12+</div><div class="stat-label">Projects across backend, AI & data</div></div>
+      <div class="stat"><div class="stat-num sky">5×</div><div class="stat-label">Throughput gain on multithreaded server</div></div>
+      <div class="stat"><div class="stat-num lime">114k</div><div class="stat-label">Rows processed in Spotify pipeline</div></div>
+      <div class="stat"><div class="stat-num">250+</div><div class="stat-label">Students supported as TA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="sec-div" id="projects"><div class="line"></div><div class="sec-tag">◆ FEATURED PROJECTS</div><div class="line"></div></div>
+
+<!-- Spotlight 1 -->
+<article class="spotlight reveal">
+  <div class="spot-body">
+    <div>
+      <div class="kicker"><span class="kd" style="background:var(--rust)"></span> Featured · Full-Stack + AI</div>
+      <h2 class="spot-title">AI CODE REVIEW<br/>PLATFORM</h2>
+      <p class="spot-desc">A <b>full-stack developer tool</b> combining <b>static analysis</b> and a <b>local LLM</b> to generate line-level review comments, quality scores, and persistent review history — self-hosted, zero API cost.</p>
+      <div class="chips">
+        <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Ollama</span>
+        <span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Static Analysis</span>
+      </div>
+      <ul class="spot-list">
+        <li>Full-stack platform with <b>multi-file upload</b> and <b>line-level comments</b> inspired by GitHub PR reviews.</li>
+        <li>Hybrid pipeline: <b>complexity + duplication metrics</b> combined with <b>LLM reasoning</b> for nuanced feedback.</li>
+        <li>Persistent review history and <b>quality scoring</b> in PostgreSQL — reusable across sessions.</li>
+      </ul>
+      <div class="spot-acts">
+        <a class="btn btn-fill" href="https://github.com/KirtanPatel30/ai-code-review-platform" target="_blank">View Repository →</a>
+        <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=AI Code Review">Ask Me About This</a>
+      </div>
+    </div>
+    <div class="imp">
+      <div class="imp-head">WHY IT STANDS OUT</div>
+      <div class="imp-sub">One project showing full-stack thinking, backend depth, and real AI integration together.</div>
+      <div class="imp-item"><div class="ii-b b-rust">FS</div><div class="ii-t"><b>Full-stack</b><span>React + FastAPI + PostgreSQL + local LLM in one system.</span></div></div>
+      <div class="imp-item"><div class="ii-b b-sky">AI</div><div class="ii-t"><b>Self-hosted AI</b><span>Ollama — no API keys, no rate limits, no cost.</span></div></div>
+      <div class="imp-item"><div class="ii-b b-lime">UX</div><div class="ii-t"><b>Real workflow</b><span>Review history + scoring makes it feel like a real product.</span></div></div>
+    </div>
+  </div>
+  <div class="spot-foot">
+    <div class="sf-stat"><div class="n" style="color:var(--rust)">Multi-file</div><div class="l">Upload support</div></div>
+    <div class="sf-stat"><div class="n" style="color:var(--sky)">Local LLM</div><div class="l">Ollama powered</div></div>
+    <div class="sf-stat"><div class="n">Line-level</div><div class="l">Feedback granularity</div></div>
+    <div class="sf-stat"><div class="n" style="color:var(--lime2)">Self-hosted</div><div class="l">Zero API cost</div></div>
+  </div>
+</article>
+
+<!-- Spotlight 2: Spotify -->
+<article class="spotlight reveal d1" style="border-color:rgba(181,220,30,.4);">
+  <div class="spot-body" style="background:rgba(200,241,53,.03);">
+    <div>
+      <div class="kicker"><span class="kd" style="background:var(--lime2)"></span> Data Engineering · Analytics · ML</div>
+      <h2 class="spot-title">SPOTIFY TRACKS<br/>ANALYTICS</h2>
+      <p class="spot-desc">An <b>end-to-end data project</b> on 114,000 Spotify tracks across 113 genres — built to show <b>Data Engineering, Analytics, and Data Science</b> in one repo, with a unique <b>Indian vs global music</b> angle.</p>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">SQLite</span><span class="chip">SQL</span>
+        <span class="chip">Scikit-learn</span><span class="chip">Plotly Dash</span><span class="chip">Seaborn</span><span class="chip">Random Forest</span>
+      </div>
+      <ul class="spot-list">
+        <li><b>Data Engineering:</b> ETL pipeline — cleaning, deduplication, outlier removal → SQLite with 3 tables + quality report.</li>
+        <li><b>Data Analytics:</b> 6 SQL business questions — genre trends, explicit vs clean, hit patterns, Indian vs global.</li>
+        <li><b>Data Science:</b> Random Forest model predicting hits with ROC curve, confusion matrix & feature importance.</li>
+        <li><b>Dashboard:</b> 5-tab interactive Plotly Dash app — genre explorer, audio radar, artist leaderboard, regional comparison.</li>
+      </ul>
+      <div class="spot-acts">
+        <a class="btn btn-lime" href="https://github.com/KirtanPatel30/spotify-analytics-project" target="_blank">View Repository →</a>
+        <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=Spotify Analytics">Ask Me About This</a>
+      </div>
+    </div>
+    <div class="imp">
+      <div class="imp-head">3 ROLES IN 1</div>
+      <div class="imp-sub">Designed to speak to DE, DA and DS job postings simultaneously.</div>
+      <div class="imp-item"><div class="ii-b b-rust">DE</div><div class="ii-t"><b>Data Engineering</b><span>ETL pipeline, SQLite DB, quality report JSON.</span></div></div>
+      <div class="imp-item"><div class="ii-b b-sky">DA</div><div class="ii-t"><b>Data Analytics</b><span>SQL queries, 6 business questions, seaborn charts.</span></div></div>
+      <div class="imp-item"><div class="ii-b b-lime">DS</div><div class="ii-t"><b>Data Science</b><span>Random Forest, Logistic Regression, ROC, feature importance.</span></div></div>
+      <div class="imp-item"><div class="ii-b b-ink">📊</div><div class="ii-t"><b>Dashboard</b><span>5-tab Plotly Dash app live in browser.</span></div></div>
+    </div>
+  </div>
+  <div class="spot-foot">
+    <div class="sf-stat"><div class="n" style="color:var(--lime2)">114,000</div><div class="l">Tracks processed</div></div>
+    <div class="sf-stat"><div class="n" style="color:var(--rust)">113</div><div class="l">Genres analysed</div></div>
+    <div class="sf-stat"><div class="n" style="color:var(--sky)">5 tabs</div><div class="l">Interactive dashboard</div></div>
+    <div class="sf-stat"><div class="n">2 models</div><div class="l">ML comparison</div></div>
+  </div>
+</article>
+
+<!-- Grid -->
+<div class="grid2 reveal d2">
+  <div class="proj">
+    <div class="proj-bar" style="background:linear-gradient(90deg,#1a6fff,#00e5c8)"></div>
+    <div class="proj-in">
+      <div class="proj-hd">
+        <div class="proj-title">REALTIME AI<br/>COLLAB EDITOR</div>
+        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank">Repo →</a>
+      </div>
+      <p class="proj-desc">Google Docs-inspired editor with real-time sync, presence tracking, and local LLM features.</p>
+      <ul class="proj-list">
+        <li>Real-time multi-user sync via <b>Yjs CRDT</b> & Supabase WebSockets.</li>
+        <li>Local LLM <b>summarization/explanation</b> via Ollama — zero cost.</li>
+        <li><b>Autosave, snapshot recovery</b>, and incremental sync.</li>
+      </ul>
+      <div class="proj-ft"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Yjs</span><span class="tag">Supabase</span><span class="tag">Ollama</span></div>
+    </div>
+  </div>
+  <div class="proj">
+    <div class="proj-bar" style="background:linear-gradient(90deg,#e8401c,#fb923c)"></div>
+    <div class="proj-in">
+      <div class="proj-hd">
+        <div class="proj-title">FLASH<br/>SALE GUARD</div>
+        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank">Repo →</a>
+      </div>
+      <p class="proj-desc">High-concurrency inventory system preventing overselling during flash-sale traffic spikes.</p>
+      <ul class="proj-list">
+        <li><b>Redis atomic counters</b> + TTL reservations to prevent overselling.</li>
+        <li><b>Idempotent order confirmation</b> safe under retries and failures.</li>
+        <li>Containerized + tested under <b>concurrent load</b>.</li>
+      </ul>
+      <div class="proj-ft"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
+    </div>
+  </div>
+  <div class="proj">
+    <div class="proj-bar" style="background:linear-gradient(90deg,#a78bfa,#1a6fff)"></div>
+    <div class="proj-in">
+      <div class="proj-hd">
+        <div class="proj-title">ADAPTIVE<br/>API GATEWAY</div>
+        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/Adaptive-Gateway" target="_blank">Repo →</a>
+      </div>
+      <p class="proj-desc">C++ reverse proxy that sheds lower-priority traffic under overload to protect backends.</p>
+      <ul class="proj-list">
+        <li>Tracks <b>latency + error-rate</b> to detect overload; cuts cascading failures.</li>
+        <li><b>Thread pool with bounded priority queues</b> for backpressure.</li>
+        <li>Measured <b>p95 latency under burst load</b>.</li>
+      </ul>
+      <div class="proj-ft"><span class="tag">C++</span><span class="tag">Linux</span><span class="tag">Sockets</span><span class="tag">HTTP</span><span class="tag">Concurrency</span></div>
+    </div>
+  </div>
+  <div class="proj">
+    <div class="proj-bar" style="background:linear-gradient(90deg,#c8f135,#00e5c8)"></div>
+    <div class="proj-in">
+      <div class="proj-hd">
+        <div class="proj-title">MULTITHREADED<br/>WEB SERVER</div>
+        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank">Repo →</a>
+      </div>
+      <p class="proj-desc">HTTP/1.1 web server in C built for concurrency, fairness, and performance under load.</p>
+      <ul class="proj-list">
+        <li><b>5× throughput improvement</b> under concurrent load vs baseline.</li>
+        <li><b>Per-IP rate limiting</b>, request routing, dynamic worker scaling.</li>
+        <li>Deep focus on <b>thread pools</b>, socket programming, HTTP parsing.</li>
+      </ul>
+      <div class="proj-ft"><span class="tag">C</span><span class="tag">Thread Pool</span><span class="tag">Concurrency</span><span class="tag">HTTP</span><span class="tag">Sockets</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="sec-div" id="experience"><div class="line"></div><div class="sec-tag">◆ EXPERIENCE</div><div class="line"></div></div>
+
+<div class="exp-grid reveal">
+  <div class="exp-card">
+    <div class="exp-top">
+      <div>
+        <div class="exp-title">TEACHING ASSISTANT</div>
+        <div class="exp-meta">University of Illinois Chicago · 2024 – Present</div>
+      </div>
+      <span class="exp-badge b-present">Current</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Supported <b>250+ students</b> in programming, debugging, and core CS concepts across lab sessions and office hours.</li>
+        <li>Explained technical material — data structures, algorithms, software design — clearly to diverse skill levels.</li>
+        <li>Strengthened mentoring and communication skills working alongside faculty and instructors.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="exp-card">
+    <div class="exp-top">
+      <div>
+        <div class="exp-title">ENGINEERING FOCUS</div>
+        <div class="exp-meta">What I enjoy building most</div>
+      </div>
+      <span class="exp-badge b-focus">Areas</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Backend systems, APIs, concurrency, and performance-focused engineering in C/C++/Java.</li>
+        <li>Data pipelines, SQL analytics, and ML projects that surface real insights from real data.</li>
+        <li>AI-powered full-stack applications that solve practical developer workflow problems.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="sec-div" id="skills"><div class="line"></div><div class="sec-tag">◆ SKILLS</div><div class="line"></div></div>
+
+<div class="skill-grid reveal">
+  <div class="skill-card">
+    <div class="skill-head">LANGUAGES</div>
+    <div class="skill-tags">
+      <span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span>
+      <span class="tag">Python</span><span class="tag">JavaScript</span>
+      <span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">PowerShell</span>
+    </div>
+  </div>
+  <div class="skill-card">
+    <div class="skill-head">FRAMEWORKS</div>
+    <div class="skill-tags">
+      <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">FastAPI</span>
+      <span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span>
+      <span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">Ollama</span>
+    </div>
+  </div>
+  <div class="skill-card">
+    <div class="skill-head">DATA & ML</div>
+    <div class="skill-tags">
+      <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span>
+      <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+      <span class="tag">Plotly Dash</span><span class="tag">SQLite</span>
+      <span class="tag">ETL Pipelines</span><span class="tag">Random Forest</span>
+    </div>
+  </div>
+  <div class="skill-card">
+    <div class="skill-head">COURSEWORK</div>
+    <div class="skill-tags">
+      <span class="tag">Data Structures</span><span class="tag">Algorithms</span>
+      <span class="tag">Operating Systems</span><span class="tag">Architecture</span>
+      <span class="tag">Software Design</span><span class="tag">PL Design</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sec-div" id="contact"><div class="line"></div><div class="sec-tag">◆ CONTACT</div><div class="line"></div></div>
+
+<div class="contact-wrap reveal">
+  <div class="contact-top">
+    <div class="c-sub">Available for internships & new grad roles</div>
+    <div class="c-title">LET'S <span class="hi">BUILD</span><br/>SOMETHING.</div>
+    <p class="c-desc">Looking for <b style="color:#fff">software engineering</b>, <b style="color:#fff">backend</b>, <b style="color:#fff">full-stack</b>, and <b style="color:#fff">data</b> roles — internships or new grad. Reach out via email, GitHub, or LinkedIn.</p>
+    <div class="c-links">
+      <a class="btn-dk btn-lk" href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com →</a>
+      <a class="btn-dk" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
+      <a class="btn-dk" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
+      <a class="btn-dk" href="https://kirtanpatel30.github.io/Portfolio/" target="_blank">Live Portfolio</a>
+    </div>
+  </div>
+  <div class="c-foot">
+    <div class="c-foot-t">kirtannpatel2003@gmail.com</div>
+    <div class="c-foot-t" style="font-family:'JetBrains Mono',monospace;font-size:11px;">Chicago, IL · May 2026</div>
+  </div>
+</div>
 
 </main>
 
-<footer>
-  © 2026 Kirtan Patel · Built with HTML & CSS · Chicago, IL
-</footer>
+<footer>© 2026 KIRTAN PATEL · BUILT WITH HTML & CSS · CHICAGO IL</footer>
 
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.4)';ring.style.transform='translate(-50%,-50%) scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
