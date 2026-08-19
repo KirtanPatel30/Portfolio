@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Kirtan Patel — Engineer</title>
-<meta name="description" content="Kirtan Patel — CS student at UIC. Backend systems, AI apps, data science."/>
+<meta name="description" content="Kirtan Patel — UIC CS grad, incoming MS in AI at SJSU. Backend systems, AI apps, data science."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -35,7 +35,7 @@ body{
   cursor:none;
 }
 a{color:inherit;text-decoration:none;}
-
+ 
 .cursor{
   position:fixed;width:12px;height:12px;
   background:var(--lime);border-radius:50%;
@@ -51,15 +51,15 @@ a{color:inherit;text-decoration:none;}
   transform:translate(-50%,-50%);
   opacity:.35;
 }
-
+ 
 body::after{
   content:'';position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
   pointer-events:none;z-index:1000;opacity:.55;
 }
-
+ 
 .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:2;}
-
+ 
 /* NAV */
 nav{
   position:sticky;top:0;z-index:500;
@@ -92,7 +92,7 @@ nav{
   transition:background .15s,transform .15s;
 }
 .nav-cta:hover{background:var(--rust);transform:scale(1.03);}
-
+ 
 /* HERO */
 .hero{padding:80px 0 56px;}
 .hero-band{
@@ -135,7 +135,7 @@ nav{
 .summary{font-size:17px;line-height:1.85;color:rgba(4,8,15,.78);max-width:56ch;}
 .summary b{color:var(--ink);font-weight:700;}
 .hero-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;}
-
+ 
 .btn{
   display:inline-flex;align-items:center;gap:7px;
   padding:11px 20px;border-radius:999px;
@@ -148,7 +148,7 @@ nav{
 .btn-fill:hover{background:var(--rust);border-color:var(--rust);}
 .btn-lime{background:var(--lime);color:var(--ink);border-color:var(--lime);box-shadow:0 6px 20px rgba(200,241,53,.4);}
 .btn-lime:hover{background:var(--lime2);border-color:var(--lime2);}
-
+ 
 .stats{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;}
 .stat{padding:17px 20px;border-bottom:1.5px solid var(--border);}
 .stat:last-child{border-bottom:none;}
@@ -157,12 +157,12 @@ nav{
 .stat-num.sky{color:var(--sky);}
 .stat-num.lime{color:var(--lime2);}
 .stat-label{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
-
+ 
 /* DIVIDER */
 .sec-div{display:flex;align-items:center;gap:16px;padding:52px 0 24px;}
 .sec-div .line{flex:1;height:1.5px;background:var(--border2);}
 .sec-tag{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.14em;color:var(--muted2);white-space:nowrap;}
-
+ 
 /* SPOTLIGHT */
 .spotlight{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;margin-bottom:16px;background:var(--paper);}
 .spot-body{padding:28px;display:grid;gap:24px;grid-template-columns:1fr;}
@@ -189,7 +189,7 @@ nav{
 .spot-list{margin-top:16px;padding-left:18px;font-size:14px;line-height:1.78;color:rgba(4,8,15,.82);}
 .spot-list li{margin:8px 0;}
 .spot-acts{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
-
+ 
 .imp{padding:20px;border-radius:14px;background:var(--paper2);border:1.5px solid var(--border);display:grid;gap:12px;align-content:start;}
 .imp-head{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;}
 .imp-sub{font-size:12px;color:var(--muted);line-height:1.6;}
@@ -201,7 +201,7 @@ nav{
 .b-ink{background:rgba(4,8,15,.07);color:var(--ink);}
 .ii-t b{display:block;font-size:12px;font-weight:700;}
 .ii-t span{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
-
+ 
 .spot-foot{
   padding:15px 28px;background:var(--paper2);
   border-top:1.5px solid var(--border);
@@ -209,7 +209,7 @@ nav{
 }
 .sf-stat .n{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;}
 .sf-stat .l{font-size:11px;color:var(--muted);margin-top:1px;}
-
+ 
 /* GRID PROJECTS */
 .grid2{display:grid;grid-template-columns:1fr;gap:14px;}
 @media(min-width:900px){.grid2{grid-template-columns:1fr 1fr;}}
@@ -225,7 +225,7 @@ nav{
 .proj-ft{margin-top:13px;padding-top:12px;border-top:1.5px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;}
 .tag{padding:4px 10px;border-radius:999px;border:1.5px solid var(--border2);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);}
 .sm-btn{font-size:12px;padding:8px 14px;}
-
+ 
 /* EXPERIENCE */
 .exp-grid{display:grid;grid-template-columns:1fr;gap:14px;}
 @media(min-width:900px){.exp-grid{grid-template-columns:1fr 1fr;}}
@@ -240,7 +240,7 @@ nav{
 .exp-body{padding:15px 20px;}
 .exp-body ul{padding-left:16px;font-size:13px;line-height:1.72;color:rgba(4,8,15,.82);}
 .exp-body ul li{margin:7px 0;}
-
+ 
 /* SKILLS */
 .skill-grid{display:grid;grid-template-columns:1fr;gap:14px;}
 @media(min-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
@@ -248,7 +248,7 @@ nav{
 .skill-card{border:1.5px solid var(--border2);border-radius:var(--r);padding:20px;background:var(--paper);}
 .skill-head{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.06em;padding-bottom:12px;border-bottom:1.5px solid var(--border);margin-bottom:13px;}
 .skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
-
+ 
 /* CONTACT */
 .contact-wrap{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;}
 .contact-top{padding:44px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
@@ -269,14 +269,14 @@ nav{
 .btn-lk:hover{background:var(--lime2);border-color:var(--lime2);}
 .c-foot{padding:18px 44px;background:var(--paper2);border-top:1.5px solid var(--border2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .c-foot-t{font-size:13px;color:var(--muted);}
-
+ 
 footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);border-top:1.5px solid var(--border);margin-top:20px;letter-spacing:.06em;}
-
+ 
 /* ANIMATIONS */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.08s;} .d2{transition-delay:.16s;}
-
+ 
 @media(max-width:640px){
   .contact-top{padding:30px 22px;}
   .c-foot{padding:15px 22px;}
@@ -284,10 +284,10 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
 </style>
 </head>
 <body>
-
+ 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
+ 
 <!-- NAV -->
 <nav>
   <div class="wrap navin">
@@ -301,13 +301,13 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     <a class="nav-cta" href="mailto:kirtannpatel2003@gmail.com">hire me →</a>
   </div>
 </nav>
-
+ 
 <main class="wrap">
-
+ 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-band">
-    <div class="hero-label">CS Student at UIC · Chicago, IL · May 2026</div>
+    <div class="hero-label">UIC CS Grad, May 2026 · Incoming MS in AI @ SJSU, Fall 2026</div>
     <div class="hero-pills">
       <span class="pill">Backend</span>
       <span class="pill">AI Apps</span>
@@ -320,9 +320,10 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
   <div class="hero-body">
     <div>
       <p class="summary">
-        I'm a <b>Computer Science student at UIC</b> who builds things that work —
-        <b>backend systems</b> in C/C++, <b>AI-powered full-stack apps</b> with FastAPI & React,
-        and <b>end-to-end data pipelines</b> covering engineering, analytics, and ML.
+        I recently graduated with a <b>B.S. in Computer Science from UIC</b> and am starting my
+        <b>M.S. in Artificial Intelligence at San José State University</b> this Fall 2026.
+        I build things that work — <b>backend systems</b> in C/C++, <b>AI-powered full-stack apps</b>
+        with FastAPI & React, and <b>end-to-end data pipelines</b> covering engineering, analytics, and ML.
         I care about clean architecture, real performance, and shipping products that matter.
       </p>
       <div class="hero-actions">
@@ -340,10 +341,10 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     </div>
   </div>
 </section>
-
+ 
 <!-- PROJECTS -->
 <div class="sec-div" id="projects"><div class="line"></div><div class="sec-tag">◆ FEATURED PROJECTS</div><div class="line"></div></div>
-
+ 
 <!-- Spotlight 1 -->
 <article class="spotlight reveal">
   <div class="spot-body">
@@ -380,7 +381,7 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     <div class="sf-stat"><div class="n" style="color:var(--lime2)">Self-hosted</div><div class="l">Zero API cost</div></div>
   </div>
 </article>
-
+ 
 <!-- Spotlight 2: Spotify -->
 <article class="spotlight reveal d1" style="border-color:rgba(181,220,30,.4);">
   <div class="spot-body" style="background:rgba(200,241,53,.03);">
@@ -419,7 +420,7 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     <div class="sf-stat"><div class="n">2 models</div><div class="l">ML comparison</div></div>
   </div>
 </article>
-
+ 
 <!-- Grid -->
 <div class="grid2 reveal d2">
   <div class="proj">
@@ -487,18 +488,18 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     </div>
   </div>
 </div>
-
+ 
 <!-- EXPERIENCE -->
 <div class="sec-div" id="experience"><div class="line"></div><div class="sec-tag">◆ EXPERIENCE</div><div class="line"></div></div>
-
+ 
 <div class="exp-grid reveal">
   <div class="exp-card">
     <div class="exp-top">
       <div>
         <div class="exp-title">TEACHING ASSISTANT</div>
-        <div class="exp-meta">University of Illinois Chicago · 2024 – Present</div>
+        <div class="exp-meta">University of Illinois Chicago · 2024 – 2026</div>
       </div>
-      <span class="exp-badge b-present">Current</span>
+      <span class="exp-badge b-focus">Completed</span>
     </div>
     <div class="exp-body">
       <ul>
@@ -511,24 +512,24 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
   <div class="exp-card">
     <div class="exp-top">
       <div>
-        <div class="exp-title">ENGINEERING FOCUS</div>
-        <div class="exp-meta">What I enjoy building most</div>
+        <div class="exp-title">MS IN ARTIFICIAL INTELLIGENCE</div>
+        <div class="exp-meta">San José State University · Fall 2026 – Present</div>
       </div>
-      <span class="exp-badge b-focus">Areas</span>
+      <span class="exp-badge b-present">Incoming</span>
     </div>
     <div class="exp-body">
       <ul>
-        <li>Backend systems, APIs, concurrency, and performance-focused engineering in C/C++/Java.</li>
-        <li>Data pipelines, SQL analytics, and ML projects that surface real insights from real data.</li>
-        <li>AI-powered full-stack applications that solve practical developer workflow problems.</li>
+        <li>Beginning graduate study in <b>Artificial Intelligence</b>, building on a CS foundation from UIC.</li>
+        <li>Focused on deepening expertise in <b>machine learning, applied AI systems, and research methods</b>.</li>
+        <li>Continuing to build backend, data, and AI-powered projects alongside coursework.</li>
       </ul>
     </div>
   </div>
 </div>
-
+ 
 <!-- SKILLS -->
 <div class="sec-div" id="skills"><div class="line"></div><div class="sec-tag">◆ SKILLS</div><div class="line"></div></div>
-
+ 
 <div class="skill-grid reveal">
   <div class="skill-card">
     <div class="skill-head">LANGUAGES</div>
@@ -564,15 +565,15 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
     </div>
   </div>
 </div>
-
+ 
 <!-- CONTACT -->
 <div class="sec-div" id="contact"><div class="line"></div><div class="sec-tag">◆ CONTACT</div><div class="line"></div></div>
-
+ 
 <div class="contact-wrap reveal">
   <div class="contact-top">
-    <div class="c-sub">Available for internships & new grad roles</div>
+    <div class="c-sub">Available for internships & research/collaboration opportunities</div>
     <div class="c-title">LET'S <span class="hi">BUILD</span><br/>SOMETHING.</div>
-    <p class="c-desc">Looking for <b style="color:#fff">software engineering</b>, <b style="color:#fff">backend</b>, <b style="color:#fff">full-stack</b>, and <b style="color:#fff">data</b> roles — internships or new grad. Reach out via email, GitHub, or LinkedIn.</p>
+    <p class="c-desc">UIC CS grad starting my <b style="color:#fff">M.S. in AI at San José State University</b> this fall. Open to <b style="color:#fff">software engineering</b>, <b style="color:#fff">backend</b>, <b style="color:#fff">full-stack</b>, and <b style="color:#fff">AI/data</b> roles — internships or new grad. Reach out via email, GitHub, or LinkedIn.</p>
     <div class="c-links">
       <a class="btn-dk btn-lk" href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com →</a>
       <a class="btn-dk" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
@@ -582,14 +583,14 @@ footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monosp
   </div>
   <div class="c-foot">
     <div class="c-foot-t">kirtannpatel2003@gmail.com</div>
-    <div class="c-foot-t" style="font-family:'JetBrains Mono',monospace;font-size:11px;">Chicago, IL · May 2026</div>
+    <div class="c-foot-t" style="font-family:'JetBrains Mono',monospace;font-size:11px;">San José, CA · Starting Fall 2026</div>
   </div>
 </div>
-
+ 
 </main>
-
-<footer>© 2026 KIRTAN PATEL · BUILT WITH HTML & CSS · CHICAGO IL</footer>
-
+ 
+<footer>© 2026 KIRTAN PATEL · BUILT WITH HTML & CSS · UIC → SJSU</footer>
+ 
 <script>
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
@@ -604,3 +605,4 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
+ 
