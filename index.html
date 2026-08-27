@@ -1,608 +1,484 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Kirtan Patel — Engineer</title>
-<meta name="description" content="Kirtan Patel — UIC CS grad, incoming MS in AI at SJSU. Backend systems, AI apps, data science."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirtan Patel — Full-Stack &amp; Applied AI Engineer</title>
+<meta name="description" content="Kirtan Patel — MS AI student at San Jose State University, full-stack and applied ML engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#04080f;
-  --ink2:#080e1c;
-  --paper:#f2efe8;
-  --paper2:#e8e4db;
-  --lime:#c8f135;
-  --lime2:#b5dc1e;
-  --rust:#e8401c;
-  --sky:#1a6fff;
-  --muted:#6b6860;
-  --muted2:#9a978f;
-  --border:rgba(4,8,15,.12);
-  --border2:rgba(4,8,15,.22);
-  --r:14px;
-  --max:1180px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Instrument Sans',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  overflow-x:hidden;
-  cursor:none;
-}
-a{color:inherit;text-decoration:none;}
- 
-.cursor{
-  position:fixed;width:12px;height:12px;
-  background:var(--lime);border-radius:50%;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:transform .15s,width .2s,height .2s;
-  mix-blend-mode:multiply;
-}
-.cursor-ring{
-  position:fixed;width:36px;height:36px;
-  border:1.5px solid var(--ink);border-radius:50%;
-  pointer-events:none;z-index:9998;
-  transform:translate(-50%,-50%);
-  opacity:.35;
-}
- 
-body::after{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:1000;opacity:.55;
-}
- 
-.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:2;}
- 
-/* NAV */
-nav{
-  position:sticky;top:0;z-index:500;
-  background:rgba(242,239,232,.94);
-  backdrop-filter:blur(16px);
-  border-bottom:1.5px solid var(--border2);
-}
-.navin{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;}
-.brand{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:22px;letter-spacing:.08em;
-  display:flex;align-items:center;gap:10px;
-}
-.brand-dot{
-  width:9px;height:9px;border-radius:50%;background:var(--lime);
-  animation:blink 2s infinite;
-}
-@keyframes blink{
-  0%,100%{box-shadow:0 0 0 0 rgba(200,241,53,.5);}
-  50%{box-shadow:0 0 0 9px rgba(200,241,53,0);}
-}
-.navlinks{display:none;gap:24px;font-size:12px;font-weight:600;color:var(--muted);font-family:'JetBrains Mono',monospace;}
-.navlinks a:hover{color:var(--ink);}
-@media(min-width:860px){.navlinks{display:flex;}}
-.nav-cta{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:9px 18px;border-radius:999px;
-  background:var(--ink);color:var(--paper);
-  font-size:13px;font-weight:700;
-  transition:background .15s,transform .15s;
-}
-.nav-cta:hover{background:var(--rust);transform:scale(1.03);}
- 
-/* HERO */
-.hero{padding:80px 0 56px;}
-.hero-band{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:14px;
-  padding-bottom:22px;
-  border-bottom:1.5px solid var(--border2);
-  margin-bottom:32px;
-}
-.hero-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
-  display:flex;align-items:center;gap:8px;
-}
-.hero-label::before{content:'◆';color:var(--lime);font-size:8px;}
-.hero-pills{display:flex;gap:8px;flex-wrap:wrap;}
-.pill{
-  padding:6px 13px;border-radius:999px;
-  border:1.5px solid var(--border2);
-  font-size:12px;font-weight:600;color:var(--muted);
-}
-.hero-name{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(86px,15vw,190px);
-  line-height:.9;letter-spacing:.02em;
-  color:var(--ink);
-}
-.hero-name .k{color:var(--rust);}
-.hero-tagline{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(26px,4.5vw,56px);
-  letter-spacing:.08em;color:var(--muted);margin-top:6px;
-}
-.hero-tagline .hl{
-  color:var(--ink);background:var(--lime);
-  padding:0 7px;display:inline-block;transform:skewX(-3deg);
-}
-.hero-body{display:grid;grid-template-columns:1fr;gap:32px;margin-top:38px;}
-@media(min-width:900px){.hero-body{grid-template-columns:1fr 320px;}}
-.summary{font-size:17px;line-height:1.85;color:rgba(4,8,15,.78);max-width:56ch;}
-.summary b{color:var(--ink);font-weight:700;}
-.hero-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;}
- 
-.btn{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:11px 20px;border-radius:999px;
-  border:1.5px solid var(--border2);background:transparent;
-  font-size:13px;font-weight:700;font-family:'Instrument Sans',sans-serif;
-  cursor:none;color:var(--ink);transition:all .18s;
-}
-.btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
-.btn-fill{background:var(--ink);color:var(--paper);border-color:var(--ink);}
-.btn-fill:hover{background:var(--rust);border-color:var(--rust);}
-.btn-lime{background:var(--lime);color:var(--ink);border-color:var(--lime);box-shadow:0 6px 20px rgba(200,241,53,.4);}
-.btn-lime:hover{background:var(--lime2);border-color:var(--lime2);}
- 
-.stats{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;}
-.stat{padding:17px 20px;border-bottom:1.5px solid var(--border);}
-.stat:last-child{border-bottom:none;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;letter-spacing:.02em;}
-.stat-num.rust{color:var(--rust);}
-.stat-num.sky{color:var(--sky);}
-.stat-num.lime{color:var(--lime2);}
-.stat-label{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
- 
-/* DIVIDER */
-.sec-div{display:flex;align-items:center;gap:16px;padding:52px 0 24px;}
-.sec-div .line{flex:1;height:1.5px;background:var(--border2);}
-.sec-tag{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.14em;color:var(--muted2);white-space:nowrap;}
- 
-/* SPOTLIGHT */
-.spotlight{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;margin-bottom:16px;background:var(--paper);}
-.spot-body{padding:28px;display:grid;gap:24px;grid-template-columns:1fr;}
-@media(min-width:960px){.spot-body{grid-template-columns:1.1fr .9fr;}}
-.kicker{
-  display:inline-flex;align-items:center;gap:7px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-  margin-bottom:10px;
-}
-.kd{width:6px;height:6px;border-radius:50%;}
-.spot-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(34px,4.5vw,54px);
-  letter-spacing:.04em;line-height:1;color:var(--ink);
-}
-.spot-desc{margin-top:12px;font-size:15px;line-height:1.82;color:rgba(4,8,15,.74);}
-.spot-desc b{color:var(--ink);}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
-.chip{
-  padding:5px 11px;border-radius:999px;border:1.5px solid var(--border2);
-  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);
-}
-.spot-list{margin-top:16px;padding-left:18px;font-size:14px;line-height:1.78;color:rgba(4,8,15,.82);}
-.spot-list li{margin:8px 0;}
-.spot-acts{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
- 
-.imp{padding:20px;border-radius:14px;background:var(--paper2);border:1.5px solid var(--border);display:grid;gap:12px;align-content:start;}
-.imp-head{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;}
-.imp-sub{font-size:12px;color:var(--muted);line-height:1.6;}
-.imp-item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:10px;background:var(--paper);border:1.5px solid var(--border);}
-.ii-b{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
-.b-rust{background:rgba(232,64,28,.1);color:var(--rust);}
-.b-sky{background:rgba(26,111,255,.1);color:var(--sky);}
-.b-lime{background:rgba(200,241,53,.3);color:#5a7500;}
-.b-ink{background:rgba(4,8,15,.07);color:var(--ink);}
-.ii-t b{display:block;font-size:12px;font-weight:700;}
-.ii-t span{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
- 
-.spot-foot{
-  padding:15px 28px;background:var(--paper2);
-  border-top:1.5px solid var(--border);
-  display:flex;flex-wrap:wrap;gap:24px;align-items:center;
-}
-.sf-stat .n{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;}
-.sf-stat .l{font-size:11px;color:var(--muted);margin-top:1px;}
- 
-/* GRID PROJECTS */
-.grid2{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr;}}
-.proj{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--paper);transition:transform .2s,box-shadow .2s;}
-.proj:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(4,8,15,.11);}
-.proj-bar{height:4px;width:100%;}
-.proj-in{padding:20px;}
-.proj-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-.proj-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;line-height:1.1;}
-.proj-desc{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.65;}
-.proj-list{margin-top:12px;padding-left:16px;font-size:13px;line-height:1.72;color:rgba(4,8,15,.82);}
-.proj-list li{margin:6px 0;}
-.proj-ft{margin-top:13px;padding-top:12px;border-top:1.5px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;}
-.tag{padding:4px 10px;border-radius:999px;border:1.5px solid var(--border2);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2);}
-.sm-btn{font-size:12px;padding:8px 14px;}
- 
-/* EXPERIENCE */
-.exp-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:900px){.exp-grid{grid-template-columns:1fr 1fr;}}
-.exp-card{border:1.5px solid var(--border2);border-radius:var(--r);overflow:hidden;background:var(--paper);transition:transform .2s,box-shadow .2s;}
-.exp-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(4,8,15,.1);}
-.exp-top{padding:20px 20px 15px;border-bottom:1.5px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
-.exp-title{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.04em;}
-.exp-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:3px;}
-.exp-badge{padding:5px 12px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;white-space:nowrap;flex:0 0 auto;}
-.b-present{background:rgba(200,241,53,.3);color:#5a7500;border:1.5px solid rgba(200,241,53,.6);}
-.b-focus{background:rgba(4,8,15,.06);color:var(--muted);border:1.5px solid var(--border2);}
-.exp-body{padding:15px 20px;}
-.exp-body ul{padding-left:16px;font-size:13px;line-height:1.72;color:rgba(4,8,15,.82);}
-.exp-body ul li{margin:7px 0;}
- 
-/* SKILLS */
-.skill-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-@media(min-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
-@media(min-width:1100px){.skill-grid{grid-template-columns:repeat(4,1fr);}}
-.skill-card{border:1.5px solid var(--border2);border-radius:var(--r);padding:20px;background:var(--paper);}
-.skill-head{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.06em;padding-bottom:12px;border-bottom:1.5px solid var(--border);margin-bottom:13px;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:6px;}
- 
-/* CONTACT */
-.contact-wrap{border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;}
-.contact-top{padding:44px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
-.contact-top::before{
-  content:'KIRTAN';position:absolute;right:-20px;bottom:-30px;
-  font-family:'Bebas Neue',sans-serif;font-size:180px;letter-spacing:.04em;
-  color:rgba(255,255,255,.04);pointer-events:none;line-height:1;
-}
-.c-sub{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,232,.5);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.c-sub::before{content:'◆';color:var(--lime);font-size:8px;}
-.c-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,90px);line-height:.93;letter-spacing:.02em;}
-.c-title .hi{color:var(--lime);}
-.c-desc{margin-top:16px;font-size:15px;line-height:1.8;color:rgba(242,239,232,.72);max-width:52ch;}
-.c-links{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;}
-.btn-dk{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:1.5px solid rgba(242,239,232,.22);background:rgba(242,239,232,.07);font-size:13px;font-weight:700;color:var(--paper);cursor:none;transition:all .18s;}
-.btn-dk:hover{background:rgba(242,239,232,.14);border-color:rgba(242,239,232,.38);}
-.btn-lk{background:var(--lime);color:var(--ink);border-color:var(--lime);}
-.btn-lk:hover{background:var(--lime2);border-color:var(--lime2);}
-.c-foot{padding:18px 44px;background:var(--paper2);border-top:1.5px solid var(--border2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.c-foot-t{font-size:13px;color:var(--muted);}
- 
-footer{padding:26px 0 44px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted2);border-top:1.5px solid var(--border);margin-top:20px;letter-spacing:.06em;}
- 
-/* ANIMATIONS */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.08s;} .d2{transition-delay:.16s;}
- 
-@media(max-width:640px){
-  .contact-top{padding:30px 22px;}
-  .c-foot{padding:15px 22px;}
-}
+  :root{
+    --bg:#F3F4F6;
+    --bg-alt:#EAECEF;
+    --ink:#14171A;
+    --line:#C7CCD1;
+    --blue:#2F6FED;
+    --blue-soft:rgba(47,111,237,0.10);
+    --coral:#E8604C;
+    --coral-soft:rgba(232,96,76,0.10);
+    --muted:#6B7280;
+    --card:#FFFFFF;
+    --green:#1F9D55;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  ::selection{background:var(--blue); color:#fff;}
+
+  .shell{display:grid; grid-template-columns:220px 1fr;}
+  @media (max-width:900px){ .shell{grid-template-columns:1fr;} }
+
+  .rail{
+    position:sticky; top:0; height:100vh; padding:40px 0 40px 40px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  @media (max-width:900px){
+    .rail{
+      position:sticky; top:0; height:auto; padding:14px 18px;
+      flex-direction:row; align-items:center; justify-content:flex-start;
+      background:rgba(243,244,246,0.92); backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line); z-index:50; overflow-x:auto;
+    }
+  }
+  .rail-track{position:relative; display:flex; flex-direction:column; gap:46px;}
+  @media (max-width:900px){ .rail-track{flex-direction:row; gap:26px;} }
+  .rail-line{
+    position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(180deg, var(--line) 0 6px, transparent 6px 11px);
+    z-index:0;
+  }
+  @media (max-width:900px){
+    .rail-line{left:6px; right:6px; top:50%; transform:translateY(-50%); bottom:auto; height:2px; width:auto;
+      background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 11px);}
+  }
+  .packet{
+    position:absolute; left:1px; top:0; width:12px; height:12px; border-radius:50%;
+    background:var(--coral); box-shadow:0 0 0 4px var(--coral-soft);
+    transition:top 0.15s linear; z-index:1;
+  }
+  @media (max-width:900px){ .packet{transition:left 0.15s linear; top:50%; transform:translateY(-50%); left:0;} }
+  .rail-node{
+    position:relative; z-index:2; display:flex; align-items:center; gap:12px;
+    cursor:pointer; color:var(--muted); background:none; border:none; font:inherit; text-align:left;
+  }
+  @media (max-width:900px){ .rail-node{flex-direction:column; gap:4px; align-items:center;} }
+  .rail-dot{
+    width:14px; height:14px; border-radius:50%; background:var(--card);
+    border:2px solid var(--line); flex:0 0 auto; transition:all 0.2s ease;
+  }
+  .rail-node .rn-label{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em;
+    white-space:nowrap; transition:color 0.2s ease;
+  }
+  @media (max-width:900px){ .rn-label{font-size:9.5px;} }
+  .rail-node.active{ color:var(--ink); }
+  .rail-node.active .rail-dot{ border-color:var(--blue); background:var(--blue); box-shadow:0 0 0 4px var(--blue-soft); }
+  .rail-node.active .rn-label{ color:var(--blue); font-weight:500; }
+  .rail-node:focus-visible{outline:2px solid var(--blue); outline-offset:4px; border-radius:6px;}
+
+  main{max-width:900px; padding:0 24px;}
+  @media (max-width:900px){ main{padding:0 20px;} }
+  section{padding:96px 0; border-bottom:1px dashed var(--line);}
+  section:last-of-type{border-bottom:none;}
+  @media (max-width:600px){ section{padding:64px 0;} }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--blue);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1.5px; background:var(--blue);}
+
+  h1{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-0.02em;
+    font-size:clamp(34px, 5.2vw, 56px); line-height:1.08; margin-bottom:20px;
+  }
+  h1 .accent{color:var(--blue);}
+  h2{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(26px, 3.4vw, 34px); margin-bottom:36px;
+  }
+  .lede{font-size:18px; color:#3B4048; max-width:560px; margin-bottom:34px;}
+
+  .stat-strip{display:flex; flex-wrap:wrap; gap:0; border:1.5px solid var(--ink); border-radius:14px; overflow:hidden; margin-top:8px;}
+  .stat{flex:1 1 140px; padding:20px 22px; border-right:1px solid var(--line); background:var(--card);}
+  .stat:last-child{border-right:none;}
+  .stat b{font-family:'Space Grotesk',sans-serif; font-size:26px; display:block; color:var(--coral);}
+  .stat span{font-size:12.5px; color:var(--muted);}
+
+  .cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:13px; padding:12px 20px;
+    border-radius:8px; border:1.5px solid var(--ink); display:inline-flex; align-items:center; gap:8px;
+    transition:all 0.15s ease;
+  }
+  .btn.primary{background:var(--ink); color:#fff;}
+  .btn.primary:hover{background:var(--blue); border-color:var(--blue);}
+  .btn.ghost:hover{background:var(--ink); color:#fff;}
+
+  .skill-block{
+    background:var(--card); border:1.5px solid var(--ink); border-radius:12px;
+    padding:22px 24px; margin-bottom:16px;
+  }
+  .skill-block-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .skill-block-head h3{font-family:'Space Grotesk',sans-serif; font-size:16px;}
+  .skill-block-head .idx{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono', monospace; font-size:12px; padding:6px 12px;
+    border-radius:6px; background:var(--bg-alt); border:1px solid var(--line); color:#2B2F33;
+  }
+
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:700px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--card); border:1.5px solid var(--ink); border-radius:14px;
+    padding:26px 26px 22px; display:flex; flex-direction:column; gap:14px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .proj-card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(20,23,26,0.10);}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .proj-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:17px;}
+  .proj-link{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);
+    border:1px solid var(--line); border-radius:6px; padding:5px 10px; white-space:nowrap;
+    transition:all 0.15s ease;
+  }
+  .proj-link:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .proj-stack{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--blue);}
+  .proj-desc{font-size:14px; color:#3B4048; line-height:1.55;}
+  .proj-metric{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--coral);
+    border-top:1px dashed var(--line); padding-top:12px; margin-top:auto;
+  }
+
+  .log{border:1.5px solid var(--ink); border-radius:12px; overflow:hidden; margin-bottom:20px; background:var(--card);}
+  .log-head{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:16px 22px; background:var(--bg-alt); border-bottom:1px solid var(--line); flex-wrap:wrap;
+  }
+  .log-head h3{font-family:'Space Grotesk',sans-serif; font-size:16px;}
+  .log-head .sub2{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
+  .log-head .date{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
+  .log-body{padding:18px 22px;}
+  .check-item{display:flex; gap:10px; align-items:flex-start; padding:8px 0; font-size:14.5px; color:#2B2F33;}
+  .check{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--green);
+    border:1px solid var(--green); border-radius:5px; padding:1px 6px; flex:0 0 auto; margin-top:2px;
+  }
+
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px;}
+  @media (max-width:700px){ .edu-grid{grid-template-columns:1fr;} }
+  .edu-card{border:1.5px solid var(--ink); border-radius:12px; padding:20px 22px; background:var(--card);}
+  .edu-card .deg{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15.5px; margin-bottom:4px;}
+  .edu-card .sch{font-size:14px; color:#3B4048; margin-bottom:8px;}
+  .edu-card .date{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
+
+  .connect-card{
+    border:1.5px solid var(--ink); border-radius:16px; padding:44px 40px;
+    background:var(--card); text-align:left;
+  }
+  .connect-links{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px;}
+  footer{padding:36px 0 60px; text-align:center;}
+  footer .mono{font-size:11.5px; color:var(--muted);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity 0.5s ease, transform 0.5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+    .packet{transition:none;}
+  }
 </style>
 </head>
 <body>
- 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
- 
-<!-- NAV -->
-<nav>
-  <div class="wrap navin">
-    <div class="brand"><div class="brand-dot"></div>KIRTAN PATEL</div>
-    <div class="navlinks">
-      <a href="#projects">projects</a>
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="#contact">contact</a>
+
+<div class="shell">
+  <nav class="rail" aria-label="Section pipeline">
+    <div class="rail-track" id="railTrack">
+      <div class="rail-line"></div>
+      <div class="packet" id="packet"></div>
+      <button class="rail-node" data-target="discover"><span class="rail-dot"></span><span class="rn-label">01 · DISCOVER</span></button>
+      <button class="rail-node" data-target="build"><span class="rail-dot"></span><span class="rn-label">02 · BUILD</span></button>
+      <button class="rail-node" data-target="ship"><span class="rail-dot"></span><span class="rn-label">03 · SHIP</span></button>
+      <button class="rail-node" data-target="validate"><span class="rail-dot"></span><span class="rn-label">04 · VALIDATE</span></button>
+      <button class="rail-node" data-target="connect"><span class="rail-dot"></span><span class="rn-label">05 · CONNECT</span></button>
     </div>
-    <a class="nav-cta" href="mailto:kirtannpatel2003@gmail.com">hire me →</a>
-  </div>
-</nav>
- 
-<main class="wrap">
- 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-band">
-    <div class="hero-label">UIC CS Grad, May 2026 · Incoming MS in AI @ SJSU, Fall 2026</div>
-    <div class="hero-pills">
-      <span class="pill">Backend</span>
-      <span class="pill">AI Apps</span>
-      <span class="pill">Data Science</span>
-      <span class="pill">Systems</span>
-    </div>
-  </div>
-  <h1 class="hero-name"><span class="k">K</span>IRTAN<br/>PATEL</h1>
-  <div class="hero-tagline">SOFTWARE <span class="hl">ENGINEER</span> & DATA BUILDER</div>
-  <div class="hero-body">
-    <div>
-      <p class="summary">
-        I recently graduated with a <b>B.S. in Computer Science from UIC</b> and am starting my
-        <b>M.S. in Artificial Intelligence at San José State University</b> this Fall 2026.
-        I build things that work — <b>backend systems</b> in C/C++, <b>AI-powered full-stack apps</b>
-        with FastAPI & React, and <b>end-to-end data pipelines</b> covering engineering, analytics, and ML.
-        I care about clean architecture, real performance, and shipping products that matter.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-lime" href="#projects">View Projects →</a>
-        <a class="btn btn-fill" href="KIRTAN PATELR.docx" target="_blank">Resume</a>
-        <a class="btn" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
+  </nav>
+
+  <main>
+
+    <section id="discover">
+      <div class="eyebrow">01 · discover</div>
+      <h1 class="reveal">Kirtan Patel builds the<br><span class="accent">pipeline</span>, not just the model.</h1>
+      <p class="lede reveal">MS Artificial Intelligence student at San Jose State University and Computer Science graduate of the University of Illinois Chicago. Full-stack and applied ML engineer who ships data pipelines, backend systems, and LLM-powered tools end to end &mdash; not just in notebooks.</p>
+
+      <div class="stat-strip reveal">
+        <div class="stat"><b>9</b><span>shipped projects</span></div>
+        <div class="stat"><b>1M+</b><span>records processed</span></div>
+        <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
+        <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
       </div>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="stat-num rust">12+</div><div class="stat-label">Projects across backend, AI & data</div></div>
-      <div class="stat"><div class="stat-num sky">5×</div><div class="stat-label">Throughput gain on multithreaded server</div></div>
-      <div class="stat"><div class="stat-num lime">114k</div><div class="stat-label">Rows processed in Spotify pipeline</div></div>
-      <div class="stat"><div class="stat-num">250+</div><div class="stat-label">Students supported as TA</div></div>
-    </div>
-  </div>
-</section>
- 
-<!-- PROJECTS -->
-<div class="sec-div" id="projects"><div class="line"></div><div class="sec-tag">◆ FEATURED PROJECTS</div><div class="line"></div></div>
- 
-<!-- Spotlight 1 -->
-<article class="spotlight reveal">
-  <div class="spot-body">
-    <div>
-      <div class="kicker"><span class="kd" style="background:var(--rust)"></span> Featured · Full-Stack + AI</div>
-      <h2 class="spot-title">AI CODE REVIEW<br/>PLATFORM</h2>
-      <p class="spot-desc">A <b>full-stack developer tool</b> combining <b>static analysis</b> and a <b>local LLM</b> to generate line-level review comments, quality scores, and persistent review history — self-hosted, zero API cost.</p>
-      <div class="chips">
-        <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Ollama</span>
-        <span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">Static Analysis</span>
+
+      <div class="cta-row reveal">
+        <a class="btn primary" href="#ship">→ See the projects</a>
+        <a class="btn ghost" href="./resume.pdf" download>↓ Download résumé</a>
+        <a class="btn ghost" href="mailto:kirtannpatel2003@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://github.com/KirtanPatel30" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
-      <ul class="spot-list">
-        <li>Full-stack platform with <b>multi-file upload</b> and <b>line-level comments</b> inspired by GitHub PR reviews.</li>
-        <li>Hybrid pipeline: <b>complexity + duplication metrics</b> combined with <b>LLM reasoning</b> for nuanced feedback.</li>
-        <li>Persistent review history and <b>quality scoring</b> in PostgreSQL — reusable across sessions.</li>
-      </ul>
-      <div class="spot-acts">
-        <a class="btn btn-fill" href="https://github.com/KirtanPatel30/ai-code-review-platform" target="_blank">View Repository →</a>
-        <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=AI Code Review">Ask Me About This</a>
+    </section>
+
+    <section id="build">
+      <div class="eyebrow">02 · build</div>
+      <h2 class="reveal">The stack, by layer.</h2>
+
+      <div class="skill-block reveal">
+        <div class="skill-block-head"><h3>AI / LLM &amp; Agents</h3><span class="idx">LAYER A</span></div>
+        <div class="chips">
+          <span class="chip">OpenAI API</span><span class="chip">Anthropic API</span><span class="chip">Hugging Face</span>
+          <span class="chip">LangChain</span><span class="chip">Prompt Engineering</span><span class="chip">RAG</span>
+          <span class="chip">AI Agents</span><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">Ollama</span>
+        </div>
       </div>
-    </div>
-    <div class="imp">
-      <div class="imp-head">WHY IT STANDS OUT</div>
-      <div class="imp-sub">One project showing full-stack thinking, backend depth, and real AI integration together.</div>
-      <div class="imp-item"><div class="ii-b b-rust">FS</div><div class="ii-t"><b>Full-stack</b><span>React + FastAPI + PostgreSQL + local LLM in one system.</span></div></div>
-      <div class="imp-item"><div class="ii-b b-sky">AI</div><div class="ii-t"><b>Self-hosted AI</b><span>Ollama — no API keys, no rate limits, no cost.</span></div></div>
-      <div class="imp-item"><div class="ii-b b-lime">UX</div><div class="ii-t"><b>Real workflow</b><span>Review history + scoring makes it feel like a real product.</span></div></div>
-    </div>
-  </div>
-  <div class="spot-foot">
-    <div class="sf-stat"><div class="n" style="color:var(--rust)">Multi-file</div><div class="l">Upload support</div></div>
-    <div class="sf-stat"><div class="n" style="color:var(--sky)">Local LLM</div><div class="l">Ollama powered</div></div>
-    <div class="sf-stat"><div class="n">Line-level</div><div class="l">Feedback granularity</div></div>
-    <div class="sf-stat"><div class="n" style="color:var(--lime2)">Self-hosted</div><div class="l">Zero API cost</div></div>
-  </div>
-</article>
- 
-<!-- Spotlight 2: Spotify -->
-<article class="spotlight reveal d1" style="border-color:rgba(181,220,30,.4);">
-  <div class="spot-body" style="background:rgba(200,241,53,.03);">
-    <div>
-      <div class="kicker"><span class="kd" style="background:var(--lime2)"></span> Data Engineering · Analytics · ML</div>
-      <h2 class="spot-title">SPOTIFY TRACKS<br/>ANALYTICS</h2>
-      <p class="spot-desc">An <b>end-to-end data project</b> on 114,000 Spotify tracks across 113 genres — built to show <b>Data Engineering, Analytics, and Data Science</b> in one repo, with a unique <b>Indian vs global music</b> angle.</p>
-      <div class="chips">
-        <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">SQLite</span><span class="chip">SQL</span>
-        <span class="chip">Scikit-learn</span><span class="chip">Plotly Dash</span><span class="chip">Seaborn</span><span class="chip">Random Forest</span>
+
+      <div class="skill-block reveal">
+        <div class="skill-block-head"><h3>ML &amp; Data Engineering</h3><span class="idx">LAYER B</span></div>
+        <div class="chips">
+          <span class="chip">PyTorch</span><span class="chip">XGBoost</span><span class="chip">Neural Networks</span>
+          <span class="chip">PySpark</span><span class="chip">Apache Kafka</span><span class="chip">Apache Airflow</span>
+          <span class="chip">dbt</span><span class="chip">ETL/ELT</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
+        </div>
       </div>
-      <ul class="spot-list">
-        <li><b>Data Engineering:</b> ETL pipeline — cleaning, deduplication, outlier removal → SQLite with 3 tables + quality report.</li>
-        <li><b>Data Analytics:</b> 6 SQL business questions — genre trends, explicit vs clean, hit patterns, Indian vs global.</li>
-        <li><b>Data Science:</b> Random Forest model predicting hits with ROC curve, confusion matrix & feature importance.</li>
-        <li><b>Dashboard:</b> 5-tab interactive Plotly Dash app — genre explorer, audio radar, artist leaderboard, regional comparison.</li>
-      </ul>
-      <div class="spot-acts">
-        <a class="btn btn-lime" href="https://github.com/KirtanPatel30/spotify-analytics-project" target="_blank">View Repository →</a>
-        <a class="btn" href="mailto:kirtannpatel2003@gmail.com?subject=Spotify Analytics">Ask Me About This</a>
+
+      <div class="skill-block reveal">
+        <div class="skill-block-head"><h3>Frontend &amp; Backend</h3><span class="idx">LAYER C</span></div>
+        <div class="chips">
+          <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">FastAPI</span>
+          <span class="chip">Node.js</span><span class="chip">REST APIs</span><span class="chip">GraphQL</span>
+          <span class="chip">WebSockets</span><span class="chip">Spring Boot</span>
+        </div>
       </div>
-    </div>
-    <div class="imp">
-      <div class="imp-head">3 ROLES IN 1</div>
-      <div class="imp-sub">Designed to speak to DE, DA and DS job postings simultaneously.</div>
-      <div class="imp-item"><div class="ii-b b-rust">DE</div><div class="ii-t"><b>Data Engineering</b><span>ETL pipeline, SQLite DB, quality report JSON.</span></div></div>
-      <div class="imp-item"><div class="ii-b b-sky">DA</div><div class="ii-t"><b>Data Analytics</b><span>SQL queries, 6 business questions, seaborn charts.</span></div></div>
-      <div class="imp-item"><div class="ii-b b-lime">DS</div><div class="ii-t"><b>Data Science</b><span>Random Forest, Logistic Regression, ROC, feature importance.</span></div></div>
-      <div class="imp-item"><div class="ii-b b-ink">📊</div><div class="ii-t"><b>Dashboard</b><span>5-tab Plotly Dash app live in browser.</span></div></div>
-    </div>
-  </div>
-  <div class="spot-foot">
-    <div class="sf-stat"><div class="n" style="color:var(--lime2)">114,000</div><div class="l">Tracks processed</div></div>
-    <div class="sf-stat"><div class="n" style="color:var(--rust)">113</div><div class="l">Genres analysed</div></div>
-    <div class="sf-stat"><div class="n" style="color:var(--sky)">5 tabs</div><div class="l">Interactive dashboard</div></div>
-    <div class="sf-stat"><div class="n">2 models</div><div class="l">ML comparison</div></div>
-  </div>
-</article>
- 
-<!-- Grid -->
-<div class="grid2 reveal d2">
-  <div class="proj">
-    <div class="proj-bar" style="background:linear-gradient(90deg,#1a6fff,#00e5c8)"></div>
-    <div class="proj-in">
-      <div class="proj-hd">
-        <div class="proj-title">REALTIME AI<br/>COLLAB EDITOR</div>
-        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank">Repo →</a>
+
+      <div class="skill-block reveal">
+        <div class="skill-block-head"><h3>Databases &amp; Infra</h3><span class="idx">LAYER D</span></div>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">MongoDB</span>
+          <span class="chip">SQLite</span><span class="chip">Vector Databases</span><span class="chip">Docker</span>
+          <span class="chip">Kubernetes</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">CI/CD</span>
+        </div>
       </div>
-      <p class="proj-desc">Google Docs-inspired editor with real-time sync, presence tracking, and local LLM features.</p>
-      <ul class="proj-list">
-        <li>Real-time multi-user sync via <b>Yjs CRDT</b> & Supabase WebSockets.</li>
-        <li>Local LLM <b>summarization/explanation</b> via Ollama — zero cost.</li>
-        <li><b>Autosave, snapshot recovery</b>, and incremental sync.</li>
-      </ul>
-      <div class="proj-ft"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Yjs</span><span class="tag">Supabase</span><span class="tag">Ollama</span></div>
-    </div>
-  </div>
-  <div class="proj">
-    <div class="proj-bar" style="background:linear-gradient(90deg,#e8401c,#fb923c)"></div>
-    <div class="proj-in">
-      <div class="proj-hd">
-        <div class="proj-title">FLASH<br/>SALE GUARD</div>
-        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank">Repo →</a>
+
+      <div class="skill-block reveal">
+        <div class="skill-block-head"><h3>Systems Programming</h3><span class="idx">LAYER E</span></div>
+        <div class="chips">
+          <span class="chip">C / C++</span><span class="chip">Multithreading</span><span class="chip">Socket Programming</span>
+          <span class="chip">Memory Management</span><span class="chip">GDB</span><span class="chip">Valgrind</span><span class="chip">Linux</span>
+        </div>
       </div>
-      <p class="proj-desc">High-concurrency inventory system preventing overselling during flash-sale traffic spikes.</p>
-      <ul class="proj-list">
-        <li><b>Redis atomic counters</b> + TTL reservations to prevent overselling.</li>
-        <li><b>Idempotent order confirmation</b> safe under retries and failures.</li>
-        <li>Containerized + tested under <b>concurrent load</b>.</li>
-      </ul>
-      <div class="proj-ft"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
-    </div>
-  </div>
-  <div class="proj">
-    <div class="proj-bar" style="background:linear-gradient(90deg,#a78bfa,#1a6fff)"></div>
-    <div class="proj-in">
-      <div class="proj-hd">
-        <div class="proj-title">ADAPTIVE<br/>API GATEWAY</div>
-        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/Adaptive-Gateway" target="_blank">Repo →</a>
+    </section>
+
+    <section id="ship">
+      <div class="eyebrow">03 · ship</div>
+      <h2 class="reveal">Nine builds, end to end.</h2>
+
+      <div class="proj-grid">
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Healthcare Claims Fraud Detection</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/healthcare-fraud-detection" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">Python · XGBoost · SHAP · FastAPI · Streamlit · Docker</div>
+          <p class="proj-desc">Fraud-risk pipeline on 500K+ Medicare claims with lineage tracking, versioning, and access controls; SHAP explainability for regulatory auditability, surfaced through a FastAPI + Streamlit dashboard.</p>
+          <div class="proj-metric">500K+ claims · full data governance</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">NYC Taxi Demand Forecasting Engine</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/nyc-taxi-demand-forecasting" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">PySpark · XGBoost · LSTM · PyTorch · FastAPI · Streamlit</div>
+          <p class="proj-desc">Data warehouse on 1M+ NYC trips across 63 zones with a star-schema model; XGBoost + LSTM ensemble trained in PyTorch, optimized for production inference speed.</p>
+          <div class="proj-metric">1M+ trips · 63 zones modeled</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">AI Code Review Platform</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/ai-code-review-platform" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">React · FastAPI · PostgreSQL · Ollama · Anthropic API</div>
+          <p class="proj-desc">Full-stack developer tool with an LLM inference pipeline (Ollama / Anthropic API) for line-level code analysis, with built-in safety checks validating model output before it reaches a user.</p>
+          <div class="proj-metric">LLM inference + output guardrails</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Real-Time Stock Sentiment Pipeline</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/stock-sentiment-pipeline" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">Kafka · FinBERT · XGBoost · Airflow · FastAPI</div>
+          <p class="proj-desc">Airflow-orchestrated pipeline ingesting 2,000+ headlines via Kafka into structured ML features, with SLA-aligned data quality checks and CI/CD via GitHub Actions.</p>
+          <div class="proj-metric">2,000+ headlines · SLA quality checks</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Realtime AI Collab Editor</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">Next.js · TypeScript · Yjs CRDT · Supabase · WebSockets · Ollama</div>
+          <p class="proj-desc">Real-time collaborative editor with multi-user sync, live cursor sharing, and presence tracking; autosave and snapshot recovery for dropped connections, plus on-device LLM inference via Ollama.</p>
+          <div class="proj-metric">Sub-100ms sync latency</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Adaptive Load-Shedding API Gateway</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/adaptive_gateway" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">C++ · Linux · Sockets · HTTP · Concurrency</div>
+          <p class="proj-desc">Gateway built from scratch on OS-level primitives, holding sub-10ms P95 latency at 3x normal traffic; race conditions diagnosed with GDB/Valgrind and validated via CI/CD integration testing.</p>
+          <div class="proj-metric">Sub-10ms P95 @ 3x load</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">FlashSaleGuard</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">Java · Spring Boot · Redis · PostgreSQL · Docker</div>
+          <p class="proj-desc">Distributed inventory system using Redis atomic counters and distributed locking with zero oversell at 10K concurrent requests; idempotent order confirmation safe under retries.</p>
+          <div class="proj-metric">Zero oversell @ 10K concurrent</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Multithreaded HTTP/1.1 Web Server</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">C · Thread Pools · Socket Programming · HTTP</div>
+          <p class="proj-desc">HTTP/1.1 server built from scratch with a POSIX thread pool and a recursive-descent HTTP parser, plus configurable per-IP rate limiting validated for memory safety with GDB/Valgrind.</p>
+          <div class="proj-metric">5x throughput vs. single-threaded</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-top"><span class="proj-name">Spotify Tracks Analytics</span>
+            <a class="proj-link" href="https://github.com/KirtanPatel30/spotify-analytics-project" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="proj-stack">Python · Pandas · SQLite · Random Forest · Plotly Dash · Seaborn</div>
+          <p class="proj-desc">ETL pipeline over 114K tracks with a Random Forest hit predictor, plus a 5-tab interactive Plotly Dash dashboard answering real SQL business questions for non-technical stakeholders.</p>
+          <div class="proj-metric">114K tracks · 87% model accuracy</div>
+        </div>
       </div>
-      <p class="proj-desc">C++ reverse proxy that sheds lower-priority traffic under overload to protect backends.</p>
-      <ul class="proj-list">
-        <li>Tracks <b>latency + error-rate</b> to detect overload; cuts cascading failures.</li>
-        <li><b>Thread pool with bounded priority queues</b> for backpressure.</li>
-        <li>Measured <b>p95 latency under burst load</b>.</li>
-      </ul>
-      <div class="proj-ft"><span class="tag">C++</span><span class="tag">Linux</span><span class="tag">Sockets</span><span class="tag">HTTP</span><span class="tag">Concurrency</span></div>
-    </div>
-  </div>
-  <div class="proj">
-    <div class="proj-bar" style="background:linear-gradient(90deg,#c8f135,#00e5c8)"></div>
-    <div class="proj-in">
-      <div class="proj-hd">
-        <div class="proj-title">MULTITHREADED<br/>WEB SERVER</div>
-        <a class="btn sm-btn" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank">Repo →</a>
+    </section>
+
+    <section id="validate">
+      <div class="eyebrow">04 · validate</div>
+      <h2 class="reveal">Tested outside the sandbox.</h2>
+
+      <div class="log reveal">
+        <div class="log-head">
+          <div><h3>Software Engineer Intern</h3><div class="sub2">Resilience Inc — Series B, cybersecurity startup</div></div>
+          <div class="date">Nov 2025 – Mar 2026</div>
+        </div>
+        <div class="log-body">
+          <div class="check-item"><span class="check">PASS</span> Diagnosed and resolved memory leaks and async race conditions in production backend systems, reducing error reports by 40%.</div>
+          <div class="check-item"><span class="check">PASS</span> Improved REST API performance, reducing peak latency by 30%, using Claude Code and Cursor to accelerate development.</div>
+          <div class="check-item"><span class="check">PASS</span> Containerized and maintained microservices using Docker on Linux, ensuring consistent deployments across environments.</div>
+        </div>
       </div>
-      <p class="proj-desc">HTTP/1.1 web server in C built for concurrency, fairness, and performance under load.</p>
-      <ul class="proj-list">
-        <li><b>5× throughput improvement</b> under concurrent load vs baseline.</li>
-        <li><b>Per-IP rate limiting</b>, request routing, dynamic worker scaling.</li>
-        <li>Deep focus on <b>thread pools</b>, socket programming, HTTP parsing.</li>
-      </ul>
-      <div class="proj-ft"><span class="tag">C</span><span class="tag">Thread Pool</span><span class="tag">Concurrency</span><span class="tag">HTTP</span><span class="tag">Sockets</span></div>
-    </div>
-  </div>
+
+      <div class="log reveal">
+        <div class="log-head">
+          <div><h3>Teaching Assistant — Computer Science</h3><div class="sub2">University of Illinois Chicago · C/C++, MATLAB</div></div>
+          <div class="date">Aug 2024 – May 2026</div>
+        </div>
+        <div class="log-body">
+          <div class="check-item"><span class="check">PASS</span> Led lab sessions for 50+ students, helping debug code and understand core programming concepts.</div>
+          <div class="check-item"><span class="check">PASS</span> Reviewed student code and discussed design decisions, improving correctness, readability, and performance.</div>
+        </div>
+      </div>
+
+      <div class="edu-grid reveal">
+        <div class="edu-card">
+          <div class="deg">M.S., Artificial Intelligence</div>
+          <div class="sch">San Jose State University</div>
+          <div class="date">Expected May 2028</div>
+        </div>
+        <div class="edu-card">
+          <div class="deg">B.S., Computer Science</div>
+          <div class="sch">University of Illinois at Chicago — Dean's List</div>
+          <div class="date">May 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <div class="eyebrow">05 · connect</div>
+      <h2 class="reveal">Let's build the next stage.</h2>
+      <div class="connect-card reveal">
+        <p class="lede" style="margin-bottom:0;">Open to full-stack, applied ML, and AI/agent engineering internships. Reach out directly — I read everything myself.</p>
+        <div class="connect-links">
+          <a class="btn primary" href="mailto:kirtannpatel2003@gmail.com">✉ kirtannpatel2003@gmail.com</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn ghost" href="https://github.com/KirtanPatel30" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn ghost" href="./resume.pdf" download>↓ Download résumé</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="mono">© 2026 Kirtan Patel · built &amp; deployed like everything else here</div>
+    </footer>
+
+  </main>
 </div>
- 
-<!-- EXPERIENCE -->
-<div class="sec-div" id="experience"><div class="line"></div><div class="sec-tag">◆ EXPERIENCE</div><div class="line"></div></div>
- 
-<div class="exp-grid reveal">
-  <div class="exp-card">
-    <div class="exp-top">
-      <div>
-        <div class="exp-title">TEACHING ASSISTANT</div>
-        <div class="exp-meta">University of Illinois Chicago · 2024 – 2026</div>
-      </div>
-      <span class="exp-badge b-focus">Completed</span>
-    </div>
-    <div class="exp-body">
-      <ul>
-        <li>Supported <b>250+ students</b> in programming, debugging, and core CS concepts across lab sessions and office hours.</li>
-        <li>Explained technical material — data structures, algorithms, software design — clearly to diverse skill levels.</li>
-        <li>Strengthened mentoring and communication skills working alongside faculty and instructors.</li>
-      </ul>
-    </div>
-  </div>
-  <div class="exp-card">
-    <div class="exp-top">
-      <div>
-        <div class="exp-title">MS IN ARTIFICIAL INTELLIGENCE</div>
-        <div class="exp-meta">San José State University · Fall 2026 – Present</div>
-      </div>
-      <span class="exp-badge b-present">Incoming</span>
-    </div>
-    <div class="exp-body">
-      <ul>
-        <li>Beginning graduate study in <b>Artificial Intelligence</b>, building on a CS foundation from UIC.</li>
-        <li>Focused on deepening expertise in <b>machine learning, applied AI systems, and research methods</b>.</li>
-        <li>Continuing to build backend, data, and AI-powered projects alongside coursework.</li>
-      </ul>
-    </div>
-  </div>
-</div>
- 
-<!-- SKILLS -->
-<div class="sec-div" id="skills"><div class="line"></div><div class="sec-tag">◆ SKILLS</div><div class="line"></div></div>
- 
-<div class="skill-grid reveal">
-  <div class="skill-card">
-    <div class="skill-head">LANGUAGES</div>
-    <div class="skill-tags">
-      <span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span>
-      <span class="tag">Python</span><span class="tag">JavaScript</span>
-      <span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">PowerShell</span>
-    </div>
-  </div>
-  <div class="skill-card">
-    <div class="skill-head">FRAMEWORKS</div>
-    <div class="skill-tags">
-      <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">FastAPI</span>
-      <span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span>
-      <span class="tag">Redis</span><span class="tag">Docker</span><span class="tag">Ollama</span>
-    </div>
-  </div>
-  <div class="skill-card">
-    <div class="skill-head">DATA & ML</div>
-    <div class="skill-tags">
-      <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span>
-      <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
-      <span class="tag">Plotly Dash</span><span class="tag">SQLite</span>
-      <span class="tag">ETL Pipelines</span><span class="tag">Random Forest</span>
-    </div>
-  </div>
-  <div class="skill-card">
-    <div class="skill-head">COURSEWORK</div>
-    <div class="skill-tags">
-      <span class="tag">Data Structures</span><span class="tag">Algorithms</span>
-      <span class="tag">Operating Systems</span><span class="tag">Architecture</span>
-      <span class="tag">Software Design</span><span class="tag">PL Design</span>
-    </div>
-  </div>
-</div>
- 
-<!-- CONTACT -->
-<div class="sec-div" id="contact"><div class="line"></div><div class="sec-tag">◆ CONTACT</div><div class="line"></div></div>
- 
-<div class="contact-wrap reveal">
-  <div class="contact-top">
-    <div class="c-sub">Available for internships & research/collaboration opportunities</div>
-    <div class="c-title">LET'S <span class="hi">BUILD</span><br/>SOMETHING.</div>
-    <p class="c-desc">UIC CS grad starting my <b style="color:#fff">M.S. in AI at San José State University</b> this fall. Open to <b style="color:#fff">software engineering</b>, <b style="color:#fff">backend</b>, <b style="color:#fff">full-stack</b>, and <b style="color:#fff">AI/data</b> roles — internships or new grad. Reach out via email, GitHub, or LinkedIn.</p>
-    <div class="c-links">
-      <a class="btn-dk btn-lk" href="mailto:kirtannpatel2003@gmail.com">kirtannpatel2003@gmail.com →</a>
-      <a class="btn-dk" href="https://github.com/KirtanPatel30" target="_blank">GitHub</a>
-      <a class="btn-dk" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank">LinkedIn</a>
-      <a class="btn-dk" href="https://kirtanpatel30.github.io/Portfolio/" target="_blank">Live Portfolio</a>
-    </div>
-  </div>
-  <div class="c-foot">
-    <div class="c-foot-t">kirtannpatel2003@gmail.com</div>
-    <div class="c-foot-t" style="font-family:'JetBrains Mono',monospace;font-size:11px;">San José, CA · Starting Fall 2026</div>
-  </div>
-</div>
- 
-</main>
- 
-<footer>© 2026 KIRTAN PATEL · BUILT WITH HTML & CSS · UIC → SJSU</footer>
- 
+
 <script>
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.4)';ring.style.transform='translate(-50%,-50%) scale(1.5)';});
-  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
-});
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  const railNodes = document.querySelectorAll('.rail-node');
+  railNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const target = document.getElementById(node.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const sections = ['discover','build','ship','validate','connect'].map(id => document.getElementById(id));
+  const sectionIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const node = document.querySelector(`.rail-node[data-target="${id}"]`);
+      if (!node) return;
+      if (entry.isIntersecting) {
+        railNodes.forEach(n => n.classList.remove('active'));
+        node.classList.add('active');
+        movePacket(node);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-10% 0px -40% 0px' });
+  sections.forEach(s => s && sectionIO.observe(s));
+
+  function movePacket(activeNode){
+    const packet = document.getElementById('packet');
+    const track = document.getElementById('railTrack');
+    const isMobile = window.matchMedia('(max-width:900px)').matches;
+    const trackRect = track.getBoundingClientRect();
+    const nodeRect = activeNode.getBoundingClientRect();
+    if (isMobile){
+      const left = nodeRect.left - trackRect.left - 1;
+      packet.style.left = left + 'px';
+    } else {
+      const top = nodeRect.top - trackRect.top + (nodeRect.height/2) - 6;
+      packet.style.top = top + 'px';
+    }
+  }
+
+  window.addEventListener('load', () => {
+    const first = document.querySelector('.rail-node');
+    first.classList.add('active');
+    movePacket(first);
+  });
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.rail-node.active') || document.querySelector('.rail-node');
+    movePacket(active);
+  });
 </script>
 </body>
 </html>
- 
