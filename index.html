@@ -202,8 +202,12 @@
     transition:all 0.15s ease;
   }
   .feat-link:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .feat-link.live{color:var(--green); border-color:var(--green);}
+  .feat-link.live:hover{background:var(--green); color:#fff;}
+  .feat-links{display:flex; gap:8px; flex-wrap:wrap;}
   .feat-stack{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--blue); margin-bottom:12px;}
   .feat-desc{font-size:14.5px; color:#3B4048; line-height:1.6;}
+  .feat-desc b{color:var(--ink);}
   .feat-term{
     background:#0D1017; color:#B6C2D4; font-family:'JetBrains Mono',monospace; font-size:11.5px;
     padding:24px 26px; display:flex; flex-direction:column; justify-content:center; gap:8px; line-height:1.8;
@@ -378,7 +382,7 @@
       </div>
 
       <div class="stat-strip">
-        <div class="stat"><b>9</b><span>shipped projects</span></div>
+        <div class="stat"><b>10</b><span>shipped projects</span></div>
         <div class="stat"><b>1M+</b><span>records processed</span></div>
         <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
         <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
@@ -404,6 +408,7 @@
             <span class="chip">PyTorch</span><span class="chip">XGBoost</span><span class="chip">Neural Networks</span>
             <span class="chip">PySpark</span><span class="chip">Apache Kafka</span><span class="chip">Apache Airflow</span>
             <span class="chip">dbt</span><span class="chip">ETL/ELT</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
+            <span class="chip">Model Monitoring</span><span class="chip">Drift Detection</span>
           </div>
         </div>
         <div class="skill-block">
@@ -435,10 +440,35 @@
     <section id="ship">
       <div class="ghost-num">03</div>
       <div class="eyebrow">03 · ship</div>
-      <h2>Nine builds, end to end.</h2>
+      <h2>Ten builds, end to end.</h2>
 
       <div class="section-sub">Featured</div>
       <div class="featured-grid">
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top">
+              <span class="feat-name">Fraud Detection MLOps Pipeline</span>
+              <span class="feat-links">
+                <a class="feat-link live" href="https://ml-ops-fraud-pipeline.onrender.com/docs" target="_blank" rel="noopener">live ↗</a>
+                <a class="feat-link" href="https://github.com/KirtanPatel30/ml-ops-fraud-pipeline" target="_blank" rel="noopener">repo ↗</a>
+              </span>
+            </div>
+            <div class="feat-stack">Python · FastAPI · XGBoost · Docker · GitHub Actions</div>
+            <p class="feat-desc">
+              <b>Situation:</b> most ML projects stop at a trained model with no plan for what happens once it's live.
+              <b>Task:</b> build the full production lifecycle a real ML team would need around a fraud-detection model — not just train one.
+              <b>Action:</b> served the model behind a FastAPI + Docker layer, logged every prediction to SQLite, and implemented statistical drift detection (PSI + Kolmogorov–Smirnov test) that automatically flags when live traffic diverges from training data and triggers retraining with an old-vs-new metrics comparison, all wired through GitHub Actions CI/CD.
+              <b>Result:</b> a self-monitoring ML system deployed live, not a one-off notebook — recruiters can query the working API directly.
+            </p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ python -m monitoring.drift_detection</div>
+            <div class="l1">✓ drift detected: PSI ≥ 0.25 on 6/8 features</div>
+            <div class="l1">✓ retrain triggered → new model F1: 0.827 (was 0.752)</div>
+            <div class="l3">→ live: ml-ops-fraud-pipeline.onrender.com/docs</div>
+          </div>
+        </div>
+
         <div class="feat-card">
           <div class="feat-info">
             <div class="feat-top"><span class="feat-name">Healthcare Claims Fraud Detection</span>
