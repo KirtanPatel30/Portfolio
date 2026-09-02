@@ -382,7 +382,7 @@
       </div>
 
       <div class="stat-strip">
-        <div class="stat"><b>10</b><span>shipped projects</span></div>
+        <div class="stat"><b>11</b><span>shipped projects</span></div>
         <div class="stat"><b>1M+</b><span>records processed</span></div>
         <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
         <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
@@ -400,6 +400,7 @@
             <span class="chip">OpenAI API</span><span class="chip">Anthropic API</span><span class="chip">Hugging Face</span>
             <span class="chip">LangChain</span><span class="chip">Prompt Engineering</span><span class="chip">RAG</span>
             <span class="chip">AI Agents</span><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">Ollama</span>
+            <span class="chip">LLM Evaluation</span><span class="chip">Hallucination Detection</span>
           </div>
         </div>
         <div class="skill-block">
@@ -440,7 +441,7 @@
     <section id="ship">
       <div class="ghost-num">03</div>
       <div class="eyebrow">03 · ship</div>
-      <h2>Ten builds, end to end.</h2>
+      <h2>Eleven builds, end to end.</h2>
 
       <div class="section-sub">Featured</div>
       <div class="featured-grid">
@@ -466,6 +467,30 @@
             <div class="l1">✓ drift detected: PSI ≥ 0.25 on 6/8 features</div>
             <div class="l1">✓ retrain triggered → new model F1: 0.827 (was 0.752)</div>
             <div class="l3">→ live: ml-ops-fraud-pipeline.onrender.com/docs</div>
+          </div>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top">
+              <span class="feat-name">LLM Eval Harness</span>
+              <span class="feat-links">
+                <a class="feat-link" href="https://github.com/KirtanPatel30/llm-eval" target="_blank" rel="noopener">repo ↗</a>
+              </span>
+            </div>
+            <div class="feat-stack">Python · FastAPI · Chart.js · Docker · GitHub Actions</div>
+            <p class="feat-desc">
+              <b>Situation:</b> most "compare some LLMs" projects are a notebook that calls two APIs and prints an accuracy number, with no way to check whether a model's claims are actually grounded in fact.
+              <b>Task:</b> build a real evaluation framework a model team could use to score and compare LLMs on accuracy, hallucination risk, and safety before shipping one to production.
+              <b>Action:</b> designed a provider-agnostic adapter architecture that auto-detects OpenAI/Anthropic API keys and falls back to deterministic demo personas with zero setup, built a hallucination-grounding checker that flags claims unsupported by source context, a safety red-team test suite, and an LLM-as-judge that degrades gracefully to a heuristic when no judge model is configured — all behind a hand-built live dashboard, not Streamlit.
+              <b>Result:</b> a working comparison tool that catches real fabricated claims live, runs with zero API keys out of the box, and plugs in a new model provider with a single file.
+            </p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ POST /api/try {"prompt": "..."}</div>
+            <div class="l1">✓ demo-fast → hallucination 1.0 (flagged)</div>
+            <div class="l1">✓ demo-quality → hallucination 0.0 (grounded)</div>
+            <div class="l3">→ 15/15 tests passing · provider-agnostic</div>
           </div>
         </div>
 
