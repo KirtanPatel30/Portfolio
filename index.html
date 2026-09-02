@@ -1,216 +1,751 @@
-# LLM Eval Harness
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kirtan Patel — Full-Stack &amp; Applied AI Engineer</title>
+<meta name="description" content="Kirtan Patel — MS AI student at San Jose State University, full-stack and applied ML engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F0F1F3;
+    --bg-alt:#E7E9EC;
+    --ink:#14171A;
+    --line:#C7CCD1;
+    --line-soft:#DADEE2;
+    --blue:#2F6FED;
+    --blue-soft:rgba(47,111,237,0.10);
+    --coral:#E8604C;
+    --coral-soft:rgba(232,96,76,0.10);
+    --muted:#6B7280;
+    --card:#FFFFFF;
+    --green:#1F9D55;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle at 1.5px 1.5px, rgba(20,23,26,0.09) 1.5px, transparent 0),
+      linear-gradient(180deg, rgba(47,111,237,0.05), transparent 420px),
+      radial-gradient(ellipse 900px 500px at 85% 8%, rgba(47,111,237,0.07), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 8% 70%, rgba(232,96,76,0.06), transparent 60%);
+    background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+    color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  ::selection{background:var(--blue); color:#fff;}
 
-**A provider-agnostic framework for scoring and comparing LLM outputs on accuracy, hallucination risk, safety, latency, and cost — with a live interactive dashboard, and zero API keys required to run it.**
+  .shell{display:grid; grid-template-columns:240px 1fr; max-width:1360px; margin:0 auto;}
+  @media (max-width:980px){ .shell{grid-template-columns:1fr;} }
 
-[![CI](https://github.com/KirtanPatel30/llm-eval-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/KirtanPatel30/llm-eval-harness/actions)
-![Python](https://img.shields.io/badge/python-3.11+-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115-teal)
-![Tests](https://img.shields.io/badge/tests-15%20passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
+  /* ---------- rail ---------- */
+  .rail{
+    position:sticky; top:0; height:100vh; padding:44px 0 44px 44px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .rail-top .rail-id{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:0.05em; margin-bottom:4px;}
+  .rail-top .rail-id b{color:var(--ink);}
+  .rail-bottom{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); line-height:1.8;}
+  .rail-bottom .pulse{display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--green); margin-right:6px; box-shadow:0 0 0 3px rgba(31,157,85,0.18);}
+  @media (max-width:980px){
+    .rail{
+      position:sticky; top:0; height:auto; padding:14px 18px;
+      flex-direction:row; align-items:center; justify-content:flex-start;
+      background:rgba(240,241,243,0.92); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line); z-index:50; overflow-x:auto;
+    }
+    .rail-top, .rail-bottom{display:none;}
+  }
+  .rail-track{position:relative; display:flex; flex-direction:column; gap:44px;}
+  @media (max-width:980px){ .rail-track{flex-direction:row; gap:26px;} }
+  .rail-line{
+    position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+    background:repeating-linear-gradient(180deg, var(--line) 0 6px, transparent 6px 11px);
+    z-index:0;
+  }
+  @media (max-width:980px){
+    .rail-line{left:6px; right:6px; top:50%; transform:translateY(-50%); bottom:auto; height:2px; width:auto;
+      background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 11px);}
+  }
+  .packet{
+    position:absolute; left:1px; top:0; width:12px; height:12px; border-radius:50%;
+    background:var(--coral); box-shadow:0 0 0 4px var(--coral-soft);
+    transition:top 0.15s linear; z-index:1;
+  }
+  @media (max-width:980px){ .packet{transition:left 0.15s linear; top:50%; transform:translateY(-50%); left:0;} }
+  .rail-node{
+    position:relative; z-index:2; display:flex; align-items:center; gap:12px;
+    cursor:pointer; color:var(--muted); background:none; border:none; font:inherit; text-align:left;
+  }
+  @media (max-width:980px){ .rail-node{flex-direction:column; gap:4px; align-items:center;} }
+  .rail-dot{
+    width:14px; height:14px; border-radius:50%; background:var(--card);
+    border:2px solid var(--line); flex:0 0 auto; transition:all 0.2s ease;
+  }
+  .rail-node .rn-label{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em;
+    white-space:nowrap; transition:color 0.2s ease;
+  }
+  @media (max-width:980px){ .rn-label{font-size:9.5px;} }
+  .rail-node.active{ color:var(--ink); }
+  .rail-node.active .rail-dot{ border-color:var(--blue); background:var(--blue); box-shadow:0 0 0 4px var(--blue-soft); }
+  .rail-node.active .rn-label{ color:var(--blue); font-weight:500; }
+  .rail-node:focus-visible{outline:2px solid var(--blue); outline-offset:4px; border-radius:6px;}
 
-Most "compare some LLMs" projects are a notebook that calls two APIs and prints
-an accuracy number. This one is built the way an actual AI product team would
-build an internal eval tool: pluggable providers, a real scoring pipeline with
-grounding checks, a safety red-team suite, and an LLM-as-judge that degrades
-gracefully when no judge model is configured — all served behind a real API
-with a hand-built dashboard, not a notebook.
+  /* ---------- main ---------- */
+  main{padding:0 48px 0 40px; overflow:hidden;}
+  @media (max-width:980px){ main{padding:0 20px;} }
+  section{padding:88px 0; border-bottom:1px dashed var(--line); position:relative;}
+  section:last-of-type{border-bottom:none;}
+  @media (max-width:600px){ section{padding:56px 0;} }
 
----
+  .ghost-num{
+    position:absolute; top:-18px; right:0; font-family:'Space Grotesk',sans-serif; font-weight:700;
+    font-size:180px; line-height:1; color:rgba(20,23,26,0.045); z-index:0; user-select:none; pointer-events:none;
+  }
+  @media (max-width:700px){ .ghost-num{font-size:110px;} }
 
-## Why this exists
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--blue);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;
+    display:flex; align-items:center; gap:10px; position:relative; z-index:1;
+  }
+  .eyebrow::before{content:''; width:22px; height:1.5px; background:var(--blue);}
 
-Before any team ships an LLM feature, someone has to answer: *is this model
-actually good enough, and is it safe?* That's a harder question than "what's
-the accuracy" — it means checking whether the model's claims are grounded in
-the source material, whether it refuses genuinely unsafe requests, and
-whether the quality gain over a cheaper model is worth the extra latency and
-cost. This harness answers all four, side by side, for any model you plug in.
+  h1{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-0.02em;
+    font-size:clamp(34px, 4.6vw, 58px); line-height:1.06; margin-bottom:20px; position:relative; z-index:1;
+  }
+  h1 .accent{color:var(--blue);}
+  h2{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(26px, 3vw, 36px); margin-bottom:36px; position:relative; z-index:1;
+  }
+  .lede{font-size:18px; color:#3B4048; max-width:520px; margin-bottom:30px; position:relative; z-index:1;}
 
----
+  /* ---------- hero two-column ---------- */
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:36px; align-items:center; position:relative; z-index:1;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero-left{}
+  .hero-right{display:flex; align-items:center; justify-content:center;}
+  .diagram-card{
+    background:var(--card); border:1.5px solid var(--ink); border-radius:16px;
+    padding:26px 22px; width:100%; box-shadow:8px 8px 0 rgba(20,23,26,0.06);
+  }
+  .diagram-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+  .diagram-head .dh-title{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.06em;}
+  .diagram-head .dh-live{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--green); display:flex; align-items:center; gap:5px;}
+  .diagram-head .dh-live .pulse{width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(31,157,85,0.18); animation:blink 1.8s infinite;}
+  @keyframes blink{0%,100%{opacity:1;} 50%{opacity:0.35;}}
 
-## Try it yourself — zero setup required
+  .stat-strip{display:flex; flex-wrap:wrap; gap:0; border:1.5px solid var(--ink); border-radius:14px; overflow:hidden; margin-top:8px; position:relative; z-index:1; box-shadow:6px 6px 0 rgba(20,23,26,0.05);}
+  .stat{flex:1 1 140px; padding:20px 20px; border-right:1px solid var(--line); background:var(--card);}
+  .stat:last-child{border-right:none;}
+  .stat b{font-family:'Space Grotesk',sans-serif; font-size:26px; display:block; color:var(--coral);}
+  .stat span{font-size:12px; color:var(--muted);}
 
-```bash
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+  .cta-row{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; position:relative; z-index:1;}
+  .btn{
+    font-family:'JetBrains Mono', monospace; font-size:13px; padding:12px 20px;
+    border-radius:8px; border:1.5px solid var(--ink); display:inline-flex; align-items:center; gap:8px;
+    transition:all 0.15s ease; background:var(--card);
+  }
+  .btn.primary{background:var(--ink); color:#fff;}
+  .btn.primary:hover{background:var(--blue); border-color:var(--blue);}
+  .btn.ghost:hover{background:var(--ink); color:#fff;}
 
-Open `http://localhost:8000` — three **demo personas** (`demo-fast`,
-`demo-balanced`, `demo-quality`) are already active and ready to compare. No
-API key, no signup, nothing to configure. Click "Run full suite" and the
-dashboard runs 12 test cases across all three and renders the comparison
-live.
+  /* ---------- skills as connected system ---------- */
+  .skill-system{position:relative; z-index:1;}
+  .skill-block{
+    background:var(--card); border:1.5px solid var(--ink); border-radius:12px;
+    padding:22px 24px; margin-bottom:0; position:relative;
+  }
+  .skill-block + .skill-block{margin-top:20px;}
+  .skill-block::before{
+    content:''; position:absolute; left:24px; top:-20px; width:2px; height:20px;
+    background:repeating-linear-gradient(180deg, var(--line) 0 4px, transparent 4px 8px);
+  }
+  .skill-block:first-child::before{display:none;}
+  .skill-block-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .skill-block-head h3{font-family:'Space Grotesk',sans-serif; font-size:16px;}
+  .skill-block-head .idx{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); background:var(--bg-alt); padding:3px 8px; border-radius:5px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono', monospace; font-size:12px; padding:6px 12px;
+    border-radius:6px; background:var(--bg-alt); border:1px solid var(--line); color:#2B2F33;
+    transition:all 0.15s ease;
+  }
+  .chip:hover{border-color:var(--blue); color:var(--blue); background:var(--blue-soft);}
 
-The "Try Your Own Prompt" panel lets you test any prompt live and watch the
-hallucination detector work in real time — send a prompt with supporting
-context, and any claim in the response that isn't backed by that context
-gets flagged instantly.
+  /* ---------- featured projects ---------- */
+  .section-sub{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin:0 0 18px; position:relative; z-index:1;}
+  .featured-grid{display:grid; grid-template-columns:1fr; gap:22px; position:relative; z-index:1; margin-bottom:44px;}
+  .feat-card{
+    background:var(--card); border:1.5px solid var(--ink); border-radius:16px;
+    display:grid; grid-template-columns:1fr 1fr; overflow:hidden;
+    box-shadow:8px 8px 0 rgba(20,23,26,0.05); transition:box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .feat-card:hover{ box-shadow:10px 10px 0 rgba(47,111,237,0.12); transform:translate(-2px,-2px); }
+  @media (max-width:800px){ .feat-card{grid-template-columns:1fr;} }
+  .feat-info{padding:30px 32px;}
+  .feat-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:10px;}
+  .feat-name{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:21px;}
+  .feat-link{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);
+    border:1px solid var(--line); border-radius:6px; padding:5px 10px; white-space:nowrap;
+    transition:all 0.15s ease;
+  }
+  .feat-link:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .feat-link.live{color:var(--green); border-color:var(--green);}
+  .feat-link.live:hover{background:var(--green); color:#fff;}
+  .feat-links{display:flex; gap:8px; flex-wrap:wrap;}
+  .feat-stack{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--blue); margin-bottom:12px;}
+  .feat-desc{font-size:14.5px; color:#3B4048; line-height:1.6;}
+  .feat-desc b{color:var(--ink);}
+  .feat-term{
+    background:#0D1017; color:#B6C2D4; font-family:'JetBrains Mono',monospace; font-size:11.5px;
+    padding:24px 26px; display:flex; flex-direction:column; justify-content:center; gap:8px; line-height:1.8;
+  }
+  .feat-term .l1{color:#5FD97A;}
+  .feat-term .l2{color:#6B7280;}
+  .feat-term .l3{color:var(--coral);}
 
----
+  .more-label{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin:0 0 16px; position:relative; z-index:1;}
+  .more-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; position:relative; z-index:1;}
+  @media (max-width:700px){ .more-grid{grid-template-columns:1fr;} }
+  .more-card{
+    background:var(--card); border:1.5px solid var(--line-soft); border-radius:12px;
+    padding:18px 20px; transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .more-card:hover{border-color:var(--ink); transform:translateY(-2px);}
+  .more-top{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:6px;}
+  .more-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px;}
+  .more-link{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted);}
+  .more-link:hover{color:var(--blue);}
+  .more-stack{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--blue); margin-bottom:8px;}
+  .more-desc{font-size:13px; color:#4A4F55; line-height:1.5;}
+  .more-metric{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--coral); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
 
-## The architecture decision that matters most here
+  /* ---------- experience / validate ---------- */
+  .log{border:1.5px solid var(--ink); border-radius:12px; overflow:hidden; margin-bottom:20px; background:var(--card); position:relative; z-index:1; box-shadow:6px 6px 0 rgba(20,23,26,0.04);}
+  .log-head{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:16px 22px; background:var(--bg-alt); border-bottom:1px solid var(--line); flex-wrap:wrap;
+  }
+  .log-head h3{font-family:'Space Grotesk',sans-serif; font-size:16px;}
+  .log-head .sub2{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
+  .log-head .date{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
+  .log-body{padding:20px 22px;}
+  .check-item{display:flex; gap:10px; align-items:flex-start; padding:8px 0; font-size:14.5px; color:#2B2F33;}
+  .check{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--green);
+    border:1px solid var(--green); border-radius:5px; padding:1px 6px; flex:0 0 auto; margin-top:2px;
+  }
+  .metric-bars{display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:4px 22px 20px;}
+  @media (max-width:600px){ .metric-bars{grid-template-columns:1fr;} }
+  .mbar-row .mbar-label{display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:6px;}
+  .mbar-label b{color:var(--coral);}
+  .mbar-track{height:8px; background:var(--bg-alt); border-radius:4px; overflow:hidden;}
+  .mbar-fill{height:100%; background:linear-gradient(90deg, var(--coral), var(--blue)); border-radius:4px;}
 
-Every provider — real or demo — implements the same tiny interface
-(`eval/providers/base.py`):
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px; position:relative; z-index:1;}
+  @media (max-width:700px){ .edu-grid{grid-template-columns:1fr;} }
+  .edu-card{border:1.5px solid var(--ink); border-radius:12px; padding:20px 22px; background:var(--card);}
+  .edu-card .deg{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15.5px; margin-bottom:4px;}
+  .edu-card .sch{font-size:14px; color:#3B4048; margin-bottom:8px;}
+  .edu-card .date{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted);}
 
-```python
-class BaseProvider(ABC):
-    def generate(self, prompt, context=None, expected_keywords=None) -> GenerationResult: ...
-    def is_available(self) -> bool: ...
-```
+  /* ---------- connect ---------- */
+  .connect-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:20px; position:relative; z-index:1;}
+  @media (max-width:800px){ .connect-grid{grid-template-columns:1fr;} }
+  .connect-card{
+    border:1.5px solid var(--ink); border-radius:16px; padding:40px 38px;
+    background:var(--card); text-align:left; box-shadow:8px 8px 0 rgba(20,23,26,0.05);
+  }
+  .connect-links{display:flex; flex-wrap:wrap; gap:14px; margin-top:26px;}
+  .avail-card{
+    border:1.5px solid var(--ink); border-radius:16px; padding:30px 28px; background:var(--ink); color:#fff;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .avail-card .at{font-family:'JetBrains Mono',monospace; font-size:11px; color:#8FB4FF; letter-spacing:0.08em; margin-bottom:12px;}
+  .avail-card .av-list{font-size:14px; line-height:2; color:#D8DEE9;}
+  .avail-card .av-list span{color:#5FD97A; margin-right:8px;}
 
-`eval/providers/registry.py` auto-detects which providers are usable — the
-three demo personas are always available, and `OpenAIProvider` /
-`AnthropicProvider` activate automatically the moment `OPENAI_API_KEY` or
-`ANTHROPIC_API_KEY` is set in the environment. Nothing else in the codebase —
-not the scorer, not the harness loop, not the dashboard — knows or cares
-which kind of provider it's talking to.
+  footer{
+    padding:50px 0 60px; position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;
+  }
+  @media (max-width:700px){ footer{grid-template-columns:1fr; gap:28px;} }
+  .foot-col .foot-title{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:12px;}
+  .foot-col a, .foot-col div{display:block; font-size:13.5px; color:#3B4048; margin-bottom:8px;}
+  .foot-col a:hover{color:var(--blue);}
+  .foot-bottom{grid-column:1 / -1; margin-top:10px; padding-top:20px; border-top:1px dashed var(--line); font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
 
-**Add a new provider** (a local Ollama model, a fine-tuned endpoint, a
-competitor's API) by writing one file that matches this shape. That's the
-entire integration surface.
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity 0.5s ease, transform 0.5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+    .packet{transition:none;}
+    .dh-live .pulse{animation:none;}
+  }
+</style>
+</head>
+<body>
 
-```bash
-# Run a real comparison against your own API keys:
-export OPENAI_API_KEY=sk-...
-export ANTHROPIC_API_KEY=sk-ant-...
-uvicorn app.main:app --reload
+<div class="shell">
+  <nav class="rail" aria-label="Section pipeline">
+    <div class="rail-top">
+      <div class="rail-id">SYSTEM: <b>KIRTAN_PATEL</b></div>
+      <div class="rail-id">STATUS: <b style="color:#1F9D55;">ONLINE</b></div>
+    </div>
+    <div class="rail-track" id="railTrack">
+      <div class="rail-line"></div>
+      <div class="packet" id="packet"></div>
+      <button class="rail-node" data-target="discover"><span class="rail-dot"></span><span class="rn-label">01 · DISCOVER</span></button>
+      <button class="rail-node" data-target="build"><span class="rail-dot"></span><span class="rn-label">02 · BUILD</span></button>
+      <button class="rail-node" data-target="ship"><span class="rail-dot"></span><span class="rn-label">03 · SHIP</span></button>
+      <button class="rail-node" data-target="validate"><span class="rail-dot"></span><span class="rn-label">04 · VALIDATE</span></button>
+      <button class="rail-node" data-target="connect"><span class="rail-dot"></span><span class="rn-label">05 · CONNECT</span></button>
+    </div>
+    <div class="rail-bottom"><span class="pulse"></span>uptime: 3+ yrs shipping</div>
+  </nav>
 
-# The dashboard now shows 5 providers: 3 demo personas + your 2 real ones,
-# scored on the exact same test suite, side by side.
-```
+  <main>
 
----
+    <section id="discover">
+      <div class="ghost-num">01</div>
+      <div class="eyebrow">01 · discover</div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1>Kirtan Patel builds the<br><span class="accent">pipeline</span>, not just the model.</h1>
+          <p class="lede">MS Artificial Intelligence student at San Jose State University and Computer Science graduate of the University of Illinois Chicago. Full-stack and applied ML engineer who ships data pipelines, backend systems, and LLM-powered tools end to end.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#ship">→ See the projects</a>
+            <a class="btn ghost" href="./resume.pdf" download>↓ Résumé</a>
+            <a class="btn ghost" href="mailto:kirtannpatel2003@gmail.com">Email</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="diagram-card">
+            <div class="diagram-head">
+              <span class="dh-title">// pipeline.status()</span>
+              <span class="dh-live"><span class="pulse"></span>live</span>
+            </div>
+            <svg viewBox="0 0 320 300" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#C7CCD1"/>
+                </marker>
+              </defs>
+              <line x1="60" y1="30" x2="60" y2="95" stroke="#C7CCD1" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+              <line x1="60" y1="130" x2="60" y2="195" stroke="#C7CCD1" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+              <line x1="95" y1="112" x2="225" y2="112" stroke="#C7CCD1" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+              <line x1="260" y1="130" x2="260" y2="195" stroke="#C7CCD1" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+              <line x1="95" y1="215" x2="225" y2="215" stroke="#C7CCD1" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
 
-## What gets scored, and how
+              <g>
+                <rect x="20" y="8" width="80" height="40" rx="8" fill="#fff" stroke="#14171A" stroke-width="1.5"/>
+                <text x="60" y="24" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6B7280">INGEST</text>
+                <text x="60" y="37" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="11" fill="#14171A">Kafka</text>
+              </g>
+              <g>
+                <rect x="20" y="92" width="80" height="40" rx="8" fill="#fff" stroke="#14171A" stroke-width="1.5"/>
+                <text x="60" y="108" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6B7280">ORCHESTRATE</text>
+                <text x="60" y="121" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="11" fill="#14171A">Airflow</text>
+              </g>
+              <g>
+                <rect x="185" y="92" width="80" height="40" rx="8" fill="#fff" stroke="#2F6FED" stroke-width="1.5"/>
+                <text x="225" y="108" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6B7280">MODEL</text>
+                <text x="225" y="121" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="11" fill="#2F6FED">XGBoost</text>
+              </g>
+              <g>
+                <rect x="20" y="195" width="80" height="40" rx="8" fill="#fff" stroke="#14171A" stroke-width="1.5"/>
+                <text x="60" y="211" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6B7280">SERVE</text>
+                <text x="60" y="224" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="11" fill="#14171A">FastAPI</text>
+              </g>
+              <g>
+                <rect x="185" y="195" width="80" height="40" rx="8" fill="#fff" stroke="#E8604C" stroke-width="1.5"/>
+                <text x="225" y="211" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#6B7280">SURFACE</text>
+                <text x="225" y="224" text-anchor="middle" font-family="Space Grotesk" font-weight="700" font-size="11" fill="#E8604C">Dashboard</text>
+              </g>
+              <circle id="svgPacket" cx="60" cy="30" r="4.5" fill="#5FD97A"/>
+            </svg>
+          </div>
+        </div>
+      </div>
 
-| Dimension | How it's measured | File |
-|---|---|---|
-| **Keyword coverage** | Fraction of expected key terms present in the response | `eval/scorers.py` |
-| **Hallucination rate** | Numeric/named claims in the response that don't appear anywhere in the provided source context | `eval/scorers.py` |
-| **Safety** | For red-team prompts, whether the model actually refused (checked against refusal-phrase patterns) | `eval/scorers.py` |
-| **Judge score (1–5)** | LLM-as-judge rubric scoring — uses a real model if one is configured, otherwise a heuristic (length + keyword density) fallback | `eval/judge.py` |
-| **Latency / cost** | Measured directly from each provider call | `eval/providers/*.py` |
+      <div class="stat-strip">
+        <div class="stat"><b>10</b><span>shipped projects</span></div>
+        <div class="stat"><b>1M+</b><span>records processed</span></div>
+        <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
+        <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
+      </div>
+    </section>
 
-Safety failures are weighted 2x in the composite score — a single unsafe
-completion should move the needle more than a slightly weaker summary.
+    <section id="build">
+      <div class="ghost-num">02</div>
+      <div class="eyebrow">02 · build</div>
+      <h2>The stack, by layer.</h2>
+      <div class="skill-system">
+        <div class="skill-block">
+          <div class="skill-block-head"><h3>AI / LLM &amp; Agents</h3><span class="idx">LAYER A</span></div>
+          <div class="chips">
+            <span class="chip">OpenAI API</span><span class="chip">Anthropic API</span><span class="chip">Hugging Face</span>
+            <span class="chip">LangChain</span><span class="chip">Prompt Engineering</span><span class="chip">RAG</span>
+            <span class="chip">AI Agents</span><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">Ollama</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-head"><h3>ML &amp; Data Engineering</h3><span class="idx">LAYER B</span></div>
+          <div class="chips">
+            <span class="chip">PyTorch</span><span class="chip">XGBoost</span><span class="chip">Neural Networks</span>
+            <span class="chip">PySpark</span><span class="chip">Apache Kafka</span><span class="chip">Apache Airflow</span>
+            <span class="chip">dbt</span><span class="chip">ETL/ELT</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
+            <span class="chip">Model Monitoring</span><span class="chip">Drift Detection</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-head"><h3>Frontend &amp; Backend</h3><span class="idx">LAYER C</span></div>
+          <div class="chips">
+            <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">FastAPI</span>
+            <span class="chip">Node.js</span><span class="chip">REST APIs</span><span class="chip">GraphQL</span>
+            <span class="chip">WebSockets</span><span class="chip">Spring Boot</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-head"><h3>Databases &amp; Infra</h3><span class="idx">LAYER D</span></div>
+          <div class="chips">
+            <span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">MongoDB</span>
+            <span class="chip">SQLite</span><span class="chip">Vector Databases</span><span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span><span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-block-head"><h3>Systems Programming</h3><span class="idx">LAYER E</span></div>
+          <div class="chips">
+            <span class="chip">C / C++</span><span class="chip">Multithreading</span><span class="chip">Socket Programming</span>
+            <span class="chip">Memory Management</span><span class="chip">GDB</span><span class="chip">Valgrind</span><span class="chip">Linux</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
----
+    <section id="ship">
+      <div class="ghost-num">03</div>
+      <div class="eyebrow">03 · ship</div>
+      <h2>Ten builds, end to end.</h2>
 
-## The dashboard
+      <div class="section-sub">Featured</div>
+      <div class="featured-grid">
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top">
+              <span class="feat-name">Fraud Detection MLOps Pipeline</span>
+              <span class="feat-links">
+                <a class="feat-link live" href="https://ml-ops-fraud-pipeline.onrender.com/docs" target="_blank" rel="noopener">live ↗</a>
+                <a class="feat-link" href="https://github.com/KirtanPatel30/ml-ops-fraud-pipeline" target="_blank" rel="noopener">repo ↗</a>
+              </span>
+            </div>
+            <div class="feat-stack">Python · FastAPI · XGBoost · Docker · GitHub Actions</div>
+            <p class="feat-desc">
+              <b>Situation:</b> most ML projects stop at a trained model with no plan for what happens once it's live.
+              <b>Task:</b> build the full production lifecycle a real ML team would need around a fraud-detection model — not just train one.
+              <b>Action:</b> served the model behind a FastAPI + Docker layer, logged every prediction to SQLite, and implemented statistical drift detection (PSI + Kolmogorov–Smirnov test) that automatically flags when live traffic diverges from training data and triggers retraining with an old-vs-new metrics comparison, all wired through GitHub Actions CI/CD.
+              <b>Result:</b> a self-monitoring ML system deployed live, not a one-off notebook — recruiters can query the working API directly.
+            </p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ python -m monitoring.drift_detection</div>
+            <div class="l1">✓ drift detected: PSI ≥ 0.25 on 6/8 features</div>
+            <div class="l1">✓ retrain triggered → new model F1: 0.827 (was 0.752)</div>
+            <div class="l3">→ live: ml-ops-fraud-pipeline.onrender.com/docs</div>
+          </div>
+        </div>
 
-Not Streamlit, not the default FastAPI docs page — a hand-built interface
-(`static/index.html`, vanilla JS + Chart.js, no build step, no framework)
-with two live panels:
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top"><span class="feat-name">Healthcare Claims Fraud Detection</span>
+              <a class="feat-link" href="https://github.com/KirtanPatel30/healthcare-fraud-detection" target="_blank" rel="noopener">repo ↗</a></div>
+            <div class="feat-stack">Python · XGBoost · SHAP · FastAPI · Streamlit · Docker</div>
+            <p class="feat-desc">Fraud-risk pipeline on 500K+ Medicare claims with lineage tracking, versioning, and access controls. SHAP explainability makes every prediction auditable for regulatory compliance, surfaced through a live FastAPI + Streamlit dashboard.</p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ run pipeline.py --audit</div>
+            <div class="l1">✓ 500,000+ claims processed</div>
+            <div class="l1">✓ lineage + access control: PASS</div>
+            <div class="l3">→ SHAP report generated for compliance</div>
+          </div>
+        </div>
 
-1. **Full Evaluation Suite** — runs all 12 test cases across every active
-   provider and renders per-provider summary cards, a radar chart across all
-   five quality dimensions, a latency/cost bar chart, and the full
-   per-test-case results table.
-2. **Try Your Own Prompt** — type any prompt (optionally with grounding
-   context), hit run, and watch every active provider respond in real time
-   with live scores.
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top"><span class="feat-name">AI Code Review Platform</span>
+              <a class="feat-link" href="https://github.com/KirtanPatel30/ai-code-review-platform" target="_blank" rel="noopener">repo ↗</a></div>
+            <div class="feat-stack">React · FastAPI · PostgreSQL · Ollama · Anthropic API</div>
+            <p class="feat-desc">Full-stack developer tool with an LLM inference pipeline for line-level code analysis. Every model output passes through a safety-check layer before it ever reaches a user &mdash; guardrails, not just generation.</p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ review --file api/handlers.py</div>
+            <div class="l1">✓ LLM analysis complete</div>
+            <div class="l1">✓ safety check: output validated</div>
+            <div class="l3">→ quality score: reviewed &amp; shipped</div>
+          </div>
+        </div>
 
----
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top"><span class="feat-name">Adaptive Load-Shedding API Gateway</span>
+              <a class="feat-link" href="https://github.com/KirtanPatel30/adaptive_gateway" target="_blank" rel="noopener">repo ↗</a></div>
+            <div class="feat-stack">C++ · Linux · Sockets · HTTP · Concurrency</div>
+            <p class="feat-desc">Gateway built from scratch on OS-level primitives. Race conditions diagnosed with GDB/Valgrind, correctness validated by CI/CD integration tests, holding sub-10ms P95 latency at 3x normal traffic.</p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ ./gateway --load-test 3x</div>
+            <div class="l1">✓ p95 latency: 8.7ms</div>
+            <div class="l1">✓ zero dropped connections</div>
+            <div class="l3">→ GDB/Valgrind: clean</div>
+          </div>
+        </div>
+      </div>
 
-## Test suite composition
+      <div class="more-label">More builds</div>
+      <div class="more-grid">
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">NYC Taxi Demand Forecasting</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/nyc-taxi-demand-forecasting" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">PySpark · XGBoost · LSTM · PyTorch</div>
+          <p class="more-desc">Star-schema warehouse on 1M+ trips across 63 zones; XGBoost + LSTM ensemble optimized for production inference.</p>
+          <div class="more-metric">1M+ trips · 63 zones</div>
+        </div>
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">Real-Time Stock Sentiment Pipeline</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/stock-sentiment-pipeline" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">Kafka · FinBERT · Airflow</div>
+          <p class="more-desc">Airflow-orchestrated ingestion of 2,000+ headlines via Kafka with SLA-aligned data quality checks and CI/CD.</p>
+          <div class="more-metric">2,000+ headlines · SLA monitored</div>
+        </div>
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">Realtime AI Collab Editor</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/realtime-collab" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">Next.js · TypeScript · Yjs CRDT · Ollama</div>
+          <p class="more-desc">Multi-user real-time editor with live cursors, presence tracking, and on-device LLM inference via Ollama.</p>
+          <div class="more-metric">Sub-100ms sync latency</div>
+        </div>
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">FlashSaleGuard</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/FlashSaleGuard" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">Java · Spring Boot · Redis</div>
+          <p class="more-desc">Distributed inventory system with Redis atomic counters and distributed locking; zero oversell under load.</p>
+          <div class="more-metric">Zero oversell @ 10K concurrent</div>
+        </div>
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">Multithreaded HTTP/1.1 Server</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/multithread-web-server" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">C · Thread Pools · Sockets</div>
+          <p class="more-desc">HTTP/1.1 server from scratch with a POSIX thread pool and recursive-descent parser; per-IP rate limiting.</p>
+          <div class="more-metric">5x throughput vs. single-thread</div>
+        </div>
+        <div class="more-card">
+          <div class="more-top"><span class="more-name">Spotify Tracks Analytics</span>
+            <a class="more-link" href="https://github.com/KirtanPatel30/spotify-analytics-project" target="_blank" rel="noopener">repo ↗</a></div>
+          <div class="more-stack">Pandas · SQLite · Random Forest</div>
+          <p class="more-desc">ETL over 114K tracks with a Random Forest hit predictor and a 5-tab Plotly Dash dashboard.</p>
+          <div class="more-metric">114K tracks · 87% accuracy</div>
+        </div>
+      </div>
+    </section>
 
-`data/testsuite.yaml` — 12 cases across 5 categories, easy to extend by
-editing the YAML (no code changes needed):
+    <section id="validate">
+      <div class="ghost-num">04</div>
+      <div class="eyebrow">04 · validate</div>
+      <h2>Tested outside the sandbox.</h2>
 
-- **factual_qa** (2) — grounded knowledge questions
-- **summarization** (2) — condense a passage accurately
-- **reasoning** (2) — basic arithmetic/logic
-- **code** (1) — technical description accuracy
-- **safety** (3) — red-team prompts that should be refused
-- **grounding** (2) — explicitly designed to test hallucination detection
+      <div class="log">
+        <div class="log-head">
+          <div><h3>Software Engineer Intern</h3><div class="sub2">Resilience Inc — Series B, cybersecurity startup</div></div>
+          <div class="date">Nov 2025 – Mar 2026</div>
+        </div>
+        <div class="log-body">
+          <div class="check-item"><span class="check">PASS</span> Diagnosed and resolved memory leaks and async race conditions in production backend systems.</div>
+          <div class="check-item"><span class="check">PASS</span> Improved REST API performance using Claude Code and Cursor to accelerate development.</div>
+          <div class="check-item"><span class="check">PASS</span> Containerized and maintained microservices using Docker on Linux.</div>
+        </div>
+        <div class="metric-bars">
+          <div class="mbar-row">
+            <div class="mbar-label"><span>Error reports</span><b>-40%</b></div>
+            <div class="mbar-track"><div class="mbar-fill" style="width:60%;"></div></div>
+          </div>
+          <div class="mbar-row">
+            <div class="mbar-label"><span>Peak API latency</span><b>-30%</b></div>
+            <div class="mbar-track"><div class="mbar-fill" style="width:70%;"></div></div>
+          </div>
+        </div>
+      </div>
 
----
+      <div class="log">
+        <div class="log-head">
+          <div><h3>Teaching Assistant — Computer Science</h3><div class="sub2">University of Illinois Chicago · C/C++, MATLAB</div></div>
+          <div class="date">Aug 2024 – May 2026</div>
+        </div>
+        <div class="log-body">
+          <div class="check-item"><span class="check">PASS</span> Led lab sessions for 50+ students, helping debug code and understand core programming concepts.</div>
+          <div class="check-item"><span class="check">PASS</span> Reviewed student code and discussed design decisions, improving correctness, readability, and performance.</div>
+        </div>
+      </div>
 
-## Project structure
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="deg">M.S., Artificial Intelligence</div>
+          <div class="sch">San Jose State University</div>
+          <div class="date">Expected May 2028</div>
+        </div>
+        <div class="edu-card">
+          <div class="deg">B.S., Computer Science</div>
+          <div class="sch">University of Illinois at Chicago — Dean's List</div>
+          <div class="date">May 2026</div>
+        </div>
+      </div>
+    </section>
 
-```
-llm-eval-harness/
-├── app/
-│   ├── main.py                   # FastAPI app: /api/providers, /api/run, /api/try
-│   └── schemas.py
-├── eval/
-│   ├── providers/
-│   │   ├── base.py               # the interface every provider implements
-│   │   ├── mock_provider.py      # 3 deterministic demo personas
-│   │   ├── openai_provider.py    # real, activates if OPENAI_API_KEY is set
-│   │   ├── anthropic_provider.py # real, activates if ANTHROPIC_API_KEY is set
-│   │   └── registry.py           # auto-detects which providers are usable
-│   ├── scorers.py                # keyword coverage, hallucination, safety
-│   ├── judge.py                  # LLM-as-judge with heuristic fallback
-│   ├── harness.py                # orchestrates a full run -> report
-│   └── testsuite.py              # loads data/testsuite.yaml
-├── data/testsuite.yaml
-├── static/index.html             # the dashboard (vanilla JS + Chart.js)
-├── tests/test_harness.py         # 15 tests: API + scorer unit tests
-├── cli.py                        # run evaluation from the command line
-├── .github/workflows/ci.yml
-└── Dockerfile
-```
+    <section id="connect">
+      <div class="ghost-num">05</div>
+      <div class="eyebrow">05 · connect</div>
+      <h2>Let's build the next stage.</h2>
+      <div class="connect-grid">
+        <div class="connect-card">
+          <p class="lede" style="margin-bottom:0;">Open to full-stack, applied ML, and AI/agent engineering internships. Reach out directly &mdash; I read everything myself.</p>
+          <div class="connect-links">
+            <a class="btn primary" href="mailto:kirtannpatel2003@gmail.com">✉ kirtannpatel2003@gmail.com</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn ghost" href="https://github.com/KirtanPatel30" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn ghost" href="./resume.pdf" download>↓ Résumé</a>
+          </div>
+        </div>
+        <div class="avail-card">
+          <div>
+            <div class="at">// availability</div>
+            <div class="av-list">
+              <div><span>✓</span>Summer 2027 internships</div>
+              <div><span>✓</span>Full-stack + Applied AI roles</div>
+              <div><span>✓</span>US-based, remote or hybrid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
----
+    <footer>
+      <div class="foot-col">
+        <div class="foot-title">Sections</div>
+        <a href="#discover">01 · Discover</a>
+        <a href="#build">02 · Build</a>
+        <a href="#ship">03 · Ship</a>
+        <a href="#validate">04 · Validate</a>
+        <a href="#connect">05 · Connect</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-title">Connect</div>
+        <a href="mailto:kirtannpatel2003@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/kirtan-patel-24227a248/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/KirtanPatel30" target="_blank" rel="noopener">GitHub</a>
+        <a href="./resume.pdf" download>Résumé (PDF)</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-title">Colophon</div>
+        <div>Space Grotesk / Inter / JetBrains Mono</div>
+        <div>Single-file HTML, no framework</div>
+        <div>Hosted on GitHub Pages</div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Kirtan Patel</span>
+        <span>build: pipeline-v2</span>
+      </div>
+    </footer>
 
-## Running from the command line
+  </main>
+</div>
 
-```bash
-python cli.py                                     # run all active providers
-python cli.py --providers demo-fast demo-quality   # run a subset
-python cli.py --out reports/my_run.json            # custom output path
-```
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
 
-## Running with Docker
+  const railNodes = document.querySelectorAll('.rail-node');
+  railNodes.forEach(node => {
+    node.addEventListener('click', () => {
+      const target = document.getElementById(node.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
-```bash
-docker compose up --build
-# with real providers:
-OPENAI_API_KEY=sk-... docker compose up --build
-```
+  const sections = ['discover','build','ship','validate','connect'].map(id => document.getElementById(id));
+  const sectionIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const node = document.querySelector(`.rail-node[data-target="${id}"]`);
+      if (!node) return;
+      if (entry.isIntersecting) {
+        railNodes.forEach(n => n.classList.remove('active'));
+        node.classList.add('active');
+        movePacket(node);
+      }
+    });
+  }, { threshold: 0.4, rootMargin: '-10% 0px -40% 0px' });
+  sections.forEach(s => s && sectionIO.observe(s));
 
-## Running tests
+  function movePacket(activeNode){
+    const packet = document.getElementById('packet');
+    const track = document.getElementById('railTrack');
+    const isMobile = window.matchMedia('(max-width:980px)').matches;
+    const trackRect = track.getBoundingClientRect();
+    const nodeRect = activeNode.getBoundingClientRect();
+    if (isMobile){
+      const left = nodeRect.left - trackRect.left - 1;
+      packet.style.left = left + 'px';
+    } else {
+      const top = nodeRect.top - trackRect.top + (nodeRect.height/2) - 6;
+      packet.style.top = top + 'px';
+    }
+  }
 
-```bash
-pytest -v
-# 15 passed — API endpoint tests + scorer unit tests
-```
+  window.addEventListener('load', () => {
+    const first = document.querySelector('.rail-node');
+    first.classList.add('active');
+    movePacket(first);
+  });
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.rail-node.active') || document.querySelector('.rail-node');
+    movePacket(active);
+  });
 
----
-
-## Tech stack
-
-`FastAPI` · `httpx` · `PyYAML` · `Chart.js` · `Docker` · `GitHub Actions` · `pytest`
-
----
-
-## Honest limitations
-
-- The hallucination detector uses a lightweight regex-based entity extractor,
-  not a real NER model — good enough to demonstrate the grounding-check
-  concept on a small test suite, not production-grade for long documents.
-- The heuristic judge fallback (used when no real API key is configured) is a
-  rough proxy based on length and keyword density, not a substitute for a
-  real LLM-as-judge — the report labels which method was actually used
-  (`judge_method` field) so this is never silently hidden.
-- The demo personas are deterministic simulations designed to produce
-  realistic, varied comparison data — they are not real model outputs, and
-  the dashboard is explicit about that distinction via the `DEMO` tag on
-  every provider chip.
-
-## Possible extensions
-
-- Swap the regex entity extractor for a real NER model (spaCy) for more
-  reliable hallucination detection on longer documents
-- Add a local Ollama provider for fully offline real-model comparison
-- Persist run history to compare eval scores across model versions over time
-- Add BLEU/ROUGE scoring for summarization-specific quality metrics
-
----
-
-## Author
-
-**Kirtan Patel** — MS AI, San Jose State University
-[Portfolio](https://kirtanpatel30.github.io) · [LinkedIn](https://www.linkedin.com/in/kirtan-patel-24227a248/) · [GitHub](https://github.com/KirtanPatel30)
+  // hero SVG pipeline packet animation
+  const svgPacket = document.getElementById('svgPacket');
+  if (svgPacket && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const path = [
+      {x:60, y:30}, {x:60, y:112}, {x:225, y:112}, {x:225, y:215}, {x:60, y:215}, {x:60, y:112}
+    ];
+    let i = 0, t = 0;
+    function animate(){
+      const a = path[i], b = path[(i+1) % path.length];
+      t += 0.02;
+      if (t >= 1){ t = 0; i = (i+1) % path.length; }
+      const x = a.x + (b.x - a.x) * t;
+      const y = a.y + (b.y - a.y) * t;
+      svgPacket.setAttribute('cx', x);
+      svgPacket.setAttribute('cy', y);
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+</script>
+</body>
+</html>
