@@ -382,7 +382,7 @@
       </div>
 
       <div class="stat-strip">
-        <div class="stat"><b>11</b><span>shipped projects</span></div>
+        <div class="stat"><b>12</b><span>shipped projects</span></div>
         <div class="stat"><b>1M+</b><span>records processed</span></div>
         <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
         <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
@@ -401,6 +401,7 @@
             <span class="chip">LangChain</span><span class="chip">Prompt Engineering</span><span class="chip">RAG</span>
             <span class="chip">AI Agents</span><span class="chip">Claude Code</span><span class="chip">Cursor</span><span class="chip">Ollama</span>
             <span class="chip">LLM Evaluation</span><span class="chip">Hallucination Detection</span>
+            <span class="chip">Text Classification</span><span class="chip">scikit-learn</span>
           </div>
         </div>
         <div class="skill-block">
@@ -441,7 +442,7 @@
     <section id="ship">
       <div class="ghost-num">03</div>
       <div class="eyebrow">03 · ship</div>
-      <h2>Eleven builds, end to end.</h2>
+      <h2>Twelve builds, end to end.</h2>
 
       <div class="section-sub">Featured</div>
       <div class="featured-grid">
@@ -492,6 +493,31 @@
             <div class="l1">✓ demo-fast → hallucination 1.0 (flagged)</div>
             <div class="l1">✓ demo-quality → hallucination 0.0 (grounded)</div>
             <div class="l3">→ 15/15 tests passing · provider-agnostic</div>
+          </div>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top">
+              <span class="feat-name">Support Ticket Auto-Triage</span>
+              <span class="feat-links">
+                <a class="feat-link live" href="https://ticket-triage-4xy9.onrender.com" target="_blank" rel="noopener">live ↗</a>
+                <a class="feat-link" href="https://github.com/KirtanPatel30/ticket-triage" target="_blank" rel="noopener">repo ↗</a>
+              </span>
+            </div>
+            <div class="feat-stack">Python · scikit-learn · FastAPI · TF-IDF · Docker</div>
+            <p class="feat-desc">
+              <b>Situation:</b> support teams manually read every incoming ticket just to decide which department it belongs to and how urgent it is &mdash; a triage cost repeated on every single ticket.
+              <b>Task:</b> build a classifier that automates that first-pass routing decision for a support team.
+              <b>Action:</b> trained two independent TF-IDF + Logistic Regression classifiers (department, urgency) on a synthetic ticket dataset, deliberately injecting realistic label ambiguity near urgency boundaries after an initial version scored a suspicious 100% and had to be corrected; served both behind a FastAPI backend with a hand-built live Kanban board where tickets animate into the correct queue as they're classified.
+              <b>Result:</b> 100% department accuracy, 87.8% urgency accuracy (F1 0.87) &mdash; a believable, defensible result instead of an overfit one, deployed live.
+            </p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ POST /api/classify {"text": "..."}</div>
+            <div class="l1">✓ department: Technical (conf. 0.90)</div>
+            <div class="l1">✓ urgency: High (conf. 0.88)</div>
+            <div class="l3">→ routed to Technical queue in real time</div>
           </div>
         </div>
 
