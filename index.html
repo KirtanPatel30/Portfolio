@@ -382,7 +382,7 @@
       </div>
 
       <div class="stat-strip">
-        <div class="stat"><b>12</b><span>shipped projects</span></div>
+        <div class="stat"><b>13</b><span>shipped projects</span></div>
         <div class="stat"><b>1M+</b><span>records processed</span></div>
         <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
         <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
@@ -442,7 +442,7 @@
     <section id="ship">
       <div class="ghost-num">03</div>
       <div class="eyebrow">03 · ship</div>
-      <h2>Twelve builds, end to end.</h2>
+      <h2>Thirteen builds, end to end.</h2>
 
       <div class="section-sub">Featured</div>
       <div class="featured-grid">
@@ -470,6 +470,30 @@
             <div class="l3">→ live: ml-ops-fraud-pipeline.onrender.com/docs</div>
           </div>
         </div>
+        <div class="feat-card">
+  <div class="feat-info">
+    <div class="feat-top">
+      <span class="feat-name">Customer Churn &amp; Revenue Risk Analytics</span>
+      <span class="feat-links">
+        <a class="feat-link live" href="YOUR_RENDER_URL_HERE" target="_blank" rel="noopener">live ↗</a>
+        <a class="feat-link" href="https://github.com/KirtanPatel30/churn-revenue-analytics" target="_blank" rel="noopener">repo ↗</a>
+      </span>
+    </div>
+    <div class="feat-stack">Python · XGBoost · SHAP · Dash · Docker</div>
+    <p class="feat-desc">
+      <b>Situation:</b> most churn projects stop at a trained model with an accuracy score and no path to a business decision.
+      <b>Task:</b> build the full retention-analytics workflow a Customer Analytics team would actually use &mdash; segment customers, predict churn, and translate risk into dollars.
+      <b>Action:</b> built a CLV-adapted RFM segmentation model across 5 business segments, trained an XGBoost classifier wrapped in a scikit-learn pipeline, computed SHAP TreeExplainer values for full prediction explainability, and calculated annualized revenue-at-risk per customer &mdash; all surfaced through a hand-built 4-tab Dash dashboard with live segment/contract filters.
+      <b>Result:</b> identified $389K+ in annualized revenue concentrated in high-risk segments and generated four specific, quantified retention recommendations, deployed live rather than left in a notebook.
+    </p>
+  </div>
+  <div class="feat-term">
+    <div class="l2">$ python run_pipeline.py</div>
+    <div class="l1">✓ ROC-AUC: 0.844 · F1: 0.583</div>
+    <div class="l1">✓ revenue at risk: $389,996 (At Risk + Price-Sensitive segments)</div>
+    <div class="l3">→ live: your-render-url.onrender.com</div>
+  </div>
+</div>
 
         <div class="feat-card">
           <div class="feat-info">
