@@ -382,7 +382,7 @@
       </div>
 
       <div class="stat-strip">
-        <div class="stat"><b>13</b><span>shipped projects</span></div>
+        <div class="stat"><b>14</b><span>shipped projects</span></div>
         <div class="stat"><b>1M+</b><span>records processed</span></div>
         <div class="stat"><b>-40%</b><span>error reports (internship)</span></div>
         <div class="stat"><b>-30%</b><span>API latency (internship)</span></div>
@@ -442,10 +442,33 @@
     <section id="ship">
       <div class="ghost-num">03</div>
       <div class="eyebrow">03 · ship</div>
-      <h2>Thirteen builds, end to end.</h2>
+      <h2>Fourteen builds, end to end.</h2>
 
       <div class="section-sub">Featured</div>
       <div class="featured-grid">
+        <div class="feat-card">
+          <div class="feat-info">
+            <div class="feat-top">
+              <span class="feat-name">FilingLens: Verified RAG over SEC 10-Ks</span>
+              <span class="feat-links">
+                <a class="feat-link" href="https://github.com/KirtanPatel30/filinglens" target="_blank" rel="noopener">repo ↗</a>
+              </span>
+            </div>
+            <div class="feat-stack">Python · FastAPI · PostgreSQL + pgvector · Ollama · Docker · GitHub Actions</div>
+            <p class="feat-desc">
+              <b>Situation:</b> most RAG demos answer confidently over a toy PDF, with no way to tell whether the answer is actually in the source.
+              <b>Task:</b> build a question-answering system over real, messy SEC 10-K filings where every sentence can be checked against the filing it cites.
+              <b>Action:</b> parsed 36 annual reports from 12 companies into section- and table-aware chunks, combined pgvector semantic search with Postgres full-text search via Reciprocal Rank Fusion, reranked with a cross-encoder, and added an agent step that detects companies and years, splits comparison questions, and rewrites weak searches. A verification layer then checks every answer sentence against its source, matching figures like "$8.7 billion" to tables reported in millions, and refuses when the evidence isn't there.
+              <b>Result:</b> cited answers with a sentence-by-sentence audit trail in a hand-built "auditor's working paper" UI, running fully locally with Ollama or on hosted LLM APIs, with a benchmark script for ablation testing.
+            </p>
+          </div>
+          <div class="feat-term">
+            <div class="l2">$ ask "Who does Netflix say its main competitors are?"</div>
+            <div class="l1">✓ search NFLX: 30 by meaning, 30 by keyword</div>
+            <div class="l1">✓ 1 of 1 sentences verified against Item 1</div>
+            <div class="l3">→ 9,079 chunks indexed · 12 companies · 18 tests passing</div>
+          </div>
+        </div>
         <div class="feat-card">
           <div class="feat-info">
             <div class="feat-top">
@@ -475,7 +498,7 @@
     <div class="feat-top">
       <span class="feat-name">Customer Churn &amp; Revenue Risk Analytics</span>
       <span class="feat-links">
-        <a class="feat-link live" href="YOUR_RENDER_URL_HERE" target="_blank" rel="noopener">live ↗</a>
+        <a class="feat-link live" href="https://churn-revenue-analytics.onrender.com/" target="_blank" rel="noopener">live ↗</a>
         <a class="feat-link" href="https://github.com/KirtanPatel30/churn-revenue-analytics" target="_blank" rel="noopener">repo ↗</a>
       </span>
     </div>
